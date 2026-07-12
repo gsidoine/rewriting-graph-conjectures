@@ -1,0 +1,3 @@
+be89e606074852ffce38fe076afa92129066c4ae8e1f19512d081eac3d3825a7  /mnt/data/rewriting-graph-conjectures/berge_fulkerson/instances/j5/j5_input.txt
+250de4158aaf3e89dfc9af15559ef5319b12611b8f5c498a32e1849bad35a3f6  /mnt/data/rewriting-graph-conjectures/berge_fulkerson/instances/j5/j5_instance.json
+b6e57fa1d48f12a83eacbbae090980ceb91f566acf70ed83a1330e7f09b829f6  /mnt/data/rewriting-graph-conjectures/berge_fulkerson/logs/j5res_reproduced.txt

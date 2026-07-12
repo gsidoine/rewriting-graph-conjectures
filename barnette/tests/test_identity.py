@@ -1,0 +1,1 @@
+from tests.test_core_claims import test_barnette_identity_cube_all_colourings

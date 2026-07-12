@@ -1,0 +1,23 @@
+LOW-DEFECT LEMMA SUMMARY
+
+Let six perfect matchings of a simple cubic graph have multiplicities m(e),
+deviations d(e)=m(e)-2, and Q=sum d(e)^2.
+
+1. If every m(e) is in {1,2,3}, the defective edges form disjoint even cycles
+   alternating multiplicities 1 and 3.
+
+2. A defect 4-cycle is always repaired by one perfect-matching replacement.
+   If its multiplicity-3 edges are e1,e2, their membership sets A(e1),A(e2)
+   are 3-subsets of {1,...,6}. The unique matching containing the intervening
+   multiplicity-1 edge lies outside A(e1) union A(e2), so the two 3-subsets
+   intersect. Any common matching alternates around the cycle and can be
+   flipped.
+
+3. Therefore every nonzero one-replacement local minimum has Q >= 6.
+   This is sharp in unrestricted simple cubic graphs.
+
+4. In the {1,2,3} regime, Q=6 means one alternating 6-cycle. A direct repair
+   exists iff the three membership sets of its multiplicity-3 edges have
+   nonempty total intersection. The first possible traps are therefore finite
+   configurations of three pairwise-intersecting 3-subsets with empty common
+   intersection.

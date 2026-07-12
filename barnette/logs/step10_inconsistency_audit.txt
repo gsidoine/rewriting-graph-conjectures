@@ -1,0 +1,2 @@
+The historical six-mask file is inconsistent with the supplied step10 graph and cannot serve as a trap certificate.
+actual potentials [14, 20, 18, 18, 20, 14]

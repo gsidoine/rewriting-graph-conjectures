@@ -1,0 +1,3 @@
+02fa6c3beb30386b7420c1c4b562b406ae9a3c4e727ec7280d50a98d7fc8bfcc  /mnt/data/rewriting-graph-conjectures/barnette/instances/barnette36_dual_input.txt
+ee2121b87d1acba626a9a3e205390a5cc1328cc50ecb9c46f27c2ed88ad7f90d  /mnt/data/rewriting-graph-conjectures/barnette/certificates/barnette36_unresolved_k2.txt
+fafc47e21dad9e402e082829797410573abea1622c7b5c600448c6f786ed0b2b  /mnt/data/rewriting-graph-conjectures/barnette/certificates/step10_inconsistency_report.json

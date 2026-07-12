@@ -1,0 +1,53 @@
+{
+  "instance": {
+    "steps": 10,
+    "seed": 201000,
+    "vertices": 26,
+    "edges": 72
+  },
+  "records": [
+    {
+      "mask": 2977543,
+      "historical_second_column": 2,
+      "actual_phi": 14,
+      "nonincreasing_size_le_2_successors": 59,
+      "all_successors_inside_six_masks": false
+    },
+    {
+      "mask": 4009735,
+      "historical_second_column": 2,
+      "actual_phi": 20,
+      "nonincreasing_size_le_2_successors": 75,
+      "all_successors_inside_six_masks": false
+    },
+    {
+      "mask": 4026119,
+      "historical_second_column": 2,
+      "actual_phi": 18,
+      "nonincreasing_size_le_2_successors": 71,
+      "all_successors_inside_six_masks": false
+    },
+    {
+      "mask": 63082744,
+      "historical_second_column": 2,
+      "actual_phi": 18,
+      "nonincreasing_size_le_2_successors": 71,
+      "all_successors_inside_six_masks": false
+    },
+    {
+      "mask": 63099128,
+      "historical_second_column": 2,
+      "actual_phi": 20,
+      "nonincreasing_size_le_2_successors": 75,
+      "all_successors_inside_six_masks": false
+    },
+    {
+      "mask": 64131320,
+      "historical_second_column": 2,
+      "actual_phi": 14,
+      "nonincreasing_size_le_2_successors": 59,
+      "all_successors_inside_six_masks": false
+    }
+  ],
+  "conclusion": "The historical six-mask file is inconsistent with the supplied step10 graph and cannot serve as a trap certificate."
+}

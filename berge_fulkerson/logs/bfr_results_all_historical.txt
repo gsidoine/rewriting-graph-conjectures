@@ -1,0 +1,87 @@
+12 0 9 | states 3003
+enum 3003 targets 3
+reached 3003 unresolved 0
+12 1 9 | states 3003
+enum 3003 targets 6
+reached 3003 unresolved 0
+12 2 14 | states 27132
+enum 27132 targets 37
+reached 27132 unresolved 0
+12 3 10 | states 5005
+enum 5005 targets 7
+reached 5005 unresolved 0
+12 4 10 | states 5005
+enum 5005 targets 4
+reached 5005 unresolved 0
+12 5 10 | states 5005
+enum 5005 targets 6
+reached 5005 unresolved 0
+12 6 11 | states 8008
+enum 8008 targets 7
+reached 8008 unresolved 0
+12 7 10 | states 5005
+enum 5005 targets 7
+reached 5005 unresolved 0
+12 8 9 | states 3003
+enum 3003 targets 3
+reached 3003 unresolved 0
+12 9 18 | states 100947
+enum 100947 targets 64
+reached 100947 unresolved 0
+14 0 10 | states 5005
+enum 5005 targets 3
+reached 5005 unresolved 0
+14 1 13 | states 18564
+enum 18564 targets 10
+reached 18564 unresolved 0
+14 2 12 | states 12376
+enum 12376 targets 6
+reached 12376 unresolved 0
+14 3 15 | states 38760
+enum 38760 targets 1
+reached 38760 unresolved 0
+14 4 16 | states 54264
+enum 54264 targets 31
+reached 54264 unresolved 0
+14 5 13 | states 18564
+enum 18564 targets 7
+reached 18564 unresolved 0
+14 6 10 | states 5005
+enum 5005 targets 1
+reached 5005 unresolved 0
+14 7 19 | states 134596
+enum 134596 targets 49
+reached 134596 unresolved 0
+14 8 10 | states 5005
+enum 5005 targets 3
+reached 5005 unresolved 0
+14 9 13 | states 18564
+enum 18564 targets 14
+reached 18564 unresolved 0
+16 0 20 | states 177100
+enum 177100 targets 7
+reached 177100 unresolved 0
+16 1 17 | states 74613
+enum 74613 targets 21
+reached 74613 unresolved 0
+16 2 17 | states 74613
+enum 74613 targets 7
+reached 74613 unresolved 0
+16 3 14 | states 27132
+enum 27132 targets 8
+reached 27132 unresolved 0
+16 4 14 | states 27132
+enum 27132 targets 8
+reached 27132 unresolved 0
+16 5 14 | states 27132
+enum 27132 targets 5
+reached 27132 unresolved 0
+16 6 11 | states 8008
+enum 8008 targets 1
+reached 8008 unresolved 0
+16 7 14 | states 27132
+enum 27132 targets 6
+reached 27132 unresolved 0
+16 8 14 | states 27132
+enum 27132 targets 6
+reached 27132 unresolved 0

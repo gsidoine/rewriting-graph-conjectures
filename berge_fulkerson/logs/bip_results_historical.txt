@@ -1,0 +1,45 @@
+12 0 20 | states 177100
+enum 177100 targets 124
+reached 177100 unresolved 0
+12 1 18 | states 100947
+enum 100947 targets 64
+reached 100947 unresolved 0
+12 2 17 | states 74613
+enum 74613 targets 56
+reached 74613 unresolved 0
+12 3 18 | states 100947
+enum 100947 targets 64
+reached 100947 unresolved 0
+12 4 18 | states 100947
+enum 100947 targets 64
+reached 100947 unresolved 0
+12 5 18 | states 100947
+enum 100947 targets 70
+reached 100947 unresolved 0
+12 6 18 | states 100947
+enum 100947 targets 70
+reached 100947 unresolved 0
+12 7 18 | states 100947
+enum 100947 targets 64
+reached 100947 unresolved 0
+14 0 25 | states 593775
+enum 593775 targets 178
+reached 593775 unresolved 0
+14 1 26 | states 736281
+enum 736281 targets 229
+reached 736281 unresolved 0
+14 2 24 | states 475020
+enum 475020 targets 141
+reached 475020 unresolved 0
+14 3 26 | states 736281
+enum 736281 targets 229
+reached 736281 unresolved 0
+14 4 26 | states 736281
+enum 736281 targets 229
+reached 736281 unresolved 0
+14 5 30 | states 1623160
+enum 1623160 targets 388
+reached 1623160 unresolved 0
+14 6 27 | states 906192
+enum 906192 targets 253
+reached 906192 unresolved 0
