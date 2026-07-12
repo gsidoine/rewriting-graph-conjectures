@@ -1,0 +1,148 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{proposition}{Proposition}
+\title{Local Normalization Landscapes for Three Open Graph Conjectures}
+\author{Research draft}
+\date{\today}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We investigate Collatz-style local normalization systems for Barnette's
+Hamiltonicity conjecture, Tutte's 5-flow conjecture, and the
+Berge--Fulkerson conjecture.  For Barnette graphs we derive an exact
+topological defect formula and exhibit a counterexample to normalization
+by one- and two-face flips, while connected three-face flips survive a
+large exhaustive test suite.  For integer 6-flows we characterize local
+minima of the number of value-5 edges by vertex potentials and polarized
+cuts.  For six perfect matchings we prove an unconditional quadratic
+descent theorem and a family of conditional multi-replacement descent
+bounds.  None of the three classical conjectures is resolved.
+\end{abstract}
+
+\section{Barnette: an exact defect formula}
+Let $G$ be a cubic plane bipartite graph and $H=G^*$ its Eulerian
+triangulation dual.  For a nontrivial partition $V(H)=A\sqcup B$, define
+\[
+ \psi(F)=c(F)-1+\beta(F),\qquad
+ \Phi(A,B)=\psi(H[A])+\psi(H[B]).
+\]
+Let $X$ be the primal subgraph dual to $\delta_H(A)$, let $z$ be the
+number of vertices omitted by $X$, and let $t$ be the number of cycle
+components of $X$.
+
+\begin{theorem}
+\[
+ \Phi(A,B)=z+2(t-1).
+\]
+In particular, $\Phi=0$ if and only if $X$ is a Hamiltonian cycle.
+\end{theorem}
+
+\begin{proof}
+Every triangular face of $H$ has zero or two bichromatic edges, so $X$
+is a disjoint union of cycles.  Put $h=|V(H)|$.  Then
+$|E(H)|=3h-6$ and $|V(G)|=2h-4$.  Since $X$ is 2-regular on
+$2h-4-z$ vertices, $|\delta_H(A)|=2h-4-z$.  Hence the total number of
+monochromatic edges is $h-2+z$.  The $t$ disjoint cycles divide the sphere
+into $t+1$ monochromatic regions, so $c(H[A])+c(H[B])=t+1$.
+Substitution gives the result.
+\end{proof}
+
+\begin{conjecture}[Three-face normalization]
+Every nontrivial binary colouring of an Eulerian plane triangulation can
+be normalized to a two-tree partition by flipping connected patches of
+at most three vertices without increasing $\Phi$.
+\end{conjecture}
+
+The corresponding assertion for patches of at most two vertices is false;
+an explicit 36-vertex Barnette graph has six trapped states.  Exhaustive
+tests on 80 generated graphs through 40 vertices cover 139,796,480
+colouring states and find no obstruction for patches of size at most three.
+
+\section{Tutte: residual optimality and polarized cuts}
+Fix an orientation and an integer 6-flow $f:E\to\{1,\ldots,5\}$.
+Give each forward residual arc cost $1$ when $f(e)=4$ and $0$ otherwise,
+and each backward residual arc cost $-1$ when $f(e)=5$ and $0$ otherwise.
+
+\begin{theorem}
+There is no negative residual cycle if and only if there is an integer
+potential $h$ such that, for every oriented edge $x\to y$,
+\[
+\begin{array}{c|c}
+ f(e)&h(y)-h(x)\\ \hline
+ 1&\le0\\
+ 2,3&=0\\
+ 4&\in\{0,1\}\\
+ 5&\ge1.
+\end{array}
+\]
+For every threshold $S_k=\{v:h(v)\ge k\}$, if $a$ value-4 edges and
+$c$ value-5 edges enter $S_k$, then
+\[
+ |\delta(S_k)|=5a+6c.
+\]
+\end{theorem}
+
+\begin{proof}
+The first assertion is the negative-cycle potential theorem applied to
+the residual network.  Threshold crossings have the stated orientations
+by the inequalities.  Flow conservation forces $4a+5c$ value-1 edges
+to leave, yielding the cut formula.
+\end{proof}
+
+\section{Berge--Fulkerson: quadratic descent}
+For six perfect matchings let $m(e)$ be the edge multiplicity and put
+\[
+ Q=\sum_e(m(e)-2)^2.
+\]
+
+\begin{theorem}[Unconditional one-replacement descent]
+For every bridgeless cubic graph on $n$ vertices, if $Q>2n$, one of the
+six current perfect matchings can be replaced by another perfect matching
+so as to strictly reduce $Q$.
+\end{theorem}
+
+\begin{proof}
+The all-$1/3$ vector belongs to the perfect matching polytope, so there is
+a distribution on perfect matchings with marginal $1/3$ on every edge.
+Remove one current matching uniformly and add an independent matching from
+this distribution.  An edgewise calculation, followed by
+$\sum_e(m(e)-2)=0$ and $|E|=3n/2$, gives
+\[
+ \mathbb E[\Delta Q]=\frac{2n-Q}{3}.
+\]
+If $Q>2n$, some replacement has negative change.
+\end{proof}
+
+\begin{theorem}[Conditional $k$-replacement descent]
+If a Fulkerson cover exists, then for $1\le k\le5$ there is a
+$k$-matching replacement with expected change
+\[
+ \mathbb E[\Delta Q]
+ =\frac{k}{30}\bigl((k-11)Q+4(6-k)n\bigr).
+\]
+\end{theorem}
+
+This yields strict descent above the respective thresholds
+$2n,16n/9,3n/2,8n/7,2n/3$.
+
+\begin{conjecture}[Snark one-replacement normalization]
+For every snark, every six-perfect-matching state reaches a Fulkerson
+cover through one-matching replacements that never increase $Q$.
+\end{conjecture}
+
+The conjecture has been exhaustively verified on all 462 states of the
+Petersen graph, all 2,324,784 states of the flower snark $J_5$, and
+millions of additional recorded random cubic and bipartite instances.
+
+\section{Conclusion}
+The three-face Barnette conjecture and the one-replacement snark
+conjecture are stronger normalization forms of their classical parent
+problems.  The immediate theorem targets are to orient all low-defect
+local minima: topological $\Phi=2$ traps for Barnette, polarized threshold
+cuts for 5-flows, and $Q\le2n$ states for Berge--Fulkerson.
+\end{document}

@@ -1,0 +1,93 @@
+{
+  "vertices": 16,
+  "edges": 21,
+  "leaves": [
+    0,
+    1,
+    2
+  ],
+  "bridges": [
+    [
+      0,
+      6
+    ],
+    [
+      1,
+      7
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      4,
+      6
+    ]
+  ],
+  "bridge_leaf_sides": [
+    [
+      [
+        0
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      [
+        1
+      ]
+    ],
+    [
+      [
+        0,
+        1
+      ],
+      [
+        2
+      ]
+    ],
+    [
+      [
+        0,
+        2
+      ],
+      [
+        1
+      ]
+    ]
+  ],
+  "N0_connected_unicyclic": true,
+  "size5_matchings": 1448,
+  "size5_connected_unicyclic": 105,
+  "size6_matchings": 615,
+  "size6_tree_complements": 0,
+  "graph6": "O??DQ?[C?AaAA?@O??wGS",
+  "N0": [
+    [
+      3,
+      8
+    ],
+    [
+      4,
+      12
+    ],
+    [
+      5,
+      13
+    ],
+    [
+      7,
+      10
+    ],
+    [
+      9,
+      11
+    ]
+  ]
+}
