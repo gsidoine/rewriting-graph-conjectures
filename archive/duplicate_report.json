@@ -1,0 +1,46 @@
+{
+  "duplicate_groups": [
+    [
+      {
+        "name": "barnette_big(2).txt",
+        "size": 12889
+      },
+      {
+        "name": "barnette_big(1).txt",
+        "size": 12889
+      }
+    ],
+    [
+      {
+        "name": "bfr_results_all(2).txt",
+        "size": 2036
+      },
+      {
+        "name": "bfr_results_all(1).txt",
+        "size": 2036
+      }
+    ],
+    [
+      {
+        "name": "barnette_results(2).txt",
+        "size": 1200
+      },
+      {
+        "name": "barnette_results(1).txt",
+        "size": 1200
+      }
+    ],
+    [
+      {
+        "name": "berge_fulkerson_quadratic_descent_theorem(1).ipynb",
+        "size": 13586
+      },
+      {
+        "name": "berge_fulkerson_quadratic_descent_theorem (1)(1).ipynb",
+        "size": 13586
+      }
+    ]
+  ],
+  "unique_file_count": 28,
+  "supplied_file_count": 32
+}
