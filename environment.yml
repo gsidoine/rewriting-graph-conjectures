@@ -1,0 +1,12 @@
+name: rewriting-graph-conjectures
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - networkx=3.6.1
+  - numpy
+  - pandas
+  - sympy
+  - pytest
+  - jupyter
+  - pip

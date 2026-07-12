@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rewriting-graph-conjectures"
+version = "0.2.0"
+description = "Computational local-normalization research programme for graph conjectures"
+authors = [{name = "Guillaume Sidoine"}]
+requires-python = ">=3.10"
+dependencies = ["networkx==3.6.1", "numpy>=1.26", "pandas>=2.1", "sympy>=1.12"]
+
+[tool.setuptools]
+packages = [
+  "shared",
+  "berge_fulkerson", "berge_fulkerson.src",
+  "three_decomposition", "three_decomposition.src",
+  "barnette", "barnette.src",
+  "tutte_5flow", "tutte_5flow.src"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "berge_fulkerson/tests", "three_decomposition/tests", "barnette/tests"]
+addopts = "-ra"

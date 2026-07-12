@@ -1,0 +1,6 @@
+networkx==3.6.1
+numpy>=1.26
+pandas>=2.1
+sympy>=1.12
+pytest>=8.0
+jupyter>=1.0

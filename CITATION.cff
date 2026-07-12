@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Please cite the repository and the individual manuscript or archived release you use."
+title: "Rewriting Graph Conjectures"
+type: software
+version: 0.2.0
+date-released: 2026-07-12
+authors:
+  - given-names: "Guillaume"
+    family-names: "Sidoine"
+    orcid: "https://orcid.org/0009-0005-4525-1182"
+license: MIT
+abstract: >-
+  Reproducible local-normalization frameworks, exact computations, and
+  obstruction certificates for major graph-theory conjectures.
+keywords:
+  - graph theory
+  - local normalization
+  - rewriting systems
+  - perfect matching
+  - 3-decomposition
+  - Barnette conjecture
+  - computational mathematics
