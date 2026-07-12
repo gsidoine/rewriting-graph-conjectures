@@ -1,0 +1,5 @@
+NetworkX: 3.6.1
+Generated Barnette graphs: 8
+Complete colouring states checked: 107,840
+Graphs with single-flip traps: 4
+Unresolved states with adjacent-pair flips: 0

@@ -1,0 +1,4 @@
+Removing an incident matching edge changes d^2 by: 1 - 2*d
+Edgewise replacement identity verified in all four binary cases.
+Coordinate bound and summation identity verified.
+Maximum vertex contribution: (24, (6, 0, 0))

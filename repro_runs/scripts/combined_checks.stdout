@@ -1,0 +1,15 @@
+NetworkX: 3.6.1
+Exact Barnette identity verified on all 62 nontrivial cube-dual colourings.
+Dual order: 20
+Potential values: [2, 2, 0]
+Flipped patches: [{1, 2, 9}, {12, 14}]
+Patch connectedness: [True, True]
+|delta(S)| = 5*a + 6*c
+Expected edge contribution: -(6*d**2 - d - 8)/18
+Expected total change: -Q/3 + 2*n/3
+Edgewise: k*(3*d**2*k - 33*d**2 - d*k + 6*d - 8*k + 48)/90
+Total: k*(Q*(k - 11) + n*(24 - 4*k))/30
+Perfect matchings: 6
+States: 462
+Fulkerson covers: 1
+States reaching a cover: 462

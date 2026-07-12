@@ -1,0 +1,7 @@
+NetworkX 3.6.1
+Graph isomorphism classes: 27
+Spanning-tree states: 30,619
+Verified safe rewrites: 152,120
+Verified P2 endpoint transports: 13,668
+Closed positive neutral plateaux: 0
+Terminal safe SCCs without a target: 0
