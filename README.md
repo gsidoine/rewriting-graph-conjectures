@@ -83,3 +83,7 @@ See [the mathematical status and proof](theory/resistance_kernel_realization_202
 ### New (October 8, 2026): unbounded uphill FR-triple barriers
 
 A [five-page proof draft](applications/berge_fulkerson/plateau/energy_barriers/paper/main.tex) and [independent exact certificates](applications/berge_fulkerson/plateau/energy_barriers/README.md) establish a family of simple 3-edge-connected, 3-edge-colourable cubic graphs in which every FR-preserving one-matching normalization path must temporarily *increase* the uncovered-edge defect by an unbounded amount. The 10-vertex seed has the exact path `3 -> 4 -> 3 -> 0`; balanced `K_{3,2}` replacement amplifies its barrier. See the [theorem status](theory/fr_uphill_barriers_2026-10-08.md). Novelty remains to be independently audited.
+
+## New theory: exact FR three-pole renormalization (October 8, 2026)
+
+The balanced `K_{3,2}` expansion preserves **full** one-coordinate Fan–Raspaud reconfiguration connected components while transforming the ordered-FR-triple defect polynomial by an explicit algebraic substitution. The exact local fibres are `Q3` and `C6`; iterating the operator gives closed minimizer counts and a universal weighted-defect entropy. [Proof/status](theory/fr_three_pole_renormalization_2026-10-08.md) · [LaTeX/PDF](applications/berge_fulkerson/plateau/energy_barriers/transfer_paper/) · [executable verifier](applications/berge_fulkerson/plateau/energy_barriers/transfer_operator.py). This is an unrefereed research theorem draft; novelty is not established.

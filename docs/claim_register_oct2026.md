@@ -81,3 +81,11 @@ The research priorities and stop/pivot conditions are recorded in [theorem-first
 - **Why this matters:** disproves any hope that bounded interface size and fixed coordinate count alone bound the number of neutral connected components in an *entire boundary fiber*. A compositional/factorized representation is still possible.
 
 - **Additional corollary (same proof):** neutral equivalence on the K3,3 chain is decidable by equality of the local type vector in O(nm) input work; within a fixed boundary signature each component has a constructive diameter bound 3*sum_i min(t_i,m-t_i); unrestricted diameter <= n(3m-1)+that term. Exhaustive n=2,m=2 fiber BFS shows the fixed-signature bounds are attained there. The general bound is a proof draft, not externally reviewed.
+
+## Exact FR three-pole renormalization and component theorem (October 8, 2026)
+
+- **Mathematical proof draft (not peer-reviewed):** the `K_{3,2}` all-vertex expansion projects full ordered FR reconfiguration onto the original graph, every projected edge lifts from any preimage, and each fibre has a connected spanning product of `Q3`/`C6`; connected components correspond bijectively.
+- **Exact polynomial:** `Z_{T(G)}(z)=(2+6z^2)^n Z_G(z^3 ((z+2)/(1+3z^2))^2)`. Component-wise versions hold. Minimal defect scales as `3^t`, with a closed formula for minimizing-state multiplicities. Iterated normalized log counts have a universal limit independent of the cubic seed, conditional on at least one FR-triple.
+- **Independent exhaustive checks:** 156 locally valid phase states, 828 projected-port transitions, exact polynomial coefficients for all 47,904 ordered FR-triples on `T(K4)`, complete reconfiguration connectedness on that graph; Petersen seed has `Z=120z^3`. Eight new targeted local tests.
+- **Novelty caution:** the generic multipole/graph-polynomial substitution paradigm is classical; this exact FR transfer and dynamical statement has not been externally checked for originality. Does not settle Fan–Raspaud or Berge–Fulkerson.
+- **Sources:** [theory status](../theory/fr_three_pole_renormalization_2026-10-08.md), [paper](../applications/berge_fulkerson/plateau/energy_barriers/transfer_paper/), [transfer code](../applications/berge_fulkerson/plateau/energy_barriers/transfer_operator.py), [tests](../tests/test_fr_transfer_operator.py).

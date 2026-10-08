@@ -1,0 +1,169 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{geometry}
+\geometry{margin=.9in}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array,enumitem,hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=blue}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\FR}{\mathcal{F}}
+\newcommand{\Rconf}{\mathcal{R}}
+\newcommand{\coef}[2]{[z^{#1}]#2}
+\title{Exact Renormalization and Component Preservation\\for Three Perfect Matchings in Cubic Graphs}
+\author{Guillaume Sidoine\\\small Independent researcher \quad ORCID 0009-0005-4525-1182}
+\date{Research draft --- 8 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a cubic graph $G$, let $\FR(G)$ denote the ordered triples of perfect matchings with empty triple intersection (Fan--Raspaud triples), and let $Z_G(z)$ enumerate these triples according to the number of uncovered edges. We investigate the vertex substitution $T$ that replaces each cubic vertex by the $K_{3,2}$ three-pole. We prove an exact polynomial identity
+\[
+ Z_{T(G)}(z)=(2+6z^2)^{|V(G)|}Z_G\!\left(z^3\left(\frac{2+z}{1+3z^2}\right)^2\right).
+\]
+Simultaneously, projection of perfect matchings induces a bijection between connected components of the full Fan--Raspaud reconfiguration graphs, where a move replaces one whole perfect matching. Fibres decompose into local six-cycles and three-dimensional cubes, and projected paths lift from every preimage. Iteration gives exact scaling of minimum uncovered defect, a closed formula for the number of defect minimizers, and a seed-independent limiting free energy and mean defect density. We verify the complete polynomial on the twenty-vertex expansion of $K_4$ by exhaustive perfect-matching enumeration. These statements explain how large energy barriers can coexist with unchanged global reachability. We do not claim to resolve the Fan--Raspaud or Berge--Fulkerson conjectures, and the originality of the operator relative to classical graph-substitution and Holant methods requires independent review.
+\end{abstract}
+
+\section{Definitions and the three-pole substitution}
+All graphs are finite and cubic; simplicity is assumed for definiteness. The edge set has $3n/2$ members where $n=|V(G)|$. Let $\FR(G)$ be the set of \emph{ordered} triples $\mathbf M=(M_0,M_1,M_2)$ of perfect matchings with $M_0\cap M_1\cap M_2=\varnothing$. Repeated coordinates are permitted. Let $u(\mathbf M)$ be the number of uncovered edges and
+\[
+ Z_G(z)=\sum_{\mathbf M\in\FR(G)}z^{u(\mathbf M)}.
+\]
+The \emph{FR reconfiguration graph} $\Rconf(G)$ has vertex set $\FR(G)$, with an edge between two triples if they differ in exactly one perfect-matching coordinate. There is no requirement that $u$ decrease along a move.
+
+The graph $T(G)$ replaces each vertex $v$ by three terminals $v^0,v^1,v^2$ and two internal vertices $v^a,v^b$. Every terminal is adjacent to each internal vertex. For each old edge $vw$ a new external edge joins its corresponding terminals in the two gadgets. The substitution creates a cubic graph on $5n$ vertices. In any perfect matching, both internal vertices must be matched to distinct terminals, leaving the third terminal matched externally. Consequently every perfect matching of $T(G)$ projects to a unique perfect matching of $G$. The projection of FR-triples is well-defined, since an external edge covered three times upstairs would be covered three times downstairs.
+
+A projected perfect matching chooses one external port per gadget. Its local completion has exactly two choices (bijections from the two remaining terminals to the two internal vertices), called \emph{phases} $0$ and $1$. Thus one projected matching has $2^n$ lifts.
+
+\section{The exact local signature}
+For an FR-triple projected onto a vertex, its three external ports are either all distinct, type $D=(1,1,1)$, or two equal and one different, type $R=(2,1,0)$. All three equal would contradict the FR condition. A local triple of matchings has three phase bits, one per coordinate.
+
+\begin{lemma}[Signature and fibre topology]\label{lem:local}
+The valid phase states, counted according to the number of uncovered \emph{internal} edges of the $K_{3,2}$ gadget, are
+\[
+ A(z)=2+6z^2\quad\text{for type }D,\qquad
+ B(z)=4z+2z^2\quad\text{for type }R.
+\]
+The local one-phase-flip reconfiguration graph is the three-dimensional cube $Q_3$ in type $D$, and the six-cycle $C_6$ in type $R$. In either case its diameter is three.
+\end{lemma}
+\begin{proof}
+Write the three terminals as $0,1,2$ and the two internal vertices as $a,b$. A choice of external port $p$ leaves terminals $q,r\ne p$ for the internal matching; the two phases use $(qa,rb)$ and $(qb,ra)$, respectively. A type-$D$ triple uses all three external ports. No internal edge can then belong to all three matchings. The eight choices of phases contain two exact internal partitions and six choices leaving two internal edges uncovered. Every one-bit change remains valid, so the phase graph is $Q_3$.
+
+For type $R$, relabel the ports as $(0,0,1)$. Directly listing the eight three-bit phase words shows that precisely $(0,0,0)$ and $(1,1,1)$ are forbidden by triple-covered internal edges, up to the consistent phase convention above. Of the remaining six, four leave one internal edge uncovered and two leave two. The induced subgraph of the cube obtained by deleting antipodal vertices is a six-cycle. The coefficients and diameter follow. This finite calculation is independently enumerated in the accompanying source code.
+\end{proof}
+
+\begin{lemma}[Path lifting]\label{lem:path}
+For any edge $\mathbf m\mathbf m'$ of $\Rconf(G)$ and any $\widetilde{\mathbf m}\in\FR(T(G))$ projecting to $\mathbf m$, there exists an adjacent $\widetilde{\mathbf m}'$ projecting to $\mathbf m'$.
+\end{lemma}
+\begin{proof}
+Suppose coordinate $i$ changes. Keep the other two lifted matchings fixed. At each gadget the new projected coordinate specifies its external port, leaving two possible phases. The new triple has no triply covered external edge since the projected triple is FR. If the two fixed external ports differ, their internal edge intersection contains at most one edge, and at least one phase avoids it. If the two fixed external ports agree, the new port must differ from them; even when the internal intersection consists of two edges, one is incident with the new external port (and cannot be used internally by the new coordinate), while one of the two new phases avoids the other. Choose such a phase independently at every gadget. All vertices are matched, no edge belongs to all three lifted matchings, and only coordinate $i$ changes.
+\end{proof}
+
+\section{An exact renormalization theorem}
+An FR-triple with $u$ uncovered edges has exactly $2u$ type-$R$ vertices: at each such vertex precisely one incident edge is uncovered, and each uncovered edge has two endpoints. The other $n-2u$ vertices have type $D$.
+
+\begin{theorem}[Exact defect-polynomial renormalization]\label{thm:polynomial}
+For any cubic graph $G$ on $n$ vertices,
+\begin{align}
+Z_{T(G)}(z)
+ &=\sum_{\mathbf m\in\FR(G)}
+  z^{u(\mathbf m)} A(z)^{n-2u(\mathbf m)}B(z)^{2u(\mathbf m)}\label{eq:expanded}\\
+ &=A(z)^n Z_G\left(R(z)\right), \label{eq:renorm}\\[-3pt]
+A(z)&=2+6z^2,\quad B(z)=4z+2z^2,\quad
+R(z)=z\left(\frac{B(z)}{A(z)}\right)^2
+ =z^3\left(\frac{2+z}{1+3z^2}\right)^2. \notag
+\end{align}
+The apparent rational expression on the second line always simplifies to a polynomial.
+\end{theorem}
+\begin{proof}
+Fix $\mathbf m\in\FR(G)$ and choose local completion phases independently at all $n$ gadgets. Their common membership constraints are local, and no external edge is triple covered. By Lemma~\ref{lem:local}, the internal defect generating factor is $A(z)$ at each type-$D$ vertex and $B(z)$ at each type-$R$ vertex. Exactly $u(\mathbf m)$ external edges remain uncovered. Multiplying the independent contributions proves \eqref{eq:expanded}; factoring out $A(z)^n$ proves \eqref{eq:renorm}.
+\end{proof}
+
+\begin{theorem}[Exact preservation of global reconfiguration components]\label{thm:components}
+Projection $\pi:\Rconf(T(G))\to\Rconf(G)$ is surjective, takes every upstairs move to an edge or a stationary step downstairs, and has the following properties:
+\begin{enumerate}[label=(\roman*),nosep]
+\item Every downstairs move lifts from \emph{every} upstairs preimage.
+\item Each fibre $\pi^{-1}(\mathbf m)$ is connected. Indeed the fibre has a spanning Cartesian-product graph comprising $n-2u(\mathbf m)$ copies of $Q_3$ and $2u(\mathbf m)$ copies of $C_6$.
+\item Projection induces a bijection between connected components of the two reconfiguration graphs. For states $x,y$ in the same upstairs component,
+\[
+ d_G(\pi x,\pi y)\le d_{T(G)}(x,y)
+ \le d_G(\pi x,\pi y)+3n.
+\]
+\end{enumerate}
+Moreover the full preimage of any component $C\subseteq\Rconf(G)$ is one connected upstairs component, whose defect polynomial is $A(z)^nZ_C(R(z))$.
+\end{theorem}
+\begin{proof}
+Every FR-triple downstairs admits an FR lift by Lemma~\ref{lem:local}, proving surjectivity. The projection of a one-coordinate move changes at most the corresponding projected coordinate. Lemma~\ref{lem:path} proves (i). By Lemma~\ref{lem:local}, phases at each gadget can be changed one bit at a time through valid states while fixing every other gadget, yielding the stated connected spanning product for (ii). Its diameter is at most $3n$.
+
+To join $x$ to $y$, project them and take a shortest path downstairs. Lift that path starting at $x$ by (i); the endpoint lies in the same fibre as $y$, so use at most $3n$ phase flips from (ii). Conversely every upstairs path projects to a walk downstairs. The component and distance assertions follow. The component-wise polynomial identity is the same calculation as \eqref{eq:expanded}, restricted to $\mathbf m\in C$.
+\end{proof}
+
+\section{Minimum defect, multiplicities, and iterative limits}
+Let $m(G)=\min\{u(\mathbf m):\mathbf m\in\FR(G)\}$ when $\FR(G)\ne\varnothing$, and let $a(G)$ count the \emph{ordered} FR-triples attaining $m(G)$. Write $G_t=T^t(G)$ and $n_t=5^tn$.
+
+\begin{corollary}[Exact minimum-defect and multiplicity scaling]\label{cor:min}
+For every $t\ge0$,
+\[
+ \boxed{m(G_t)=3^t m(G),\qquad
+ a(G_t)=a(G)\,2^{\,n(5^t-1)/4+m(G)(3^t-1)}.}
+\]
+In particular, when $G$ is class one, the number of ordered proper three-edge-colourings of $G_t$ is the number for $G$ times $2^{n(5^t-1)/4}$.
+\end{corollary}
+\begin{proof}
+In the term indexed by a base triple of defect $u$, the smallest exponent of \eqref{eq:expanded} is $u+2u=3u$, with leading coefficient $2^{n-2u}4^{2u}=2^{n+2u}$. Hence $m(T(G))=3m(G)$ and $a(T(G))=a(G)2^{n+2m(G)}$. Iterate, summing $n5^j+2m3^j$ for $0\le j<t$.
+\end{proof}
+
+\begin{theorem}[Universal limiting FR pressure]\label{thm:pressure}
+If $\FR(G)\ne\varnothing$, then for every real $z>0$ the limit
+\[
+ F(z)=\lim_{t\to\infty}\frac{\log Z_{G_t}(z)}{|V(G_t)|}
+\]
+exists and is independent of $G$. Explicitly,
+\begin{equation}\label{eq:pressure}
+\boxed{F(z)=\sum_{j=0}^{\infty}\frac{1}{5^{j+1}}
+ \log\!\left(2+6\,R^{\circ j}(z)^2\right),}\qquad
+ 5F(z)=\log A(z)+F(R(z)).
+\end{equation}
+For each fixed positive $z$, convergence is $O((3/5)^t)$ with a constant depending on $G,z$. The limiting expected number of uncovered edges \emph{per vertex}, for FR-triples sampled with weight $z^{u}$, is $zF'(z)$. At the uniform weight $z=1$ the numerical values are
+\[
+ F(1)\approx0.4792835312641252,
+ \qquad F'(1)\approx0.3296843222147383.
+\]
+The same limit and identity hold when $Z_{G_t}$ is restricted to the component above any fixed nonempty component of $\Rconf(G)$.
+\end{theorem}
+\begin{proof}
+By iterating \eqref{eq:renorm} and dividing by $5^tn$,
+\[
+ \frac{\log Z_{G_t}(z)}{5^tn}
+ =\sum_{j=0}^{t-1}\frac{\log A(R^{\circ j}(z))}{5^{j+1}}
+  +\frac{\log Z_G(R^{\circ t}(z))}{5^tn}.
+\]
+For all $x>0$ we have $x(2+x)<1+3x^2$, since $1-2x+2x^2>0$. Thus $0<R(x)<x$. Every $R^{\circ t}(z)$ decreases to zero, and near zero $R(x)=4x^3+O(x^4)$. Consequently $|\log R^{\circ t}(z)|=O(3^t)$ for fixed $z$. Let $m$ be the least exponent of $Z_G$; then $Z_G(x)=a x^m(1+O(x))$ as $x\downarrow0$, with $a>0$. Therefore $\log Z_G(R^{\circ t}(z))=O(3^t)$ and the final term tends to zero at the stated rate. The series converges absolutely since $R^{\circ j}(z)\le z$ and the weights are geometric. The functional equation follows by shifting the index.
+
+The convergence is locally uniform, and the same estimates for logarithmic derivatives (using $R(x)=4x^3(1+O(x))$ near zero) give locally uniform convergence of the first derivatives. Thus the derivative identifies the limiting expected defect density. A component partition function has positive coefficients and obeys the same operator by Theorem~\ref{thm:components}; the proof applies verbatim.
+\end{proof}
+
+\section{Independent exhaustive validation and scope}
+For $G=K_4$, independent perfect-matching recursion gives three matchings and
+\[
+ Z_{K_4}(z)=6+18z^2.
+\]
+Its twenty-vertex expansion $T(K_4)$ has 48 perfect matchings. Direct enumeration of all $48^3$ ordered matching triples, filtering the FR condition, gives $47{,}904$ FR-triples, with coefficients
+\[
+\begin{array}{c|rrrrrrrr}
+u&0&2&4&6&7&8&9&10\\\hline
+\coef{u}{Z_{T(K_4)}}&96&1152&5184&14976&9216&14688&2304&288.
+\end{array}
+\]
+Every coefficient agrees with Theorem~\ref{thm:polynomial}. Exhaustive search of the full ordered FR reconfiguration graph confirms one component on both $K_4$ and $T(K_4)$. Independently, the Petersen graph has exactly six perfect matchings and $Z_P(z)=120z^3$. The transfer theorem therefore predicts minimum defect nine and exactly $120\cdot2^{16}=7{,}864{,}320$ minimizing ordered triples on $T(P)$. A separate local audit checks the two fibre types, all $156$ locally valid ordered phase states, and all $828$ eligible projected-port moves: none fails to lift. The verifiers use only the Python standard library.
+
+The polynomial and component-preservation statements concern full FR-triple reconfiguration, \emph{not} connectedness of fixed-energy sublevel sets. The latter can acquire additional components under substitution; this distinction is essential to the unbounded uphill-barrier construction studied in the preceding manuscript. The limiting pressure is a graph-substitution quantity, not a resolution of the Fan--Raspaud conjecture (which concerns existence of FR-triples on arbitrary bridgeless cubic graphs). The underlying matching-cover and colouring-defect invariants have a substantial literature~\cite{Karabas,Allie,Fouquet}; the novelty of this specific transfer operator and its dynamical consequences has not been externally vetted.
+
+\begin{thebibliography}{9}\small
+\bibitem{Karabas} J.~Karab\'a\v{s}, E.~M\'a\v{c}ajov\'a, R.~Nedela, and M.~\v{S}koviera, \emph{Colouring defect of a cubic graph and the conjectures of Fan--Raspaud and Fulkerson}, Ars Mathematica Contemporanea \textbf{26} (2025), art.~20. \url{https://arxiv.org/abs/2312.13638}.
+\bibitem{Allie} I.~Allie, \emph{Resistance, oddness and colouring defect of snarks}, Discrete Math. \textbf{349} (2026), 114804.
+\bibitem{Fouquet} J.-L.~Fouquet and J.-M.~Vanherpe, \emph{On Fan Raspaud Conjecture}, arXiv:0809.4821 (2008).
+\end{thebibliography}
+\end{document}
