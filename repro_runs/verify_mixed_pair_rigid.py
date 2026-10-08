@@ -1,4 +1,4 @@
-"""Independent exhaustive global audit for K3,3/Petersen three-edge sums.
+"""Independent exhaustive global audit for K3,3/Petersen/cube three-edge sums.
 
 Run: python repro_runs/verify_mixed_pair_rigid.py
 Needs NetworkX. Deliberately outside ordinary pytest CI: enumerates >20,000
@@ -10,9 +10,15 @@ from math import prod
 import networkx as nx
 
 def graph_for(word):
-    tiles = [(nx.complete_bipartite_graph(3, 3), (0, 1))
-             if tag == 'K' else (nx.petersen_graph(), (0, 2))
-             for tag in word]
+    def tile(tag):
+        if tag == 'K':
+            return (nx.complete_bipartite_graph(3, 3), (0, 1))
+        if tag == 'P':
+            return (nx.petersen_graph(), (0, 2))
+        if tag == 'C':
+            return (nx.hypercube_graph(3), ((0,0,0), (1,1,1)))
+        raise ValueError(tag)
+    tiles = [tile(tag) for tag in word]
     removed = {(j, ports[0]) for j, (_, ports) in enumerate(tiles) if j > 0}
     removed |= {(j, ports[1]) for j, (_, ports) in enumerate(tiles) if j+1 < len(word)}
     G = nx.Graph()
@@ -140,13 +146,14 @@ def check(word):
     fixed_components = components(fixed)
     a = word.count('K')
     b = word.count('P')
-    expected = sorted((t, 90*8**b*prod(8 if x==1 else 1 for x in t))
+    c = word.count('C')
+    expected = sorted((t, 90*8**b*48**c*prod(8 if x==1 else 1 for x in t))
                       for t in product(range(3), repeat=a))
-    expected_fixed = sorted((t, 8**b*prod(8 if x==1 else 1 for x in t))
+    expected_fixed = sorted((t, 8**b*48**c*prod(8 if x==1 else 1 for x in t))
                             for t in product(range(3), repeat=a))
     assert all_components == expected
     assert fixed_components == expected_fixed
-    if a == 1:
+    if a == 1 and c == 0:
         for old_type in (0, 1):
             left = [s for s in fixed if typ[s] == (old_type,)]
             right = [s for s in fixed if typ[s] == (old_type+1,)]
@@ -159,6 +166,6 @@ def check(word):
           "fixed-signature components", fixed_components)
 
 if __name__ == '__main__':
-    for word in ('KP', 'PK', 'PP'):
+    for word in ('KP', 'PK', 'PP', 'KC', 'CK', 'PC'):
         check(word)
-    print('ALL MIXED PAIR-RIGID TESTS PASS')
+    print('ALL MIXED RIGID/NONRIGID TESTS PASS')
