@@ -28,3 +28,8 @@ See [current claim register](../docs/claim_register_oct2026.md) for a cross-proj
 ## New parameterized consequence (October 8)
 
 [Uniform collision hypergraphs and the parameter boundary for exact repair](parameterized_collision_repair_2026-10-08.md): fixed cover multiplicity gives an implicit bounded-depth FPT search in repair width, while variable multiplicity inherits W[2]-hardness from the v8 complete-bipartite realization. The note also isolates the independent nonbipartite factorization obstruction on the triangular prism. **This is a theoretical research note, not an externally refereed novelty claim.**
+
+## New residual-factorization and separator branch (October 8)
+
+- [Cut-signature factorization and 3-versus-4 port compatibility](cut_signature_factorization_2026-10-08.md): a finite response algebra for residual edge-colourings, with an exact Petersen 4-pole incompatibility. The cut parity ingredient is classical.
+- [Sharp 14-vertex nonextendable Fan–Raspaud triple](../applications/berge_fulkerson/plateau/FR_EXTENSION_OBSTRUCTIONS_20261008.md): a nonbipartite residual factorization obstruction despite odd-cut feasibility, suppressed to a Petersen cubic kernel; explicit one-coordinate escape and all-even-order expansions.

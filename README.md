@@ -35,6 +35,8 @@ open graph question or general certificate system
 
 > **Research status (8 October 2026).** These materials include unpublished theorem drafts, independently checkable finite data, and conjectural extrapolations. We do **not** claim to have solved Berge–Fulkerson, Fan–Raspaud, Barnette or edge-connectivity partitioning; no October claim is Lean-certified or externally peer-reviewed. External preprints concerning 3-Decomposition require separate assessment.
 
+**New October result:** a [sharp 14-vertex FR-triple nonextension certificate](applications/berge_fulkerson/plateau/FR_EXTENSION_OBSTRUCTIONS_20261008.md), with a Petersen residual kernel and all-even-order triangle lifts, illustrates the distinction between direct extension and a one-coordinate strict escape. See the [exact cut-signature theory](theory/cut_signature_factorization_2026-10-08.md). These are *research results requiring an external novelty review*, not counterexamples to Berge–Fulkerson.
+
 ## Quick start
 
 ```bash
