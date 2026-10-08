@@ -52,3 +52,10 @@ The stand-alone enumerator `tests/test_k33_neutral_fibers.py` checks all 12 labe
 ## Context and novelty
 
 The classification uses standard Latin-square facts and Kempe-switch arguments. Its value is as a **shared, minimal adversarial example and corrected boundary-state design**, not as a currently established novel theorem. Prior work on edge-coloring Kempe equivalence must be reviewed before any publication claim. Relevant comparison: Chakraborty–Feghali–Mahmoud, *Kempe equivalent list colorings revisited* (JGT 2024), DOI:10.1002/jgt.23142.
+
+
+## Literature audit correction (added 2026-10-08)
+
+**The three-sheet CDC part is not a novel edge-Kempe result.** Belcastro and Haas, *Counting edge-Kempe-equivalence classes for 3-edge-colored cubic graphs*, Discrete Mathematics 325 (2014), 77–84, DOI [10.1016/j.disc.2014.02.014](https://doi.org/10.1016/j.disc.2014.02.014), explicitly establish the two edge-Kempe classes of K3,3 and a product formula under nontrivial 2-/3-edge-cut decompositions. The correspondence from 3-CDC sheets to a 3-edge-coloring makes their result directly applicable. Goedgebeur and Östergård, *Switching 3-edge-colorings of cubic graphs*, Discrete Mathematics 345 (2022), article 112963, DOI [10.1016/j.disc.2022.112963](https://doi.org/10.1016/j.disc.2022.112963), also discuss families with exponentially many edge-Kempe classes. Therefore exponential amplification by 3-edge-summing K3,3 blocks is **not a new theorem** in the 3-CDC setting.
+
+Our additional classification of the **six-perfect-matching multicover** fiber (component sizes 1,8,1) remains a rigorous elementary companion observation, but **its originality has not been established**. The theorem-first next target should NOT simply restate the known 2014 product formula. It should characterize the richer matching-multicover signature-component dynamics or strict-escape behavior under hypotheses that yield consequences beyond existing Kempe theory.
