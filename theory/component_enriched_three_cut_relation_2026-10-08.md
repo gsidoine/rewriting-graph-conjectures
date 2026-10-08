@@ -132,6 +132,41 @@ Independently enumerating the typed quotient in this second certificate system g
 
 These calculations corroborate that exactly the same *component-enriched, typed boundary algebra* works in both certificate systems. For three-sheet CDCs the equivalence to edge-Kempe coloring and many gluing results are classical (Belcastro–Haas, 2014); the example is a cross-model consistency check, **not a novelty claim**.
 
+### Direct five-sheet cycle-cover benchmark
+
+For *padded five-sheet cycle double covers*, the local state spaces and enriched quotients are:
+
+| System | Labelled local certificates | Complete signatures | Response nodes | Components in each fixed-signature fiber |
+|---|---:|---:|---:|---|
+| \(K_{3,3}\), \(q=5\) | 840 | 60 | 480 | \(1,1,2,2,2,2,2,2\) |
+| Cube \(Q_3\), \(q=5\) | 3,960 | 60 | 60 | one component of size 66 |
+
+The typed quotient for \(K_{3,3}\oplus_3Q_3\) contains **480** response nodes, while the actual labelled padded five-sheet cover space has \(840\cdot66=55,440\) states. Its **eight** neutral connected components have sizes
+\[
+ \boxed{3960,\ 3960,\ 7920,\ 7920,\ 7920,\ 7920,\ 7920,\ 7920.}
+\]
+This is obtained directly from even-subgraph certificate enumeration, not by reinterpreting PM6 certificates.
+
+### A useful all-\(q\) classification on \(K_{3,3}\)
+
+Every nonempty even subgraph of \(K_{3,3}\) is a single 4-cycle or 6-cycle: it has only six vertices, so two vertex-disjoint cycles cannot occur. The symmetric difference of *any two* even subgraphs is therefore empty or a single cycle. Hence every neutral two-coordinate switch on \(K_{3,3}\) simply **exchanges the two entire even-subgraph supports**, and the unordered multiset of sheet supports is invariant.
+
+A padded \(q\)-sheet CDC has precisely three sheet labels active at a fixed degree-three boundary star. Since each nonempty sheet contains at least four edges and total edge incidences equal \(2|E(K_{3,3})|=18\), there is room for **at most one additional nonempty inactive sheet**.
+
+Direct, exhaustive local enumeration for \(q=3\) and \(q=4\) establishes that for a prescribed full star signature there are precisely two all-active-three-sheet configurations, plus six additional configurations using one prescribed fourth label. These eight support-multiset types are mutually distinct. For arbitrary \(q\ge4\), the extra nonempty sheet in any four-sheet type may occupy any one of the \(q-3\) inactive labels, and one neutral cycle exchange moves it between those labels without changing the full star signature. Therefore the **exact fixed-signature neutral-component classification on \(K_{3,3}\)** is
+\[
+ \begin{cases}
+ (1,1),&q=3,\\[2pt]
+ (1,1,\underbrace{q-3,\ldots,q-3}_{6\text{ components}}),&q\ge4.
+ \end{cases}
+\]
+There are six times \(\binom q3\) formal complete signatures. Thus \(K_{3,3}\) has exactly two global neutral components at \(q=3\) and **eight** at every \(q\ge4\), with corresponding total state counts
+\[
+ |\mathcal C_q(K_{3,3})|
+    =6\binom q3\bigl(2+6(q-3)\bigr).
+\]
+The base \(q=3,4\) enumeration is a finite computer-assisted lemma; the extension to **all \(q\)** is a simple symbolic argument. This result concerns labelled padded covers, not ordinary nonempty-sheet 5-CDC existence. Classical Kempe-equivalence and small-graph classification work may already imply variants, so originality is not asserted.
+
 ## 6. Importance and limitations
 
 **What is proved:** an exact, functorial-looking but elementary decomposition of neutral-reachability and component counts across a 3-edge cut for two distinct graph-certificate models, including arbitrary non-pair-rigid shores. The theorem shows exactly how much extra boundary information is necessary beyond signatures.
