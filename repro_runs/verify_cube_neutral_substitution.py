@@ -3,9 +3,9 @@
 Run from repo root:
     python repro_runs/verify_cube_neutral_substitution.py
 
-The local cover backtracker is shared with the independently tested finite
-cube base lemma. All gluing, global matching formation, cycle switches,
-component search and fixed-signature checks are implemented here.
+Uses its own local-cover enumeration, matching enumeration, graph gluing,
+neutral-cycle transitions, connected-component search and fixed-signature tests.
+The mixed-graph computations are independent of the theorem's product formula.
 """
 from collections import defaultdict
 from itertools import combinations, product
