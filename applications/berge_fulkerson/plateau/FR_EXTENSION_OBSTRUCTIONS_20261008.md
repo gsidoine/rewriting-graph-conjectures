@@ -58,7 +58,7 @@ Every uncovered edge in the residual has multiplicity two. The cut surrounding i
 
 This theorem describes *failure of extension of a fixed FR-triple*, not nonexistence of some FR-triple or a full Berge--Fulkerson cover. In the base graph a Fulkerson cover exists because the host itself is 3-edge-colourable.
 
-The notions of triple cores/regular defect and existing nonextension examples are established literature. Especially relevant are Kardoš–Máčajová–Zerafa (JCTB 2023) and Karabáš–Máčajová–Nedela–Škoviera (EJC 2024). The **exact minimum 14**, explicit Petersen-kernel reduction, odd-cut separation and infinite lifting merit specialist novelty checks; do not advertise as a new published theorem without them.
+The alternating uncovered/doubly-covered circuits already occur in Fouquet--Vanherpe (2009, Proposition 3.4), and related cubic bicontractions are studied by Lin--Wang (2018). The notions of triple cores/regular defect and existing nonextension examples are established literature. Especially relevant are Kardoš–Máčajová–Zerafa (JCTB 2023) and Karabáš–Máčajová–Nedela–Škoviera (EJC 2024). The **exact minimum 14**, explicit Petersen-kernel reduction, odd-cut separation and infinite lifting merit specialist novelty checks; do not advertise as a new published theorem without them.
 
 Possible continuation: classify the realizable cubic kernels `K(F)` for FR-triples with small `u`; in particular characterize exactly which snarks arise with `u=2` and determine how separator signatures affect the reachability of an *alternative* extendable FR-triple.
 
@@ -73,3 +73,6 @@ References:
 - Kardoš, Máčajová, Zerafa, *Disjoint odd circuits in a bridgeless cubic graph can be quelled by a single perfect matching*, JCTB 160 (2023) 1–14, https://doi.org/10.1016/j.jctb.2022.12.003.
 - Karabáš, Máčajová, Nedela, Škoviera, *Cubic Graphs with Colouring Defect 3*, Electronic J. Combin. 31 (2024), #P2.6, https://doi.org/10.37236/12333.
 - Inoue, Kawarabayashi, Miyashita, Mohar, Sonobe, *Three-edge-coloring projective planar cubic graphs*, arXiv:2405.16586 (context for Petersen-like cubic graphs).
+
+- Fouquet and Vanherpe, *On the perfect matching index of bridgeless cubic graphs*, arXiv:0904.1296 (2009); Proposition 3.4 states the alternating uncovered/doubly-covered circuit property.
+- Lin and Wang, *Three matching intersection property for matching covered graphs*, DMTCS 19(3) (2018), Article 16, https://doi.org/10.23638/DMTCS-19-3-16; uses a related bicontraction construction.

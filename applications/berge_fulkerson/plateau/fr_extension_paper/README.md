@@ -1,6 +1,6 @@
 # Prescribed Fan--Raspaud triple extension — 14-vertex minimal witness
 
-**Status:** unrefereed research draft; exact finite certificate checked and written mathematical proof supplied. The particular sharp order and construction have not undergone specialist novelty review. This is **not** a solution of Berge--Fulkerson.
+**Status:** unrefereed research draft; exact finite certificate checked and written mathematical proof supplied. Several reduction ingredients are known (Fouquet--Vanherpe 2009; Lin--Wang 2018). The particular sharp order and construction have not undergone specialist novelty review. This is **not** a solution of Berge--Fulkerson.
 
 - [`main.tex`](main.tex): editable four-page LaTeX manuscript.
 - [`main.pdf`](main.pdf): compiled convenience snapshot.

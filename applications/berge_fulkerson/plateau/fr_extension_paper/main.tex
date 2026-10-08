@@ -25,7 +25,7 @@ R_{\PM}=2G-(M_1+M_2+M_3),\qquad r(e)=2-f(e).
 \]
 The triple extends to six perfect matchings covering each edge twice precisely when $R_{\PM}$ admits a proper $3$-edge-colouring (i.e. a decomposition into three perfect matchings).
 
-At every vertex, the incident $f$-values are $(1,1,1)$ or a permutation of $(0,1,2)$. Therefore $E_0=\{e:f(e)=0\}$ and $E_2=\{e:f(e)=2\}$ are matchings with the same incident vertex set; their union consists of disjoint alternating even circuits. Write $u=|E_0|=|E_2|$. Since $G$ is simple, $u=0$ or $u\ge2$.
+At every vertex, the incident $f$-values are $(1,1,1)$ or a permutation of $(0,1,2)$. Therefore $E_0=\{e:f(e)=0\}$ and $E_2=\{e:f(e)=2\}$ are matchings with the same incident vertex set; their union consists of disjoint alternating even circuits. Write $u=|E_0|=|E_2|$. Since $G$ is simple, $u=0$ or $u\ge2$. The alternating-circuit observation for Fan--Raspaud triples appears in Fouquet--Vanherpe \cite{FV09}, Proposition~3.4; it is not new here.
 
 \begin{lemma}[doubled-edge suppression]\label{lem:kernel}
 Every residual $R_{\PM}$ has an associated cubic kernel $K_{\PM}$ on $|V(G)|-2u$ vertices, possibly with loops and parallel edges, such that
@@ -35,7 +35,7 @@ R_{\PM}\text{ is $3$-edge-colourable}\quad\Longleftrightarrow\quad K_{\PM}\text{
 If $R_{\PM}$ is bridgeless, the kernel is loopless and bridgeless (isolated all-doubled-edge components are discarded).
 \end{lemma}
 \begin{proof}
-Every $e=ab\in E_0$ contributes two parallel residual copies; each of $a,b$ has exactly one additional residual edge, of multiplicity one. Remove $a,b$ and connect the other ends of those single edges by one edge. Any proper three-colouring of the residual uses two distinct colours on the doubled pair and necessarily the same third colour on both adjacent single edges. This contracts to a uniquely coloured replacement edge. Conversely a colour on the replacement edge determines the third colour on the adjacent single edges; use the other two colours on the double edge. Iterating gives the equivalence. A component consisting entirely of such structures is an alternating even circuit and has an explicit three-colouring; it contributes no kernel vertices. A resulting loop would be attached to the remaining cubic graph by a bridge, as would a kernel bridge along its expanded path, so neither can arise from a bridgeless residual. There are exactly $2u$ deleted vertices.
+This residual suppression is analogous to the bicontraction used for three-matching intersection systems by Lin--Wang \cite{LW18}, although it acts on the complementary residual rather than the union of the frozen matchings. Every $e=ab\in E_0$ contributes two parallel residual copies; each of $a,b$ has exactly one additional residual edge, of multiplicity one. Remove $a,b$ and connect the other ends of those single edges by one edge. Any proper three-colouring of the residual uses two distinct colours on the doubled pair and necessarily the same third colour on both adjacent single edges. This contracts to a uniquely coloured replacement edge. Conversely a colour on the replacement edge determines the third colour on the adjacent single edges; use the other two colours on the double edge. Iterating gives the equivalence. A component consisting entirely of such structures is an alternating even circuit and has an explicit three-colouring; it contributes no kernel vertices. A resulting loop would be attached to the remaining cubic graph by a bridge, as would a kernel bridge along its expanded path, so neither can arise from a bridgeless residual. There are exactly $2u$ deleted vertices.
 \end{proof}
 
 \begin{lemma}[smallest possible obstruction]\label{lem:lower}
@@ -92,11 +92,13 @@ Exactly two edges are doubly covered. Each can witness an intersection of at mos
 \end{proof}
 
 \section{Research status and reproducibility}
-The elementary reduction of prescribed extension to residual three-edge-colouring, the classical colour-parity lemma, and the classical Petersen minimum are not novel ingredients. This note does not claim that no nonextendable triple was previously known. The particular sharp 14-vertex construction and its all-even-order lifting require further comparison with the literature before submission.
+The alternating-circuit lemma is in Fouquet--Vanherpe \cite{FV09}; related three-matching bicontractions are in Lin--Wang \cite{LW18}. The residual-colouring reduction, parity lemma and Petersen minimum are likewise standard ingredients or elementary adaptations, not claimed as new. This note does not claim that no nonextendable triple was previously known. The particular sharp 14-vertex construction and its all-even-order lifting require further comparison with the literature before submission.
 
 All source, exact graphs, independently enumerated matchings and tests are available in the companion private research repository. The verification commands are:\par\noindent{\small\texttt{python -m }\path{applications.berge_fulkerson.plateau.fr_extension_core}}\par\noindent{\small\texttt{python -m pytest -q }\path{tests/test_fr_extension_core.py}}\par The exact tester additionally verifies direct residual vs.~kernel colouring equivalence for all $2010$ collision-free triples in the flower snark $J_5$; this finite result is not used to prove the general theorems.
 
 \begin{thebibliography}{9}
+\bibitem{FV09} J.-L. Fouquet and J.-M. Vanherpe, On the perfect matching index of bridgeless cubic graphs, arXiv:0904.1296 (2009).
+\bibitem{LW18} H. Lin and X. Wang, Three matching intersection property for matching covered graphs, \emph{Discrete Math. Theor. Comput. Sci.} \textbf{19}(3) (2018), Article 16, doi:10.23638/DMTCS-19-3-16.
 \bibitem{KMZ23} F. Kardo\v{s}, E. M\'a\v{c}ajov\'a and J. P. Zerafa, Disjoint odd circuits in a bridgeless cubic graph can be quelled by a single perfect matching, \emph{J. Combin. Theory Ser. B} \textbf{160} (2023), 1--14.
 \bibitem{KMNS24} J. Karab\'a\v{s}, E. M\'a\v{c}ajov\'a, R. Nedela and M. \v{S}koviera, Cubic graphs with colouring defect 3, \emph{Electronic J. Combin.} \textbf{31} (2024), \#P2.6.
 \bibitem{NS03} R. Naserasr and R. \v{S}krekovski, The Petersen graph is not 3-edge-colorable---a new proof, \emph{Discrete Math.} \textbf{268} (2003), 325--326.
