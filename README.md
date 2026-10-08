@@ -43,6 +43,9 @@ open graph question or general certificate system
 
 **New theorem-first milestone (8 October 2026):** [exact exponential neutral components of matching multicovers](theory/exponential_neutral_components_multicovers_2026-10-08.md) on a chain of K3,3 blocks, including `3^n` distinct reconfiguration classes for six-perfect-matching double covers on connected, 3-edge-connected bipartite cubic graphs. The same exponential bound holds after fixing the boundary signature. **Proof draft and independent finite checks; no specialist novelty claim.**
 
+
+**Extended theorem-first milestone (8 October 2026):** [pair-rigid tile algebra](theory/pair_rigid_tile_multicover_algebra_2026-10-08.md) now gives an exact neutral-component factorization for chains of rigid cubic tiles and non-3-edge-colorable K3,3/Petersen mixtures. The cube Q3 shows the rigidity assumption is necessary for this matching-multiset invariant. **Human proof draft; independently checked finite cases; literature novelty unverified.**
+
 ## Quick start
 
 ```bash
