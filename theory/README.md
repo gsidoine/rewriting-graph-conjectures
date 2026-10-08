@@ -12,6 +12,9 @@ The generic implementation is under `certificate_coordination/`. Application-spe
 | Obstruction conflicts, variable-degree systems | [`certificate_coordination/`](../certificate_coordination) | [v7 proof](../certificate_coordination/paper/main.tex), [status](../certificate_coordination/RESEARCH_STATUS.md) |
 | Complete-bipartite hypergraph universality, multiplicity `k`, width-DP | [`certificate_coordination/v8/`](../certificate_coordination/v8) | [v8 proof](../certificate_coordination/v8/paper/main.tex), [status](../certificate_coordination/v8/README.md) |
 
+
+- **New October 8 theorem-first branch:** [Three-edge-cut synchronization](three_cut_synchronized_reconfiguration_2026-10-08.md) proves a typed neutral-move gluing principle for both cycle double covers and six-matching multicovers. [K3,3 neutral-fiber obstructions](k33_neutral_fiber_obstructions_2026-10-08.md) exhibits disconnected fixed-signature fibers in both systems, requiring component-enriched boundary states. Proof status and novelty limitations are stated in each note.
+
 ## Primary definitions
 
 For a tuple of `kd` perfect matchings in a `d`-regular bipartite graph, the target is multiplicity `k` on every edge, with defect `Q_k = sum_e (m(e)-k)^2`. **Direct-repair width** is the fewest labelled coordinates replaced at once to reach zero. **Strict reconfiguration distance** is the shortest sequence of one-coordinate changes strictly decreasing `Q_k` at every move; infinity is allowed. These parameters are not interchangeable.
