@@ -41,3 +41,12 @@ Required comparison: Marcin Wrochna (2018), reconfiguration hardness even at bou
 ## Success metric
 
 A journal-worthy candidate should imply a nontrivial result for an unbounded graph family or unify two genuinely different certificate systems with strong, verified hypotheses. Small graph enumerations supply adversarial tests, not the central theorem.
+
+
+## First full theorem candidate — exact exponential neutral classes (8 October)
+
+[Uniform-multiplicity K3,3 amplification](../theory/exponential_neutral_components_multicovers_2026-10-08.md) gives an *exact* two-parameter result: for `m>=1`, `n>=1`, the six-matching system at `m=2` and all `3m`-matching `m`-fold systems have `(m+1)^n` neutral components on a simple 3-edge-connected bipartite cubic `4n+2`-vertex graph. Even fixing the entire boundary signature does not reduce the count. Component sizes are explicit binomial products, with totals involving Franel numbers.
+
+**Research pivot update:** no uniform *constant* bound on neutral-component refinements from fixed boundary size and coordinate count is possible. Seek factorized/semigroup state representations with bounded local generating sets instead. Independent novelty checking remains required; m=1 is the known Belcastro--Haas edge-Kempe result.
+
+**Algorithmic upgrade:** the exponential number of classes does *not* imply hard equivalence testing for this family: extract one integer type per K3,3 block and compare vectors in O(nm). The proof constructs paths of <=3*sum_i min(t_i,m-t_i) switches within each fixed boundary fiber. See the same mathematical theorem for conditions and proof.
