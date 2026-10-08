@@ -147,3 +147,10 @@ These calculations corroborate that exactly the same *component-enriched, typed 
 - S.-M. Belcastro and R. Haas, *Counting edge-Kempe-equivalence classes for 3-edge-colored cubic graphs*, Discrete Mathematics 325 (2014), 77–84; DOI [10.1016/j.disc.2014.02.014](https://doi.org/10.1016/j.disc.2014.02.014).
 - J. Goedgebeur and P. R. J. Östergård, *Switching 3-edge-colorings of cubic graphs*, Discrete Mathematics 345 (2022), 112963; DOI [10.1016/j.disc.2022.112963](https://doi.org/10.1016/j.disc.2022.112963).
 - [Neutral-transparent cube and arbitrary padded CDCq](neutral_transparent_cube_substitution_2026-10-08.md).
+
+
+### Priority correction: ternary exact trades on bipartite multicovers are established
+
+Mori, Motomura, Ohsugi and Tsuchiya, *Toric ideals of matching polytopes and edge colorings*, Mathematika 72 (2026), e70099, DOI [10.1112/mtk.70099](https://doi.org/10.1112/mtk.70099), explicitly recall an earlier **theorem of Asratian and others**: **any two proper \(\Delta\)-edge-colorings of a bipartite multigraph are connected by changes affecting at most three color classes** (Theorem 1.2 of the 2026 paper). In our notation, a labelled \(m\)-fold perfect-matching multicover of bipartite cubic \(G\) corresponds to a \(3m\)-edge-coloring of the multigraph formed from \(G\) by replacing each edge with \(m\) parallel copies. Therefore **unrestricted three-coordinate exact-trade connectivity on bipartite hosts is a known result**, not a new target.
+
+This does **not** settle the binary *neutral single-cycle* reconfiguration components or typed separator responses studied here. The three-color trades may jump between those binary-neutral components, as our \(K_{3,3}\) examples show. We should concentrate any novelty claim on exact neutral topology, strict-escape behavior, or efficient symbolic factorization, not on the mere existence of three-coordinate connectivity.
