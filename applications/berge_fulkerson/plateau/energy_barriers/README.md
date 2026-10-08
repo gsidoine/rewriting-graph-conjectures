@@ -34,3 +34,7 @@ A nontrivial point: *triangle expansion is not an exact perfect-matching project
 ### Novelty boundary
 
 Colouring defect and triples of perfect matchings are established subjects (Karabáš, Máčajová, Nedela and Škoviera, E-JC 2024; Allie, Discrete Mathematics 2026). Perfect-matching *alternating-square flip* reconfiguration is also well developed (Bonamy et al., 2019). Our moves replace whole perfect-matching coordinates. The exact uphill-barrier theorem should be subjected to specialist literature review before submission.
+
+## New: exact transfer and reachability theorem
+
+The [FR three-pole transfer manuscript](transfer_paper/) and [`transfer_operator.py`](transfer_operator.py) show that the full matching-replacement reconfiguration components of `G` and its balanced `K_{3,2}` expansion correspond exactly, with local phase graphs `Q3` and `C6`. The generating polynomial obeys `Z_T(z)=(2+6z²)^n Z_G(z³ ((z+2)/(1+3z²))²)`; the minimum defect scales exactly by three per substitution. [New tests](../../../../tests/test_fr_transfer_operator.py) independently enumerate the expanded `K4`. The original uphill-barrier theorem remains separate and unchanged.

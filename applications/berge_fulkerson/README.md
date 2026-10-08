@@ -30,3 +30,7 @@ The new [resistance universality theorem and reproducible manuscript](plateau/re
 ## Uphill Fan–Raspaud reconfiguration barriers
 
 The [unbounded energy-barrier project](plateau/energy_barriers/README.md) supplies a 10-vertex class-one cubic seed, dependency-free exact enumeration and a `K_{3,2}` amplification theorem. It demonstrates that neutral moves alone are not universally sufficient for normalization. [Paper source](plateau/energy_barriers/paper/main.tex). This does not settle Berge–Fulkerson or Fan–Raspaud.
+
+## Exact FR three-pole polynomial and reconfiguration components
+
+A new [theory note](../../theory/fr_three_pole_renormalization_2026-10-08.md) and [five-page manuscript](plateau/energy_barriers/transfer_paper/) prove that the `K_{3,2}` replacement preserves the **full** FR reconfiguration connected components and gives an exact uncovered-edge polynomial renormalization, with universal iterated entropy. Unlike the existing uphill-barrier paper, this identifies the entire fibre structure and distribution. Research draft; independent novelty audit pending.

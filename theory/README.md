@@ -49,3 +49,7 @@ See [current claim register](../docs/claim_register_oct2026.md) for a cross-proj
 ## Non-monotone reconfiguration: an unbounded barrier theorem (October 8)
 
 [Exact uphill FR-triple barriers](fr_uphill_barriers_2026-10-08.md) show that even class-one, 3-edge-connected cubic graphs do not admit universally non-increasing normalization of arbitrary FR-triples. A 10-vertex seed, a `K_{3,2}` lifting theorem and dependency-free exact verifier yield an infinite family with barrier at least `3**t` on `10*5**t` vertices. This is a proof draft with finite certificates; specialist novelty review remains outstanding.
+
+## Exact FR triple transfer operator and component preservation (October 8)
+
+- [Three-pole defect polynomial, component-preserving projection, minimum-defect scaling and universal entropy](fr_three_pole_renormalization_2026-10-08.md). The proof counts local cube/six-cycle phase fibres and verifies the operator by full small-graph enumeration. Does not prove any open matching-cover conjecture; originality unreviewed.
