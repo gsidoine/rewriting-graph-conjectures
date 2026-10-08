@@ -30,6 +30,12 @@ The generic implementation is under `certificate_coordination/`. Application-spe
 
 [Exact component algebras for pair-rigid cubic tiles](pair_rigid_tile_multicover_algebra_2026-10-08.md) extends the K3,3 multicover theorem to a family of 3-edge-sum chains built from arbitrary pair-rigid cubic tiles, including Petersen and triangular-prism tiles. The local types are feasible integer solutions to the tile perfect-matching incidence equations, and both the global and fixed-signature neutral components factor exactly. Mixed Petersen/K3,3 chains are non-3-edge-colorable and retain `(m+1)^a` components when `m` is even (no covers when `m` is odd). The note includes a sharp **binary-vs-three-coordinate** trade threshold on the mixed 14-vertex graph. The cube invalidates the local multiset invariant without pair rigidity. **Status: unrefereed proof draft, independent finite tests; novelty not established.**
 
+
+## General neutral-transparent cube substitution (8 October, later)
+
+[Exact three-cut component-preserving insertion theorem](neutral_transparent_cube_substitution_2026-10-08.md) **removes the pair-rigidity requirement**. A tile with connected fixed-boundary neutral fibers induces a bijection of neutral-reconfiguration components upon attachment to any cubic host; uniform fiber sizes multiply the certificate counts, with additive diameter overhead. The cube `Q3` is neutral-transparent for six-perfect-matching double covers (**48 extensions per boundary signature, diameter 4**) and for **padded q-sheet cycle double covers for all q>=3**, with exact extension factor `4+28(q-3)+6*C(q-3,2)+6*C(q-3,3)` and fixed-fiber diameter at most 19 for all q. Finite base lemmas for q=3,4,5,6 and PM6 are checked exhaustively by CI tests; a separate verifier reproduces two mixed insertion examples with 77,760 states and 1,645,920 directed neutral switches. This is a theorem with **computer-assisted finite ingredients**, not a vetted novelty or 5-CDC proof.
+
+
 ## Primary definitions
 
 For a tuple of `kd` perfect matchings in a `d`-regular bipartite graph, the target is multiplicity `k` on every edge, with defect `Q_k = sum_e (m(e)-k)^2`. **Direct-repair width** is the fewest labelled coordinates replaced at once to reach zero. **Strict reconfiguration distance** is the shortest sequence of one-coordinate changes strictly decreasing `Q_k` at every move; infinity is allowed. These parameters are not interchangeable.
