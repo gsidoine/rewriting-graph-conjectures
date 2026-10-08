@@ -24,3 +24,7 @@ For a tuple of `kd` perfect matchings in a `d`-regular bipartite graph, the targ
 - To reproduce: run `python -m pytest -q`; then follow the `README.md` in each workstream for independent certificate programs.
 
 See [current claim register](../docs/claim_register_oct2026.md) for a cross-project classification.
+
+## New parameterized consequence (October 8)
+
+[Uniform collision hypergraphs and the parameter boundary for exact repair](parameterized_collision_repair_2026-10-08.md): fixed cover multiplicity gives an implicit bounded-depth FPT search in repair width, while variable multiplicity inherits W[2]-hardness from the v8 complete-bipartite realization. The note also isolates the independent nonbipartite factorization obstruction on the triangular prism. **This is a theoretical research note, not an externally refereed novelty claim.**

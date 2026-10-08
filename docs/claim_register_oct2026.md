@@ -32,3 +32,12 @@ This **supplements**, rather than overwrites, the [July audited status ledger](m
 3. Historical contaminated or inconsistent material remains marked under `archive/`; it is not reinstated by this integration.
 4. Git history is preserved. Deletion of generated caches from the working tree does not erase commits or old releases.
 5. Historical root checksum snapshots have moved to `archive/historical_manifests/`. For the relocated layout, see `docs/sha256_current_tree_2026-10-08.txt`. Earlier manifests are kept only as provenance.
+
+## Subsequent theory note — uniform collision hypergraphs
+
+- **Statement:** for bipartite `k`-fold perfect-matching multicovers, direct repair width equals the transversal number of the uniform `(k+1)`-coordinate collision hypergraph, without a unit-defect assumption. **Status:** elementary proof from König factorization, independently brute-force tested; novelty not audited.
+- **Algorithm:** implicit `(k+1)`-branching gives FPT time in repair budget for each fixed `k`. **Status:** proof + executable implementation; standard bounded-rank Hitting Set technique.
+- **Complexity separation:** variable `k` yields W[2]-hardness in the repair budget via the v8 complete-bipartite realization. **Status:** reduction argument based on the v8 proof, not independently refereed.
+- **Nonbipartite limitation:** the triangular prism has collision hitting number 2 but true direct repair width 3, due to residual odd-cycle factorization obstruction. **Status:** elementary proof + exhaustive standalone checker.
+
+Sources: [`theory/parameterized_collision_repair_2026-10-08.md`](../theory/parameterized_collision_repair_2026-10-08.md), [`collision_hypergraph.py`](../certificate_coordination/collision_hypergraph.py), [`test_collision_hypergraph.py`](../tests/test_collision_hypergraph.py), [`test_nonbipartite_factorization.py`](../tests/test_nonbipartite_factorization.py).
