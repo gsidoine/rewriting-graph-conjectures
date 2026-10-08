@@ -146,6 +146,15 @@ def check(word):
                             for t in product(range(3), repeat=a))
     assert all_components == expected
     assert fixed_components == expected_fixed
+    if a == 1:
+        for old_type in (0, 1):
+            left = [s for s in fixed if typ[s] == (old_type,)]
+            right = [s for s in fixed if typ[s] == (old_type+1,)]
+            distances = [sum(x != y for x, y in zip(s, t))
+                         for s in left for t in right]
+            assert min(distances) == 3, (word, old_type, min(distances))
+        assert all(sum(x != y for x, y in zip(s, t)) >= 3
+                   for s in states for t in states if typ[s] != typ[t])
     print(word, "vertices", len(G), "perfect matchings", len(PM),
           "covers", len(states), "directed neutral adjacency",
           sum(len(v) for v in adj.values()), "components", all_components,
