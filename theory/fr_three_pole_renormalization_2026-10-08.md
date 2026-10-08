@@ -11,7 +11,7 @@
 ## Proven in the manuscript
 
 1. **Local signature.** For three distinct projected external ports, all 8 phase assignments are allowed (local phase graph the cube `Q3`) and the internal defect polynomial is `A(z)=2+6z^2`. For two identical ports and one different, 6 phases are allowed (phase graph `C6`) and the internal defect polynomial is `B(z)=4z+2z^2`.
-2. **Full graph of states.** The matching projection `R(T(G)) -> R(G)` is surjective, every downstairs edge lifts from every upstairs preimage, and each fibre is connected by single-coordinate moves. Hence it induces **a bijection on reconfiguration connected components**. Within a component, `d_G(πx,πy) <= d_T(x,y) <= d_G(πx,πy)+3|V(G)|`.
+2. **Full graph of states.** The matching projection `R(T(G)) -> R(G)` is surjective, every downstairs edge lifts from every upstairs preimage, and each fibre is connected by single-coordinate moves. Hence it induces **a bijection on reconfiguration connected components**. Within a component, `d_G(πx,πy) <= d_T(x,y) <= d_G(πx,πy)+5`.
 3. **Exact generating polynomial.** If `Z_G(z)=Σ_{ordered FR triples} z^{u}`, then
 
    `Z_{T(G)}(z) = (2+6z^2)^n Z_G( z^3 ((2+z)/(1+3z^2))^2 )`.
@@ -19,6 +19,8 @@
    The same applies separately to any reconfiguration component.
 4. **Minimizers.** If the minimal defect of `G` is `m` and the number of minimizing ordered states is `a`, then for `G_t=T^t(G)`, `m_t=3^t m` and `a_t=a 2^{n(5^t-1)/4+m(3^t-1)}`.
 5. **Universal thermodynamic limit.** Provided `G` possesses at least one FR-triple, `lim_t log Z_{G_t}(z)/(n5^t)` exists for all real `z>0`, is independent of the seed and equals `Σ_{j>=0}5^{-j-1} log(2+6 R^j(z)^2)`. The limiting uniform `z=1` logarithmic count per vertex is approximately `0.4792835312641252`, and the mean uncovered-edge count per vertex is `0.3296843222147383`. Numerical decimals are computed values, not certified intervals.
+
+See also [uniform five-round fibre routing](uniform_fibre_routing_2026-10-08.md), which strengthens the former `+3n` distance bound to an absolute `+5`, proves the routing schedule `(0,1,0,2,0)`, and gives the iteration bound `d(T^t) <= d(G)+5t`.
 
 ## Exact validations
 
