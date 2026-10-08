@@ -2,6 +2,8 @@
 
 **October 8, 2026 — original research draft, computationally certified finite base and complete reduction proof.**
 
+Formal manuscript: [PDF](fr_extension_paper/main.pdf) and [LaTeX](fr_extension_paper/main.tex).
+
 This note concerns **extension of a *specified* triple** of perfect matchings to a Fulkerson cover. It does not assert a counterexample to Berge–Fulkerson (indeed the base graph is 3-edge-colourable), nor does it claim literature novelty without specialist review.
 
 ## Setup and exact reduction

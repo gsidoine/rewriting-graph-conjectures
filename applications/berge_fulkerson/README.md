@@ -15,6 +15,10 @@ The proved descent theorem guarantees a strict coordinate replacement whenever `
 - Certificates and logs: [`certificates/`](certificates) and [`logs/`](logs)
 - Publication status: [`../publications/README.md`](../../publications/README.md)
 
+## Research manuscript (unrefereed)
+
+[A Sharp Petersen-Kernel Obstruction to Extending Fan--Raspaud Triples](plateau/fr_extension_paper/main.pdf) ([LaTeX source](plateau/fr_extension_paper/main.tex)); 4 pages. The finite graph and checks are maintained separately. This is a **research draft** without an externally established novelty claim.
+
 ## October 2026: prescribed FR-triple extension and residual kernels
 
 The [order-14 nonextension theorem candidate](plateau/FR_EXTENSION_OBSTRUCTIONS_20261008.md) exhibits a 3-edge-connected, 3-edge-colourable cubic host and a Fan–Raspaud triple with a bridgeless but non-3-edge-colourable residual. The residual suppresses to Petersen; nevertheless one coordinate change repairs the original triple. The [explicit JSON certificate](plateau/fr_n14_petersen_kernel.json), [standard-library verifier](plateau/fr_extension_core.py), and [regression test](../../tests/test_fr_extension_core.py) are maintained here. This concerns extension of a *prescribed* triple, not Berge–Fulkerson itself.

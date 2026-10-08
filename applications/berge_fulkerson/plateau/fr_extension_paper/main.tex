@@ -1,0 +1,104 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1.02in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable,hyperref,enumitem}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=blue}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newcommand{\PM}{\mathcal M}
+\title{A Sharp Petersen-Kernel Obstruction to Extending\\Fan--Raspaud Triples}
+\author{Guillaume Sidoine\\\small Independent researcher\quad ORCID: 0009-0005-4525-1182}
+\date{Research draft --- October 8, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+A Fan--Raspaud triple is a collection of three perfect matchings of a cubic graph having no edge in common. The Berge--Fulkerson conjecture asks for six perfect matchings covering every edge twice, but this does not imply that \emph{every prescribed} Fan--Raspaud triple can be extended to such a six-cover. We describe a suppression kernel for the residual cubic multigraph associated with an arbitrary prescribed triple and give an explicit \emph{14-vertex} simple, $3$-edge-connected, $3$-edge-colourable cubic graph whose triple leaves only two edges uncovered, has a bridgeless residual, and nevertheless cannot be completed to a double cover: the residual suppresses exactly to the Petersen graph. We prove a lower bound of 14 vertices for such a bridge-free extension obstruction and give a family for every even order at least 14. The same triple admits a strict one-coordinate replacement to a proper $3$-edge-colouring. These results concern fixed-certificate extension and do not contradict Berge--Fulkerson. \emph{This is an unrefereed research draft; external novelty has not been established.}
+\end{abstract}
+
+\section{Definitions and a residual kernel}
+Throughout $G$ is a finite simple cubic graph. Let $\PM=(M_1,M_2,M_3)$ be perfect matchings with $M_1\cap M_2\cap M_3=\varnothing$. For an edge $e$, write $f(e)=\sum_{i=1}^3\mathbf 1[e\in M_i]$. Define the cubic multigraph
+\[
+R_{\PM}=2G-(M_1+M_2+M_3),\qquad r(e)=2-f(e).
+\]
+The triple extends to six perfect matchings covering each edge twice precisely when $R_{\PM}$ admits a proper $3$-edge-colouring (i.e. a decomposition into three perfect matchings).
+
+At every vertex, the incident $f$-values are $(1,1,1)$ or a permutation of $(0,1,2)$. Therefore $E_0=\{e:f(e)=0\}$ and $E_2=\{e:f(e)=2\}$ are matchings with the same incident vertex set; their union consists of disjoint alternating even circuits. Write $u=|E_0|=|E_2|$. Since $G$ is simple, $u=0$ or $u\ge2$.
+
+\begin{lemma}[doubled-edge suppression]\label{lem:kernel}
+Every residual $R_{\PM}$ has an associated cubic kernel $K_{\PM}$ on $|V(G)|-2u$ vertices, possibly with loops and parallel edges, such that
+\[
+R_{\PM}\text{ is $3$-edge-colourable}\quad\Longleftrightarrow\quad K_{\PM}\text{ is $3$-edge-colourable}.
+\]
+If $R_{\PM}$ is bridgeless, the kernel is loopless and bridgeless (isolated all-doubled-edge components are discarded).
+\end{lemma}
+\begin{proof}
+Every $e=ab\in E_0$ contributes two parallel residual copies; each of $a,b$ has exactly one additional residual edge, of multiplicity one. Remove $a,b$ and connect the other ends of those single edges by one edge. Any proper three-colouring of the residual uses two distinct colours on the doubled pair and necessarily the same third colour on both adjacent single edges. This contracts to a uniquely coloured replacement edge. Conversely a colour on the replacement edge determines the third colour on the adjacent single edges; use the other two colours on the double edge. Iterating gives the equivalence. A component consisting entirely of such structures is an alternating even circuit and has an explicit three-colouring; it contributes no kernel vertices. A resulting loop would be attached to the remaining cubic graph by a bridge, as would a kernel bridge along its expanded path, so neither can arise from a bridgeless residual. There are exactly $2u$ deleted vertices.
+\end{proof}
+
+\begin{lemma}[smallest possible obstruction]\label{lem:lower}
+If $R_{\PM}$ is bridgeless but not $3$-edge-colourable, then $|V(G)|\ge14$ and $u\ge2$.
+\end{lemma}
+\begin{proof}
+If $u=0$, the supplied three matchings are disjoint and already properly $3$-edge-colour $G$, so they also colour $R_{\PM}=G$. Otherwise simplicity gives $u\ge2$. By Lemma~\ref{lem:kernel}, $K_{\PM}$ is a bridgeless loopless cubic multigraph that is not $3$-edge-colourable. The smallest such cubic graph has at least ten vertices (the Petersen minimum; parallel digons may be suppressed without altering colourability). Hence $|V(G)|=|V(K_{\PM})|+2u\ge10+4=14$.
+\end{proof}
+
+\section{A 14-vertex example with a Petersen residual kernel}
+\begin{theorem}\label{thm:main}
+There is a simple, $3$-edge-connected, $3$-edge-colourable cubic graph $G$ on 14 vertices and a prescribed Fan--Raspaud triple $\PM$ such that:
+\begin{enumerate}[leftmargin=2em,noitemsep]
+\item exactly two edges of $G$ are uncovered by $\PM$;
+\item $R_{\PM}$ is bridgeless and hence every odd cut has size at least three (counting multiplicities);
+\item $K_{\PM}\cong P_{10}$ is Petersen, so $\PM$ cannot be extended to a Fulkerson double cover;
+\item replacing \emph{one} of the three matchings turns $\PM$ into a proper three-edge-colouring, so fixed-triple nonextension does not imply a local-reconfiguration trap.
+\end{enumerate}
+The order 14 in this theorem is minimum among simple cubic graphs with a prescribed triple whose residual is bridgeless but not three-edge-colourable.
+\end{theorem}
+\begin{proof}
+The matching edge lists in Table~\ref{tab:matchings} give both the supplied triple and an independent proper three-edge-colouring of the host on vertex set $\{0,\ldots,13\}$; $G$ is the union of the latter three disjoint perfect matchings. The complete certificate is supplied separately as \path{fr_n14_petersen_kernel.json}. Each supplied matching is perfect; their intersection is empty and two edges are uncovered. The host has no cut of size one or two, as certified by exhaustively removing all one- and two-edge subsets and checking connectivity. The residual is also checked to be bridgeless.
+
+Suppressing its two doubled edges yields a loopless cubic graph on ten vertices. The certificate includes an explicit isomorphism from this kernel to the standard Petersen graph, independently verified on its full edge set. Since Petersen has no proper three-edge-colouring, $R_{\PM}$ has none by Lemma~\ref{lem:kernel}. This proves the nonextension statement. In the supplied triple $M_2\cap M_3=\varnothing$, so $E(G)\setminus(M_2\cup M_3)$ is a perfect matching. Replacing $M_1$ with it gives a proper $3$-edge-colouring, and the quadratic one-fold defect decreases from $4$ to $0$. Lemma~\ref{lem:lower} gives sharpness of the order.
+\end{proof}
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{@{}c p{0.80\linewidth}@{}}
+\toprule
+ & Seven edges in the perfect matching\\ \midrule
+$M_1$ & $0\!:\!13,\ 1\!:\!11,\ 2\!:\!8,\ 3\!:\!7,\ 4\!:\!9,\ 5\!:\!12,\ 6\!:\!10$\\
+$M_2$ & $0\!:\!6,\ 1\!:\!4,\ 2\!:\!9,\ 3\!:\!11,\ 5\!:\!12,\ 7\!:\!10,\ 8\!:\!13$\\
+$M_3$ & $0\!:\!13,\ 1\!:\!8,\ 2\!:\!6,\ 3\!:\!9,\ 4\!:\!10,\ 5\!:\!11,\ 7\!:\!12$\\ \midrule
+$C_1$ & $0\!:\!5,\ 1\!:\!8,\ 2\!:\!6,\ 3\!:\!11,\ 4\!:\!9,\ 7\!:\!10,\ 12\!:\!13$\\
+$C_2$ & $0\!:\!6,\ 1\!:\!11,\ 2\!:\!9,\ 3\!:\!7,\ 4\!:\!10,\ 5\!:\!12,\ 8\!:\!13$\\
+$C_3$ & $0\!:\!13,\ 1\!:\!4,\ 2\!:\!8,\ 3\!:\!9,\ 5\!:\!11,\ 6\!:\!10,\ 7\!:\!12$\\ \bottomrule
+\end{tabular}
+\caption{The prescribed Fan--Raspaud triple $M_1,M_2,M_3$ and independent proper edge-colouring $C_1,C_2,C_3$ of the same 14-vertex graph. The notation $a\!:\!b$ denotes edge $ab$.}\label{tab:matchings}
+\end{table}
+
+\section{Every even order and a local normalization lemma}
+\begin{theorem}\label{thm:infty}
+For every even $n\ge14$ there exists a simple $3$-edge-connected and $3$-edge-colourable cubic graph of order $n$ with a Fan--Raspaud triple leaving exactly two edges uncovered, such that its residual is bridgeless but not $3$-edge-colourable.
+\end{theorem}
+\begin{proof}
+Starting from Theorem~\ref{thm:main}, choose any vertex incident with three simply covered edges (there are ten). Replace it by a triangle, attaching the old neighbours to different triangle vertices. Each old perfect matching selects exactly one external incident edge; extend it by the internal triangle edge joining the other two triangle vertices. Do this separately for the prescribed triple and for the host's proper three-edge-colouring. The enlarged host remains simple, cubic, $3$-edge-connected, and $3$-edge-colourable; the number of uncovered edges is unchanged. In its residual the newly introduced triangle and all three exterior attachments have single multiplicity. Any residual three-colouring would colour the three exterior attachments with the three distinct colours: this follows from parity, since each perfect matching intersects the separating three-edge cut exactly once. Contracting the triangle would therefore properly colour the original residual. Hence the enlarged residual is uncolourable. Bridgelessness is preserved by expanding a degree-three vertex into a triangle. At least one new triangle vertex again has three simply covered edges, so the process can be iterated indefinitely, yielding orders $14+2j$ for all $j\ge0$.
+\end{proof}
+
+\begin{proposition}[one-coordinate escape at minimum positive defect]
+If three perfect matchings with empty intersection of a simple cubic graph leave exactly two edges uncovered, then one of the three can be replaced to obtain a proper $3$-edge-colouring.
+\end{proposition}
+\begin{proof}
+Exactly two edges are doubly covered. Each can witness an intersection of at most one of the three unordered matching pairs. By the pigeonhole principle, at least one pair of the three matchings has empty intersection. The complement of their union is a perfect matching, and hence all three become pairwise edge-disjoint after replacing the remaining coordinate.
+\end{proof}
+
+\section{Research status and reproducibility}
+The elementary reduction of prescribed extension to residual three-edge-colouring, the classical colour-parity lemma, and the classical Petersen minimum are not novel ingredients. This note does not claim that no nonextendable triple was previously known. The particular sharp 14-vertex construction and its all-even-order lifting require further comparison with the literature before submission.
+
+All source, exact graphs, independently enumerated matchings and tests are available in the companion private research repository. The verification commands are:\par\noindent{\small\texttt{python -m }\path{applications.berge_fulkerson.plateau.fr_extension_core}}\par\noindent{\small\texttt{python -m pytest -q }\path{tests/test_fr_extension_core.py}}\par The exact tester additionally verifies direct residual vs.~kernel colouring equivalence for all $2010$ collision-free triples in the flower snark $J_5$; this finite result is not used to prove the general theorems.
+
+\begin{thebibliography}{9}
+\bibitem{KMZ23} F. Kardo\v{s}, E. M\'a\v{c}ajov\'a and J. P. Zerafa, Disjoint odd circuits in a bridgeless cubic graph can be quelled by a single perfect matching, \emph{J. Combin. Theory Ser. B} \textbf{160} (2023), 1--14.
+\bibitem{KMNS24} J. Karab\'a\v{s}, E. M\'a\v{c}ajov\'a, R. Nedela and M. \v{S}koviera, Cubic graphs with colouring defect 3, \emph{Electronic J. Combin.} \textbf{31} (2024), \#P2.6.
+\bibitem{NS03} R. Naserasr and R. \v{S}krekovski, The Petersen graph is not 3-edge-colorable---a new proof, \emph{Discrete Math.} \textbf{268} (2003), 325--326.
+\end{thebibliography}
+\end{document}
