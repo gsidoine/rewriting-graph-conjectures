@@ -86,8 +86,8 @@ balanced-vertex expansion lemma already given in the paper.)
 
 Verification:
 
-    python berge_fulkerson/plateau/q12_standalone_checker.py
-    python -m berge_fulkerson.plateau.q12_cycle_blocker
+    python applications/berge_fulkerson/plateau/q12_standalone_checker.py
+    python -m applications.berge_fulkerson.plateau.q12_cycle_blocker
 
 ## 5. Q=40 witness (40 vertices)
 
@@ -109,7 +109,7 @@ the entire triple family, and the explicit replacement masks.
 
 Verification:
 
-    python berge_fulkerson/plateau/q40_standalone_checker.py
+    python applications/berge_fulkerson/plateau/q40_standalone_checker.py
 
 ## 6. Novelty and significance boundary
 

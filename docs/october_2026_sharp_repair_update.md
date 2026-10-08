@@ -33,11 +33,11 @@ Jicheng Ma, *Matching complements in subcubic graphs and a proof of the 3-Decomp
 ## Reproduce
 
 ```bash
-python berge_fulkerson/plateau/next_phase/q34_standalone_checker.py
-python berge_fulkerson/plateau/next_phase/independent_checker.py
+python applications/berge_fulkerson/plateau/next_phase/q34_standalone_checker.py
+python applications/berge_fulkerson/plateau/next_phase/independent_checker.py
 g++ -O3 -std=c++17 berge_fulkerson/plateau/next_phase/type_cover_bound.cpp -o /tmp/type_cover_bound
 /tmp/type_cover_bound
-python -m berge_fulkerson.plateau.next_phase.exhaustive_pair_small
+python -m applications.berge_fulkerson.plateau.next_phase.exhaustive_pair_small
 python -m pytest -q
 cd berge_fulkerson/plateau/next_phase/paper && latexmk -pdf main.tex
 ```

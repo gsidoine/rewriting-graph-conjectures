@@ -10,7 +10,7 @@ from pathlib import Path
 
 BASE=Path(__file__).resolve().parents[2]/'sharp_18_vertex.json'
 if not BASE.exists():
-    BASE=Path('/mnt/data/work_oct8/rewriting-graph-conjectures-main/berge_fulkerson/plateau/sharp_18_vertex.json')
+    BASE=Path(__file__).resolve().parents[2]/'sharp_18_vertex.json'
 
 def verify(filepath=BASE):
     d=json.loads(Path(filepath).read_text())

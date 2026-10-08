@@ -1,4 +1,4 @@
-from berge_fulkerson.plateau import test_plateau as cases
+from applications.berge_fulkerson.plateau import test_plateau as cases
 
 def test_october_certificate(): cases.test_small_certificate_and_duals()
 def test_october_family(): cases.test_vertex_expansion_family()

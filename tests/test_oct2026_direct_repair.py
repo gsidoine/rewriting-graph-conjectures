@@ -1,7 +1,7 @@
 """Small exact regression tests for sharp unit-defect direct-repair width."""
-from berge_fulkerson.plateau.q12_standalone_checker import check as check_q12
-from berge_fulkerson.plateau.q40_standalone_checker import check as check_q40
-from berge_fulkerson.plateau.q12_cycle_blocker import infinite_family
+from applications.berge_fulkerson.plateau.q12_standalone_checker import check as check_q12
+from applications.berge_fulkerson.plateau.q40_standalone_checker import check as check_q40
+from applications.berge_fulkerson.plateau.q12_cycle_blocker import infinite_family
 
 
 def test_q12_certified_exact_pair_gap():

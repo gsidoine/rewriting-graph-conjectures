@@ -1,9 +1,9 @@
 from itertools import combinations_with_replacement
 import networkx as nx
 
-from berge_fulkerson.src.perfect_matchings import enumerate_perfect_matchings
-from berge_fulkerson.src.exhaustive_verification import verify_all_states_normalize
-from three_decomposition.src.verify_counterexample import verify
+from applications.berge_fulkerson.src.perfect_matchings import enumerate_perfect_matchings
+from applications.berge_fulkerson.src.exhaustive_verification import verify_all_states_normalize
+from applications.three_decomposition.src.verify_counterexample import verify
 
 
 def test_petersen_complete_normalization():

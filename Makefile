@@ -16,13 +16,15 @@ reproduce-small:
 
 reproduce-cpp:
 	mkdir -p build
-	$(CXX) $(CXXFLAGS) berge_fulkerson/cpp/j5_rewrite.cpp -o build/j5_rewrite
-	build/j5_rewrite < berge_fulkerson/instances/j5/j5_input.txt | tee berge_fulkerson/logs/j5res_reproduced.txt
-	$(CXX) $(CXXFLAGS) barnette/cpp/test_barnette_k.cpp -o build/test_barnette_k
-	build/test_barnette_k < barnette/instances/steps8.txt | tee barnette/logs/steps8res_reproduced.txt
+	$(CXX) $(CXXFLAGS) applications/berge_fulkerson/cpp/j5_rewrite.cpp -o build/j5_rewrite
+	build/j5_rewrite < applications/berge_fulkerson/instances/j5/j5_input.txt > build/j5res_reproduced.tmp
+	mv build/j5res_reproduced.tmp applications/berge_fulkerson/logs/j5res_reproduced.txt
+	$(CXX) $(CXXFLAGS) applications/barnette/cpp/test_barnette_k.cpp -o build/test_barnette_k
+	build/test_barnette_k < applications/barnette/instances/steps8.txt > build/steps8res_reproduced.tmp
+	mv build/steps8res_reproduced.tmp applications/barnette/logs/steps8res_reproduced.txt
 
 manifest:
-	find . -type f -not -path './.git/*' -not -name 'SHA256SUMS.txt' -print0 | sort -z | xargs -0 sha256sum > SHA256SUMS.txt
+	$(PYTHON) shared/manifest.py
 
 clean:
 	find . -name '__pycache__' -type d -prune -exec rm -rf {} +

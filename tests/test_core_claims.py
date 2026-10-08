@@ -2,12 +2,12 @@ from collections import Counter
 import random
 import networkx as nx
 
-from berge_fulkerson.src.perfect_matchings import enumerate_perfect_matchings
-from berge_fulkerson.src.state_encoding import quadratic_potential
-from berge_fulkerson.src.coordinate_descent import replacement_delta
-from three_decomposition.src.cotree_defect import bad_path_count, defect_edges
-from barnette.src.planar_embedding import dual_with_edge_map
-from barnette.src.colouring_potential import phi
+from applications.berge_fulkerson.src.perfect_matchings import enumerate_perfect_matchings
+from applications.berge_fulkerson.src.state_encoding import quadratic_potential
+from applications.berge_fulkerson.src.coordinate_descent import replacement_delta
+from applications.three_decomposition.src.cotree_defect import bad_path_count, defect_edges
+from applications.barnette.src.planar_embedding import dual_with_edge_map
+from applications.barnette.src.colouring_potential import phi
 
 
 def test_replacement_identity_random_petersen_states():

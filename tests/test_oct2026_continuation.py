@@ -1,6 +1,6 @@
 """Fast regression tests for October 8 follow-on theorems and certificates."""
 from pathlib import Path
-from berge_fulkerson.plateau.next_phase.continuation_20261008 import (
+from applications.berge_fulkerson.plateau.next_phase.continuation_20261008 import (
     verify_stiff_base, glue_traps, check_certificates, verify_drift,
     verify_component_certificate, componentwise_repair,
 )

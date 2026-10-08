@@ -10,15 +10,10 @@ authors = [{name = "Guillaume Sidoine"}]
 requires-python = ">=3.10"
 dependencies = ["networkx==3.6.1", "numpy>=1.26", "pandas>=2.1", "sympy>=1.12"]
 
-[tool.setuptools]
-packages = [
-  "shared",
-  "berge_fulkerson", "berge_fulkerson.src",
-  "three_decomposition", "three_decomposition.src",
-  "barnette", "barnette.src",
-  "tutte_5flow", "tutte_5flow.src"
-]
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["applications*", "shared*", "certificate_coordination*"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "berge_fulkerson/tests", "three_decomposition/tests", "barnette/tests", "berge_fulkerson/plateau/next_phase", "certificate_coordination/tests"]
+testpaths = ["tests", "applications/berge_fulkerson/tests", "applications/three_decomposition/tests", "applications/barnette/tests", "applications/berge_fulkerson/plateau/next_phase", "certificate_coordination/tests"]
 addopts = "-ra"

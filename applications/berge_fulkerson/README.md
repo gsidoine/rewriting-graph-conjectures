@@ -8,9 +8,9 @@ Q = sum_e (multiplicity(e) - 2)^2.
 
 The proved descent theorem guarantees a strict coordinate replacement whenever `Q > 2n`. The computational layer tests the residual low-defect region and provides exact Petersen and Flower-snark checks.
 
-- Mathematical status: [`../docs/mathematical_status.md`](../docs/mathematical_status.md)
-- Conceptual notes: [`theory/`](theory/)
-- Reusable implementation: [`src/`](src/)
+- Mathematical status: [`../docs/mathematical_status.md`](../../docs/mathematical_status.md)
+- Conceptual notes: [`theory/`](theory)
+- Reusable implementation: [`src/`](src)
 - Exact C++ check: [`cpp/j5_rewrite.cpp`](cpp/j5_rewrite.cpp)
-- Certificates and logs: [`certificates/`](certificates/) and [`logs/`](logs/)
-- Publication status: [`../publications/README.md`](../publications/README.md)
+- Certificates and logs: [`certificates/`](certificates) and [`logs/`](logs)
+- Publication status: [`../publications/README.md`](../../publications/README.md)

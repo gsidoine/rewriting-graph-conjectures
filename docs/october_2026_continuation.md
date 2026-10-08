@@ -36,11 +36,11 @@ From the repository root:
 
 ```bash
 PYTHONPATH=. pytest -q
-PYTHONPATH=. python -m berge_fulkerson.plateau.next_phase.continuation_20261008.verify_stiff_base
-PYTHONPATH=. python -m berge_fulkerson.plateau.next_phase.continuation_20261008.check_certificates
-PYTHONPATH=. python -m berge_fulkerson.plateau.next_phase.continuation_20261008.verify_component_certificate
-PYTHONPATH=. python -m berge_fulkerson.plateau.next_phase.continuation_20261008.verify_drift
-PYTHONPATH=. python -m berge_fulkerson.plateau.next_phase.continuation_20261008.all_small_pair_audit
+PYTHONPATH=. python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.verify_stiff_base
+PYTHONPATH=. python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.check_certificates
+PYTHONPATH=. python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.verify_component_certificate
+PYTHONPATH=. python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.verify_drift
+PYTHONPATH=. python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.all_small_pair_audit
 
 g++ -O3 -std=c++17 berge_fulkerson/plateau/next_phase/continuation_20261008/j5_exhaustive_pair.cpp -o /tmp/j5_audit
 /tmp/j5_audit berge_fulkerson/instances/j5/j5_input.txt

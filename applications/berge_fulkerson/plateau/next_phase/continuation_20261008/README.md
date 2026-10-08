@@ -25,13 +25,13 @@
 ## Reproduction from repository root
 
 ```bash
-python -m berge_fulkerson.plateau.next_phase.continuation_20261008.verify_stiff_base
-python -m berge_fulkerson.plateau.next_phase.continuation_20261008.glue_traps 1 2 3 4
-python -m berge_fulkerson.plateau.next_phase.continuation_20261008.check_certificates
-python -m berge_fulkerson.plateau.next_phase.continuation_20261008.verify_drift
-python -m berge_fulkerson.plateau.next_phase.continuation_20261008.componentwise_repair
-python -m berge_fulkerson.plateau.next_phase.continuation_20261008.verify_component_certificate
-python -m berge_fulkerson.plateau.next_phase.continuation_20261008.all_small_pair_audit
+python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.verify_stiff_base
+python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.glue_traps 1 2 3 4
+python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.check_certificates
+python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.verify_drift
+python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.componentwise_repair
+python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.verify_component_certificate
+python -m applications.berge_fulkerson.plateau.next_phase.continuation_20261008.all_small_pair_audit
 
 g++ -O3 -std=c++17 berge_fulkerson/plateau/next_phase/continuation_20261008/j5_exhaustive_pair.cpp -o /tmp/j5_pair_check
 /tmp/j5_pair_check berge_fulkerson/instances/j5/j5_input.txt

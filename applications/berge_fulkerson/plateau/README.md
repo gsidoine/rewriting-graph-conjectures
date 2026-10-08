@@ -20,15 +20,15 @@ This folder is an additive research branch; it does not silently overwrite the J
 From the repository root:
 
 ```bash
-python berge_fulkerson/plateau/standalone_checker.py
-python -m berge_fulkerson.plateau.sharp_trap
-python -m berge_fulkerson.plateau.dual_certificate
-python -m berge_fulkerson.plateau.cover_lifting
-python -m berge_fulkerson.plateau.bounded_coordinate_descent
-python -m berge_fulkerson.plateau.three_cut_profile
-python -m berge_fulkerson.plateau.flow_optimize_two
-python -m berge_fulkerson.plateau.general_q6_pair
-python -m berge_fulkerson.plateau.transversal_boundary
+python applications/berge_fulkerson/plateau/standalone_checker.py
+python -m applications.berge_fulkerson.plateau.sharp_trap
+python -m applications.berge_fulkerson.plateau.dual_certificate
+python -m applications.berge_fulkerson.plateau.cover_lifting
+python -m applications.berge_fulkerson.plateau.bounded_coordinate_descent
+python -m applications.berge_fulkerson.plateau.three_cut_profile
+python -m applications.berge_fulkerson.plateau.flow_optimize_two
+python -m applications.berge_fulkerson.plateau.general_q6_pair
+python -m applications.berge_fulkerson.plateau.transversal_boundary
 pytest -q
 ```
 

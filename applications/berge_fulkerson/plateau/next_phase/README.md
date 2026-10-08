@@ -18,8 +18,8 @@ The proof is in `paper/main.tex` and rendered `paper/main.pdf`. It uses a finite
 From the repository root:
 
 ```bash
-python berge_fulkerson/plateau/next_phase/q34_standalone_checker.py
-python berge_fulkerson/plateau/next_phase/independent_checker.py
+python applications/berge_fulkerson/plateau/next_phase/q34_standalone_checker.py
+python applications/berge_fulkerson/plateau/next_phase/independent_checker.py
 g++ -std=c++17 -O3 berge_fulkerson/plateau/next_phase/type_cover_bound.cpp -o /tmp/type_cover_bound
 /tmp/type_cover_bound
 python -m pytest -q

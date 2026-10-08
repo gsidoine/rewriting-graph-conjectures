@@ -2,15 +2,15 @@
 
 **Purpose.** Study exact repair width, strict/neutral reconfiguration, obstruction hypergraphs, and finite separator interfaces independently of particular open graph conjectures.
 
-The implementations stay at their original import-compatible package paths. This directory is a stable navigational layer; the research modules are linked below, not silently renamed or duplicated.
+The generic implementation is under `certificate_coordination/`. Application-specific code is located under `applications/` and can be imported with the `applications.<problem>` prefix. The theoretical index links to both without duplicating code.
 
 | Workstream | Code and certificates | Paper and status |
 |---|---|---|
-| Multiplicity-2 six-matching repair/plateaux | [`berge_fulkerson/plateau/`](../berge_fulkerson/plateau/) | [paper source](../berge_fulkerson/plateau/paper/main.tex), [readme](../berge_fulkerson/plateau/README.md) |
-| Sharp direct-repair thresholds / local drift | [`berge_fulkerson/plateau/next_phase/`](../berge_fulkerson/plateau/next_phase/) | [notes](../berge_fulkerson/plateau/next_phase/README.md) |
-| Three-cut gluing, componentwise corrections | [`berge_fulkerson/plateau/next_phase/continuation_20261008/`](../berge_fulkerson/plateau/next_phase/continuation_20261008/) | [claim status](../berge_fulkerson/plateau/next_phase/continuation_20261008/CLAIM_STATUS.md) |
-| Obstruction conflicts, variable-degree systems | [`certificate_coordination/`](../certificate_coordination/) | [v7 proof](../certificate_coordination/paper/main.tex), [status](../certificate_coordination/RESEARCH_STATUS.md) |
-| Complete-bipartite hypergraph universality, multiplicity `k`, width-DP | [`certificate_coordination/v8/`](../certificate_coordination/v8/) | [v8 proof](../certificate_coordination/v8/paper/main.tex), [status](../certificate_coordination/v8/README.md) |
+| Multiplicity-2 six-matching repair/plateaux | [`berge_fulkerson/plateau/`](../applications/berge_fulkerson/plateau) | [paper source](../applications/berge_fulkerson/plateau/paper/main.tex), [readme](../applications/berge_fulkerson/plateau/README.md) |
+| Sharp direct-repair thresholds / local drift | [`berge_fulkerson/plateau/next_phase/`](../applications/berge_fulkerson/plateau/next_phase) | [notes](../applications/berge_fulkerson/plateau/next_phase/README.md) |
+| Three-cut gluing, componentwise corrections | [`berge_fulkerson/plateau/next_phase/continuation_20261008/`](../applications/berge_fulkerson/plateau/next_phase/continuation_20261008) | [claim status](../applications/berge_fulkerson/plateau/next_phase/continuation_20261008/CLAIM_STATUS.md) |
+| Obstruction conflicts, variable-degree systems | [`certificate_coordination/`](../certificate_coordination) | [v7 proof](../certificate_coordination/paper/main.tex), [status](../certificate_coordination/RESEARCH_STATUS.md) |
+| Complete-bipartite hypergraph universality, multiplicity `k`, width-DP | [`certificate_coordination/v8/`](../certificate_coordination/v8) | [v8 proof](../certificate_coordination/v8/paper/main.tex), [status](../certificate_coordination/v8/README.md) |
 
 ## Primary definitions
 

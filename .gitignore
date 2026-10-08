@@ -17,3 +17,6 @@ __pycache__/
 *.out
 *.synctex.gz
 # Keep specifically archived research logs already tracked; avoid adding new incidental output.
+
+# Compiled executables and temporary reproduction outputs
+build/

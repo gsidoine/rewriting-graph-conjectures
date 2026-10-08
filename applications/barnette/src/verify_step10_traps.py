@@ -10,10 +10,10 @@ from __future__ import annotations
 from pathlib import Path
 import json
 
-ROOT = Path(__file__).resolve().parents[2]
-INSTANCE = ROOT / "barnette/instances/step10.txt"
-MASKS = ROOT / "barnette/certificates/step10_unresolved_historical.txt"
-OUT = ROOT / "barnette/certificates/step10_inconsistency_report.json"
+ROOT = Path(__file__).resolve().parents[3]
+INSTANCE = ROOT / "applications/barnette/instances/step10.txt"
+MASKS = ROOT / "applications/barnette/certificates/step10_unresolved_historical.txt"
+OUT = ROOT / "applications/barnette/certificates/step10_inconsistency_report.json"
 
 def read_instance():
     values=list(map(int,INSTANCE.read_text().split())); it=iter(values)

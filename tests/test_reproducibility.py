@@ -16,7 +16,7 @@ def test_reproduced_logs_present():
         ROOT / "repro_runs/scripts/blossom_certificate.stdout",
         ROOT / "repro_runs/scripts/three_decomposition_exhaustive.stdout",
         ROOT / "repro_runs/scripts/combined_checks.stdout",
-        ROOT / "berge_fulkerson/logs/j5res_reproduced.txt",
-        ROOT / "barnette/logs/steps8res_reproduced.txt",
+        ROOT / "applications/berge_fulkerson/logs/j5res_reproduced.txt",
+        ROOT / "applications/barnette/logs/steps8res_reproduced.txt",
     ]
     assert all(path.exists() and path.stat().st_size for path in expected)

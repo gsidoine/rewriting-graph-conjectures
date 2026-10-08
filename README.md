@@ -10,7 +10,7 @@ The programme was inspired by Emre Yolcu, Scott Aaronson, and Marijn J. H. Heule
 
 ## Two-track research program
 
-**[Track A — General coordination theory](theory/README.md)** develops repair width, obstruction hypergraphs, strict and neutral reconfiguration, separator composition, and complexity results. Code and certificates live in [`certificate_coordination/`](certificate_coordination/) and in the six-matching [`plateau`](berge_fulkerson/plateau/) work.
+**[Track A — General coordination theory](theory/README.md)** develops repair width, obstruction hypergraphs, strict and neutral reconfiguration, separator composition, and complexity results. Code and certificates live in [`certificate_coordination/`](certificate_coordination) and in the six-matching [`plateau`](applications/berge_fulkerson/plateau) work.
 
 **[Track B — Applications to graph problems](applications/README.md)** develops problem-specific certificate dynamics for Berge–Fulkerson, 3-Decomposition, Barnette, edge-connectivity partitions and related questions. Applications both test the theory and expose its limitations.
 
@@ -56,7 +56,7 @@ The repository contains substantial partial results, finite verification, and fa
 
 ## Manuscripts and publications
 
-The public research repository is best kept focused on the method, software, exact data, and certificates. Manuscripts are maintained separately while being prepared or reviewed. Their eventual preprints, journal versions, and archival DOIs should be listed in [`publications/README.md`](publications/README.md).
+The private research repository includes source manuscripts and convenience PDF snapshots. Proof status is tracked in the dated claim register; manuscript drafts have not been independently peer reviewed. Their eventual preprints, journal versions, and archival DOIs should be listed in [`publications/README.md`](publications/README.md).
 
 ## Author
 
