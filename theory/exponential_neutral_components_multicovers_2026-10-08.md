@@ -110,6 +110,30 @@ Each three-edge sum deletes two vertices and introduces three edges while preser
 
 For 3-edge-connectivity, consider a putative edge cut of size at most two in a three-edge sum \(H=H_1\oplus_3H_2\) of 3-edge-connected cubic graphs. Write its partition restrictions to the two punctured shores as \(U_1,U_2\). If either restriction is empty or the whole punctured shore, transfer that shore's cap status to the other and obtain a cut of size at most two in the other capped graph, unless the original cut is empty. If both restrictions are nonempty proper, each punctured shore has at least two crossing *internal* edges: otherwise capping either inside or outside would produce a cut of size at most two in that original graph (one of the two capped cuts uses at most one cap edge). Hence the global cut has at least four edges, a contradiction. Induction from \(K_{3,3}\) gives 3-edge-connectivity.
 
+## Quantitative consequence: polynomial-time reachability and short neutral paths
+
+**Corollary (exact decision criterion and a constructive linear-move bound).** Given the chain decomposition, two labelled \(m\)-fold matching multicovers of \(G_n\) are neutrally equivalent if and only if their \(n\) local type integers agree. The same criterion holds if only paths that preserve a fixed left-end boundary signature are permitted and the two input states have that signature.
+
+For two states in the same type \(t\) and the same fixed signature, there exists a neutral path of length at most
+\[
+  D_{\mathrm{fixed}}(t)
+  \;\le\;3\sum_{i=1}^n \min(t_i,m-t_i).
+\]
+For arbitrary initial and final boundary signatures but the same type,
+\[
+  D_{\mathrm{all}}(t)\;\le\;n(3m-1)
+        +3\sum_{i=1}^n\min(t_i,m-t_i).
+\]
+In particular, fixed-signature and unrestricted diameters are both \(O(nm)\) when the multiplicity \(m\) is part of the input. Type equivalence can be decided in \(O(nm)\) elementary sheet-incidence operations once the labelled three-sum decomposition is known, without enumerating exponentially many states.
+
+**Proof.** In Fact 3, two \(t\)-subsets of an \(m\)-set can be transformed into each other by at most \(\min(t,m-t)\) single-element exchanges. The fixed-boundary fiber is a product of three such subset systems. Therefore a local correction requires at most \(3\min(t,m-t)\) neutral moves. The lifting procedure in Step 5 replaces each remainder move by **one** global neutral move, then performs at most \(3\min(t_n,m-t_n)\) new local moves. Induction proves the first bound.
+
+To align different left-end signatures, permute the \(3m\) coordinate labels. A suitable permutation can be expressed as at most \(3m-1\) transpositions. Each global label transposition is realized by switching successively on **all** cycles in the symmetric difference of the two chosen perfect matchings. These cycles are vertex-disjoint of length at least four, because \(G_n\) is simple and bipartite; there are at most \(\lfloor(4n+2)/4\rfloor=n\) such cycles. Thus aligning signatures uses at most \(n(3m-1)\) neutral moves, after which the fixed-signature bound applies.
+
+Finally, to compute each block type \(t_i\), restrict every matching coordinate to that original \(K_{3,3}\) tile, with cut edges restored as cap spokes, and count the even-permutation local matchings; this number divided by three equals \(t_i\). There are \(n\) constant-size tiles and \(3m\) coordinates. QED.
+
+**Independent check (m=2, n=2).** Full exhaustive BFS finds that in the prescribed left-star-signature fiber, the nine type-vector classes have actual diameters \(\{0,3,6\}\), **equal** to the above fixed-signature upper bound for every type vector. This exact sharpness at \(n=2\) is not claimed for all \(n,m\).
+
 ## Immediate corollaries and boundary of significance
 
 * **Known specialization:** \(m=1\) gives exactly \(2^n\) edge-Kempe classes of ordinary three-edge-colorings, equivalently three-sheet CDCs under edgewise complement. This is a specialization of the cubic edge-Kempe equivalence theory of Belcastro--Haas (2014); **it is not novel**.
