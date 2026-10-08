@@ -61,6 +61,7 @@ def matchings(G):
 def local_k_parities(E, PM, tile_id, ports):
     # Recover the deleted tile port vertex, recreating its 3 incident spokes.
     left,right=ports
+    deleted_port = left if tile_id>0 else right
     out=[]
     for mask in PM:
         pairs=[]
@@ -70,9 +71,9 @@ def local_k_parities(E, PM, tile_id, ports):
             if u[0]==v[0]==tile_id:
                 pairs.append(tuple(sorted((u[1],v[1]))))
             elif u[0]==tile_id:
-                pairs.append(tuple(sorted((left,u[1]))))
+                pairs.append(tuple(sorted((deleted_port,u[1]))))
             elif v[0]==tile_id:
-                pairs.append(tuple(sorted((left,v[1]))))
+                pairs.append(tuple(sorted((deleted_port,v[1]))))
         assert len(pairs)==3
         perm=tuple(next((v-3 if u==row else u-3) for u,v in pairs if row in (u,v)) for row in range(3))
         out.append(sum(perm[i]>perm[j] for i in range(3) for j in range(i+1,3))%2)
