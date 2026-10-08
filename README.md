@@ -40,6 +40,9 @@ open graph question or general certificate system
 
 **Theorem-first pivot (8 October 2026):** [Cycle double-cover rewriting application](applications/cycle_double_cover/README.md) and [cross-certificate three-cut reconfiguration theory](theory/three_cut_synchronized_reconfiguration_2026-10-08.md), including exact [K3,3 neutral-fiber obstructions](theory/k33_neutral_fiber_obstructions_2026-10-08.md). These are research drafts and independently testable small cases, **not** a solution to 5-CDC. See the [theorem-first research programme](docs/theorem_first_reconfiguration_program_2026-10-08.md).
 
+
+**New theorem-first milestone (8 October 2026):** [exact exponential neutral components of matching multicovers](theory/exponential_neutral_components_multicovers_2026-10-08.md) on a chain of K3,3 blocks, including `3^n` distinct reconfiguration classes for six-perfect-matching double covers on connected, 3-edge-connected bipartite cubic graphs. The same exponential bound holds after fixing the boundary signature. **Proof draft and independent finite checks; no specialist novelty claim.**
+
 ## Quick start
 
 ```bash
