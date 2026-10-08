@@ -8,6 +8,7 @@ Requires networkx.
 """
 from collections import Counter, defaultdict
 from itertools import combinations, product
+from math import comb
 import networkx as nx
 
 
@@ -65,8 +66,15 @@ def components(mask, edges):
     return answer
 
 
-def local_automaton(graph, port=0, q=6, multiplicity=2):
+def local_automaton(graph, port=0, q=6, multiplicity=2, even=False):
     edges, matchings = perfect_matchings(graph)
+    if even:
+        matchings = tuple(
+            mask for mask in range(1 << len(edges))
+            if all(sum(bool(mask >> i & 1)
+                       for i, edge in enumerate(edges) if v in edge) % 2 == 0
+                   for v in graph)
+        )
     states = tuple(double_covers(matchings, len(edges), q=q, multiplicity=multiplicity))
     star = tuple(k for k, e in enumerate(edges) if port in e)
     assert len(star) == 3
@@ -98,7 +106,7 @@ def local_automaton(graph, port=0, q=6, multiplicity=2):
     grouped = defaultdict(set)
     for st in states:
         grouped[signatures[st]].add(st)
-    assert len(grouped) == (90 if q == 6 else 6)
+    assert len(grouped) == (6 * comb(q, 3) if even else (90 if q == 6 else 6))
     response_nodes = defaultdict(list)
     response_weights = {}
     state_to_response = {}
@@ -194,7 +202,16 @@ def verify_all():
     assert sorted(w for _, w in synchronized_product(K3, C3)) == [24, 24]
     assert sorted(w for _, w in synchronized_product(C3, C3)) == [96]
     assert sorted(w for _, w in synchronized_product(K3, K3)) == [6, 6, 6, 6]
-    print("PASS: PM6 and three-sheet CDC exact typed-cut quotient benchmarks")
+
+    # Direct 5-sheet CDC response algebra: even edge sets, NOT merely
+    # the 3-edge-coloring complement specialization.
+    K5 = local_automaton(nx.complete_bipartite_graph(3, 3), q=5,
+                         multiplicity=2, even=True)
+    C5 = local_automaton(nx.cubical_graph(), q=5,
+                         multiplicity=2, even=True)
+    assert sorted(w for _, w in synchronized_product(K5, C5)) == (
+        [3960, 3960, 7920, 7920, 7920, 7920, 7920, 7920])
+    print("PASS: PM6 and padded three/five-sheet CDC exact typed-cut quotient benchmarks")
 
 
 if __name__ == "__main__":
