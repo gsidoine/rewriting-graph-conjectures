@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[margin=0.96in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,hyperref,enumitem}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=blue}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newcommand{\rc}{\operatorname{res}}
+\title{Colouring Resistance as an Exact Realization Cost\\for Fan--Raspaud Residual Kernels}
+\author{Guillaume Sidoine\\\small Independent researcher \quad ORCID 0009-0005-4525-1182}
+\date{Research draft --- 8 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Fix three perfect matchings of a cubic graph with empty triple intersection. The complement inside the doubled graph is a cubic multigraph, whose suppression of doubled edges is a residual kernel. We show that a simple $3$-edge-connected cubic graph $K$ can occur as such a kernel in a simple $3$-edge-connected cubic host, with exactly $u$ uncovered edges, if and only if $u\geq\rc(K)$ holds as a necessary lower bound, and the lower bound $u=\rc(K)$ is always attainable. Here $\rc(K)$ is the minimum number of edges whose deletion makes $K$ properly $3$-edge-colourable. The construction adds precisely $2\rc(K)$ vertices, and this order increase is optimal. For $\rc(K)=2$, the host can furthermore be chosen $3$-edge-colourable, despite the prescribed triple's nonextendable residual when $K$ is a snark. Exact examples are supplied for the Petersen graph and flower snark $J_5$, with independent verification. These results concern extension of \emph{specified} triples, not existence of some Fulkerson cover. This manuscript is unrefereed; the originality of the precise equivalence remains to be checked against the literature on resistance, colouring defect, and matching cores.
+\end{abstract}
+
+\section{Introduction and definitions}
+A \emph{Fan--Raspaud triple} (FR-triple) in a cubic graph $G$ is an ordered triple $\mathcal M=(M_1,M_2,M_3)$ of perfect matchings with empty common intersection. Let $f(e)\in\{0,1,2\}$ denote its edge coverage. The \emph{uncovered number} is $u(\mathcal M)=|\{e:f(e)=0\}|$. The residual multigraph is
+\[
+R_{\mathcal M}=2G-\sum_{i=1}^3 M_i,\qquad m_R(e)=2-f(e).
+\]
+The triple extends to a six-perfect-matching double cover if and only if $R_{\mathcal M}$ is properly $3$-edge-colourable. Following the standard bicontraction idea, each doubled residual edge can be suppressed with its degree-one continuations; its two endpoints are removed and their remaining residual neighbours joined by a single edge. Any components entirely made from doubled/single alternations can be discarded. The resulting cubic multigraph $K_{\mathcal M}$ is the \emph{residual kernel}. Its vertex count is $|V(G)|-2u(\mathcal M)$, and $R_{\mathcal M}$ is $3$-edge-colourable precisely when its kernel is. These standard-type reductions and the alternating core of an FR-triple have close antecedents in \cite{FV09,LW18,Karabas24}; we do not claim the individual ingredients as new.
+
+For a cubic graph $K$ let
+\[
+\rc(K)=\min\bigl\{|A|:A\subseteq E(K),\quad K-A\text{ admits a proper }3\text{-edge-colouring}\bigr\}
+\]
+be its \emph{colouring resistance}. An edge-deleted graph may have degree less than three; its remaining edges must be properly coloured using three colours, with no requirement to use all colours at a lower-degree vertex. Standard resistance and colouring defect are studied in \cite{Allie26,Karabas24}. We distinguish $\rc(K)$ from the number of edges left uncovered by three perfect matchings \emph{of $K$ itself}.
+
+\section{The resistance bound for every residual kernel}
+\begin{lemma}[Lower bound]\label{lem:lower}
+Let $\mathcal M$ be an FR-triple in a simple cubic graph $G$ with nonempty residual kernel $K_{\mathcal M}$. Then
+\[
+\rc(K_{\mathcal M})\le u(\mathcal M).
+\]
+\end{lemma}
+\begin{proof}
+At each vertex where $f$ has pattern $(1,1,1)$, the three simply covered edges carry distinct labels in $\{1,2,3\}$ corresponding to the original three matchings. The residual single edges form chains with these vertices as endpoints and with doubled residual edges along their interiors. A kernel edge that contains no doubled residual edge is an original simply covered edge, and so has a well-defined matching label at both endpoints. Delete from the kernel every edge whose representing residual chain contains a doubled edge. The remaining kernel edges inherit a proper three-colouring, because at every surviving kernel vertex the incident labels were already distinct. The number of deleted kernel edges is at most the number of doubled residual edges, which equals $u(\mathcal M)$: distinct representing chains are edge-disjoint, and each selected chain contains at least one doubled edge. Any kernel components without vertices have been discarded. This gives the claimed resistance bound.
+\end{proof}
+
+\section{Constructing an FR-triple from a resistant cubic graph}
+\begin{lemma}[Minimum deletion ports]\label{lem:ports}
+Let $K$ be cubic and $A\subseteq E(K)$ have minimum cardinality $|A|=\rc(K)$. Colour $K-A$ properly with three colours, and assign its missing colours bijectively to the dangling half-edges corresponding to $A$ at each vertex. Then (i) the two dangling half-edges belonging to each $e\in A$ have \emph{different} colours; (ii) each colour occurs an even number of times among all dangling half-edges; and (iii) the dangling half-edges of each colour can be paired with half-edges belonging to \emph{different} members of $A$.
+\end{lemma}
+\begin{proof}
+If the two dangling half-edges of an edge $e$ received the same colour, then we could restore $e$ in that colour. This would give a proper colouring of $K-(A\setminus\{e\})$, contradicting minimality of $A$. At each vertex every colour appears exactly once among the coloured actual edges and its dangling half-edges. The total incidence count for a colour is $|V(K)|$, which is even, whereas its count on actual edges is twice an integer. Thus its dangling count is even. By (i), a given deleted edge contributes at most one half-edge to any colour class; hence arbitrary pairing within that colour class joins half-edges from different deleted edges.
+\end{proof}
+
+\begin{theorem}[Resistance--kernel realization]\label{thm:univ}
+For every finite simple $3$-edge-connected cubic graph $K$ there exist a finite simple $3$-edge-connected cubic graph $G$ and an FR-triple $\mathcal M$ on $G$ such that
+\[
+K_{\mathcal M}\cong K,\qquad u(\mathcal M)=\rc(K),\qquad
+|V(G)|=|V(K)|+2\rc(K).
+\]
+The minimum possible number of uncovered edges among all such kernel realizations of $K$ is therefore exactly $\rc(K)$, and the minimum host order is $|V(K)|+2\rc(K)$.
+\end{theorem}
+\begin{proof}
+Put $r=\rc(K)$. If $r=0$, take $G=K$ with its three disjoint colour-class matchings; its residual is $K$.
+
+Now assume $r>0$, and choose a minimum deletion set $A$ and coloured ports as in Lemma~\ref{lem:ports}. For each deleted edge $e=uv$ introduce two fresh vertices $p_e,q_e$ and replace $uv$ with the three-edge path $u p_e q_e v$. The central edge $p_eq_e$ will be uncovered. Retain every undeleted edge of $K$ and its original colour. Give $up_e$ and $q_ev$ the colours of the corresponding dangling half-edges. For each colour $c$, pair its dangling half-edges as in Lemma~\ref{lem:ports}, and join the corresponding new vertices by an extra edge. This extra edge is assigned the \emph{two} matching labels different from $c$. Its ends belong to different replaced edges, so no parallel edge is introduced.
+
+At an old vertex exactly one edge has each of the three matching labels. At a new vertex the exterior port edge has its one colour $c$, the central path edge has no labels, and the newly paired edge has the two labels distinct from $c$. Hence for each label the set of edges carrying it is a perfect matching. The three matchings have no common edge. Each of the $r$ central edges is uncovered, each of the $r$ extra paired edges is doubly covered, and all other edges are simply covered; therefore $u=r$. In the residual, central edges are doubled, paired edges are absent, and all other edges are single. Suppressing each doubled central edge recovers exactly the original edge $uv$, so the kernel is canonically isomorphic to $K$.
+
+It remains to verify $3$-edge-connectivity of $G$. The subgraph consisting of the retained and subdivided edges is a subdivision of the original graph $K$. If an edge cut of $G$ separates original vertices on both sides, each of the at least three original $K$-edges crossing the induced cut of old vertices forces one distinct edge of its subdivided path to cross the cut. Thus this cut has size at least three. Otherwise one side of the cut contains only newly introduced vertices. Every new vertex sends exactly one port edge to an old vertex, while its two other edges belong to a vertex-disjoint union of alternating central/paired cycles, each of length at least four. If the side contains at least three new vertices, its port edges already provide three cut edges. If it has one or two new vertices, at least two cycle edges leave that set, giving a cut of size at least three. Thus $G$ is $3$-edge-connected. Its simplicity and cubicity are immediate from the construction.
+
+The lower bound on $u$ is Lemma~\ref{lem:lower}. As $|V(K_{\mathcal M})|=|V(G)|-2u$, the order lower bound and both attained equalities follow.
+\end{proof}
+
+\begin{corollary}[Resistance two gives colourable hosts]\label{cor:two}
+If $K$ is a simple $3$-edge-connected cubic snark with $\rc(K)=2$, it occurs as the residual kernel of an FR-triple with two uncovered edges on a simple $3$-edge-connected \emph{$3$-edge-colourable} cubic host with precisely $|V(K)|+4$ vertices. The frozen triple cannot be extended, but replacing at most one of its matchings yields a $3$-edge-colouring of the host.
+\end{corollary}
+\begin{proof}
+For two deleted edges there are four ports. Their colours are different at the two ends of each deleted edge. Parity forces exactly two colours to occur, twice each, once on each deleted edge. The two extra doubly covered edges therefore have two different two-colour labels. Among the three unordered pairs of matching labels there is one pair not assigned to either extra edge; the corresponding two of the three matchings are disjoint. Their complement is a third perfect matching, proving that the host is $3$-edge-colourable by a one-coordinate replacement. Since $K$ is not $3$-edge-colourable, the original prescribed triple is nonextendable by kernel suppression.
+\end{proof}
+
+\section{Exact certificates and scope}
+We supply two independent finite examples produced from explicit minimum deletion colourings. For Petersen ($|V(K)|=10$) the deleted edges are $01$ and $23$, and the four dangling colours are $0,2,0,2$ (in the order $0,1,2,3$). For the flower snark $J_5$ ($|V(K)|=20$) the deleted edges are $0\!:\!5$ and $1\!:\!6$, with dangling colours $0,1,0,1$. The respective constructed hosts have 14 and 24 vertices, both simple and $3$-edge-connected, and both $3$-edge-colourable. The machine-readable certificate lists include every original edge, deleted edge, port label, host edge and matching. A standard-library checker proves the matching conditions and suppressed-kernel equality, and independent NetworkX connectivity checks are included. Exhaustive search finds 75 admissible pairs of deleted Petersen edges. With one deterministic colouring and pairing for each pair, these produce three nonisomorphic host graphs, one isomorphic to our preceding 14-vertex construction.
+
+The statement concerns the extension of a \emph{prescribed} FR-triple. It does not imply a counterexample to the Berge--Fulkerson or Fan--Raspaud conjectures. It also does not claim that $G$ is colourable when $\rc(K)>2$. Resistance, oddness, colouring defect, $3$-critical subgraphs, and FR-triple cores are well-developed concepts \cite{Allie26,Karabas24,Allie22,FV09}; in particular, the parity and colour-completion steps are elementary. Whether the precise resistance-as-minimum-kernel-realization theorem has appeared previously requires targeted specialist review before journal submission.
+
+\begin{thebibliography}{9}\small
+\bibitem{FV09} J.-L. Fouquet and J.-M. Vanherpe, \emph{On the perfect matching index of bridgeless cubic graphs}, arXiv:0904.1296 (2009).
+\bibitem{LW18} M. Lin and J. Wang, \emph{Three matching intersection property for matching covered graphs}, Discrete Math. Theor. Comput. Sci. 19(3) (2018), article 16; doi:10.23638/DMTCS-19-3-16.
+\bibitem{Karabas24} J. Karab\'a\v{s}, E. M\'a\v{c}ajov\'a, R. Nedela, M. \v{S}koviera, \emph{Cubic graphs with colouring defect 3}, Electronic J. Combin. 31(2) (2024), P2.6.
+\bibitem{Allie22} I. Allie, \emph{3-critical subgraphs of snarks}, arXiv:2201.07528 (2022).
+\bibitem{Allie26} I. Allie, \emph{Resistance, oddness and colouring defect of snarks}, Discrete Math. 349 (2026), 114804.
+\end{thebibliography}
+\end{document}

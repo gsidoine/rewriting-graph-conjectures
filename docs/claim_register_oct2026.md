@@ -43,3 +43,11 @@ This **supplements**, rather than overwrites, the [July audited status ledger](m
 - **Nonbipartite limitation:** the triangular prism has collision hitting number 2 but true direct repair width 3, due to residual odd-cycle factorization obstruction. **Status:** elementary proof + exhaustive standalone checker.
 
 Sources: [`theory/parameterized_collision_repair_2026-10-08.md`](../theory/parameterized_collision_repair_2026-10-08.md), [`collision_hypergraph.py`](../certificate_coordination/collision_hypergraph.py), [`test_collision_hypergraph.py`](../tests/test_collision_hypergraph.py), [`test_nonbipartite_factorization.py`](../tests/test_nonbipartite_factorization.py).
+
+## 2026-10-08 resistance--kernel universality (research draft)
+
+- **Proved claim, pending independent novelty audit:** every simple 3-edge-connected cubic graph `K` has a simple 3-edge-connected FR-triple host with residual kernel `K`, exactly `res(K)` uncovered edges and precisely `2 res(K)` additional vertices; these costs are minimal.
+- **Resistance-two refinement:** constructed hosts are themselves 3-edge-colourable, despite failure of extension of the *specified* frozen triple when `K` is a snark.
+- **Exact certificates:** Petersen (10 to 14 vertices), flower snark `J5` (20 to 24 vertices); 75 Petersen edge-pair realizations yield three isomorphism classes under the deterministic port-colour choice.
+- **References/limitations:** established literature on colouring resistance and defect is extensive. Do not claim novel general lifting without comparison to resistance-2 critical snark and 3-array bicontraction literature; the Berge--Fulkerson/Fan--Raspaud existence conjectures remain unresolved.
+- **Sources:** `theory/resistance_kernel_realization_2026-10-08.md`, `applications/berge_fulkerson/plateau/resistance_paper/`, `applications/berge_fulkerson/plateau/resistance_kernel_lift.py`, `tests/test_resistance_kernel_lift.py`.

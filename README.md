@@ -69,3 +69,7 @@ ORCID: [0009-0005-4525-1182](https://orcid.org/0009-0005-4525-1182)
 ## Citation and licensing
 
 Citation metadata are in [`CITATION.cff`](CITATION.cff). Code is released under the MIT License; original research documentation is released under CC BY 4.0 where indicated.
+
+### New (October 8, 2026): resistance--kernel universality
+
+See [the mathematical status and proof](theory/resistance_kernel_realization_2026-10-08.md) and [the paper](applications/berge_fulkerson/plateau/resistance_paper/README.md). This is an unrefereed, novelty-unverified general theorem candidate linking edge-colouring resistance to the minimum defect/order of an FR-triple residual-kernel realization.

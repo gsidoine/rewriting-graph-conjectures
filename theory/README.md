@@ -33,3 +33,7 @@ See [current claim register](../docs/claim_register_oct2026.md) for a cross-proj
 
 - [Cut-signature factorization and 3-versus-4 port compatibility](cut_signature_factorization_2026-10-08.md): a finite response algebra for residual edge-colourings, with an exact Petersen 4-pole incompatibility. The cut parity ingredient is classical.
 - [Sharp 14-vertex nonextendable Fan–Raspaud triple](../applications/berge_fulkerson/plateau/FR_EXTENSION_OBSTRUCTIONS_20261008.md): a nonbipartite residual factorization obstruction despite odd-cut feasibility, suppressed to a Petersen cubic kernel; explicit one-coordinate escape and all-even-order expansions.
+
+## Resistance as an exact obstruction-realization cost
+
+[Resistance--kernel theorem and complete proof status](resistance_kernel_realization_2026-10-08.md): a general bridge from proper partial edge colourings to frozen perfect-matching covers and their residual kernels (with sharp vertex/defect cost).
