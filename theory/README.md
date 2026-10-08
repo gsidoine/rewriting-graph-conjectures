@@ -25,6 +25,11 @@ The generic implementation is under `certificate_coordination/`. Application-spe
 
 [Pair-rigid matching multicover composition](pair_rigid_tile_multicover_algebra_2026-10-08.md) extends the previous K3,3 calculation to **arbitrary three-edge-sum chains of cubic tiles whose pairs of perfect matchings differ on a single alternating cycle**. The neutral components are indexed exactly by the local integer matching-multiplicity solutions `A_T x=m1`, with explicit product-size formulas and a constructive fixed-signature path bound. For chains of `a` K3,3 and `b>=1` Petersen tiles, the graph is non-3-edge-colorable; odd-m multicovers do not exist; even-m multicovers have precisely `(m+1)^a` neutral components. The cube Q3 is a sharp non-rigid obstruction. On K3,3 + Petersen, three-coordinate exact trades connect the three binary-neutral components. Independent finite global enumerations are in `repro_runs/verify_mixed_pair_rigid.py`. **Novelty not established; proof remains a research draft.**
 
+
+## Pair-rigid tile product theorem — 8 October continuation
+
+[Exact component algebras for pair-rigid cubic tiles](pair_rigid_tile_multicover_algebra_2026-10-08.md) extends the K3,3 multicover theorem to a family of 3-edge-sum chains built from arbitrary pair-rigid cubic tiles, including Petersen and triangular-prism tiles. The local types are feasible integer solutions to the tile perfect-matching incidence equations, and both the global and fixed-signature neutral components factor exactly. Mixed Petersen/K3,3 chains are non-3-edge-colorable and retain `(m+1)^a` components when `m` is even (no covers when `m` is odd). The note includes a sharp **binary-vs-three-coordinate** trade threshold on the mixed 14-vertex graph. The cube invalidates the local multiset invariant without pair rigidity. **Status: unrefereed proof draft, independent finite tests; novelty not established.**
+
 ## Primary definitions
 
 For a tuple of `kd` perfect matchings in a `d`-regular bipartite graph, the target is multiplicity `k` on every edge, with defect `Q_k = sum_e (m(e)-k)^2`. **Direct-repair width** is the fewest labelled coordinates replaced at once to reach zero. **Strict reconfiguration distance** is the shortest sequence of one-coordinate changes strictly decreasing `Q_k` at every move; infinity is allowed. These parameters are not interchangeable.
