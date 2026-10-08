@@ -27,22 +27,22 @@ def perfect_matchings(graph):
     return edges, masks
 
 
-def double_covers(matchings, nedges):
+def double_covers(matchings, nedges, q=6, multiplicity=2):
     supports = [tuple(e for e in range(nedges) if pm >> e & 1)
                 for pm in matchings]
     counts = [0] * nedges
     def rec(used):
-        if len(used) == 6:
-            if all(c == 2 for c in counts):
+        if len(used) == q:
+            if all(c == multiplicity for c in counts):
                 yield tuple(used)
             return
-        remaining = 5 - len(used)
+        remaining = q - len(used) - 1
         for i, support in enumerate(supports):
-            if any(counts[e] == 2 for e in support):
+            if any(counts[e] == multiplicity for e in support):
                 continue
             for e in support:
                 counts[e] += 1
-            if all(c + remaining >= 2 for c in counts):
+            if all(c + remaining >= multiplicity for c in counts):
                 yield from rec(used + [i])
             for e in support:
                 counts[e] -= 1
@@ -65,9 +65,9 @@ def components(mask, edges):
     return answer
 
 
-def local_automaton(graph, port=0):
+def local_automaton(graph, port=0, q=6, multiplicity=2):
     edges, matchings = perfect_matchings(graph)
-    states = tuple(double_covers(matchings, len(edges)))
+    states = tuple(double_covers(matchings, len(edges), q=q, multiplicity=multiplicity))
     star = tuple(k for k, e in enumerate(edges) if port in e)
     assert len(star) == 3
     signatures = {}
@@ -80,7 +80,7 @@ def local_automaton(graph, port=0):
     allstates = set(states)
     for st in states:
         signatures[st] = sig(st)
-        for a, b in combinations(range(6), 2):
+        for a, b in combinations(range(q), 2):
             for cyc in components(matchings[st[a]] ^ matchings[st[b]], edges):
                 other = list(st)
                 other[a] = index[matchings[st[a]] ^ cyc]
@@ -98,7 +98,7 @@ def local_automaton(graph, port=0):
     grouped = defaultdict(set)
     for st in states:
         grouped[signatures[st]].add(st)
-    assert len(grouped) == 90
+    assert len(grouped) == (90 if q == 6 else 6)
     response_nodes = defaultdict(list)
     response_weights = {}
     state_to_response = {}
@@ -186,7 +186,15 @@ def verify_all():
     assert sorted(w for _, w in synchronized_product(K, K)) == (
         [90, 90, 90, 90, 720, 720, 720, 720, 5760])
     assert sorted(w for _, w in synchronized_product(C, C)) == [207360]
-    print("PASS: four independent exact typed-cut quotient benchmarks")
+
+    # Three-sheet padded CDCs are equivalent, by complementation, to
+    # three labelled perfect matchings each covering every edge once.
+    K3 = local_automaton(nx.complete_bipartite_graph(3, 3), q=3, multiplicity=1)
+    C3 = local_automaton(nx.cubical_graph(), q=3, multiplicity=1)
+    assert sorted(w for _, w in synchronized_product(K3, C3)) == [24, 24]
+    assert sorted(w for _, w in synchronized_product(C3, C3)) == [96]
+    assert sorted(w for _, w in synchronized_product(K3, K3)) == [6, 6, 6, 6]
+    print("PASS: PM6 and three-sheet CDC exact typed-cut quotient benchmarks")
 
 
 if __name__ == "__main__":
