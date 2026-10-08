@@ -20,6 +20,11 @@ The generic implementation is under `certificate_coordination/`. Application-spe
 
 [Exact neutral components of m-fold matching multicovers on K3,3 chains](exponential_neutral_components_multicovers_2026-10-08.md) proves that the `3m`-matching reconfiguration graph of a connected 3-edge-connected bipartite cubic chain of `n` K3,3 tiles has exactly `(m+1)^n` components. The theorem gives exact component sizes, Franel-number total counts, and **(m+1)^n components even in each fixed three-edge boundary fiber**. Independent small-case enumeration includes all 94,080 multiplicity-3 local states and 9,000 two-block multiplicity-2 states. The case `m=1` is classical edge-Kempe theory; **novelty for m>=2 is not yet vetted**.
 
+
+## Pair-rigid tile normal form and mixed Petersen chains (8 October)
+
+[Pair-rigid matching multicover composition](pair_rigid_tile_multicover_algebra_2026-10-08.md) extends the previous K3,3 calculation to **arbitrary three-edge-sum chains of cubic tiles whose pairs of perfect matchings differ on a single alternating cycle**. The neutral components are indexed exactly by the local integer matching-multiplicity solutions `A_T x=m1`, with explicit product-size formulas and a constructive fixed-signature path bound. For chains of `a` K3,3 and `b>=1` Petersen tiles, the graph is non-3-edge-colorable; odd-m multicovers do not exist; even-m multicovers have precisely `(m+1)^a` neutral components. The cube Q3 is a sharp non-rigid obstruction. On K3,3 + Petersen, three-coordinate exact trades connect the three binary-neutral components. Independent finite global enumerations are in `repro_runs/verify_mixed_pair_rigid.py`. **Novelty not established; proof remains a research draft.**
+
 ## Primary definitions
 
 For a tuple of `kd` perfect matchings in a `d`-regular bipartite graph, the target is multiplicity `k` on every edge, with defect `Q_k = sum_e (m(e)-k)^2`. **Direct-repair width** is the fewest labelled coordinates replaced at once to reach zero. **Strict reconfiguration distance** is the shortest sequence of one-coordinate changes strictly decreasing `Q_k` at every move; infinity is allowed. These parameters are not interchangeable.
