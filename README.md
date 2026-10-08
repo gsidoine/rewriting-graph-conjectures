@@ -37,6 +37,9 @@ open graph question or general certificate system
 
 **New October result:** a [sharp 14-vertex FR-triple nonextension certificate](applications/berge_fulkerson/plateau/FR_EXTENSION_OBSTRUCTIONS_20261008.md), with a Petersen residual kernel and all-even-order triangle lifts, illustrates the distinction between direct extension and a one-coordinate strict escape. See the [exact cut-signature theory](theory/cut_signature_factorization_2026-10-08.md). These are *research results requiring an external novelty review*, not counterexamples to Berge–Fulkerson.
 
+
+**Theorem-first pivot (8 October 2026):** [Cycle double-cover rewriting application](applications/cycle_double_cover/README.md) and [cross-certificate three-cut reconfiguration theory](theory/three_cut_synchronized_reconfiguration_2026-10-08.md), including exact [K3,3 neutral-fiber obstructions](theory/k33_neutral_fiber_obstructions_2026-10-08.md). These are research drafts and independently testable small cases, **not** a solution to 5-CDC. See the [theorem-first research programme](docs/theorem_first_reconfiguration_program_2026-10-08.md).
+
 ## Quick start
 
 ```bash
