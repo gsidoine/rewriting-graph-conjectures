@@ -11,4 +11,6 @@
 | Edge-connectivity partitioning | [`applications/edge_partitioning/`](edge_partitioning) | Exact fixed-tree CNF, 2-SAT subcase, K7 enumeration, Hamiltonian-splicing family; 6-edge-connected (2,2) conjecture not resolved |
 | Open Problem Garden explorations | [`applications/open_problem_garden/`](open_problem_garden) | July small exhaustive experiments; not universal theorems |
 
+
+| Cycle double-cover rewriting | [`applications/cycle_double_cover/`](cycle_double_cover) | Direct trade criteria, bounded-arity obstructions, neutral escape; proof drafts and finite certificates, **no 5-CDC proof** |
 Refer to the [July audited status ledger](../docs/mathematical_status.md) for the older projects and the [October research register](../docs/claim_register_oct2026.md) for later additions.

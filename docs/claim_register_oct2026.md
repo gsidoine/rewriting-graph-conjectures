@@ -51,3 +51,15 @@ Sources: [`theory/parameterized_collision_repair_2026-10-08.md`](../theory/param
 - **Exact certificates:** Petersen (10 to 14 vertices), flower snark `J5` (20 to 24 vertices), plus an 18-vertex host for a 2-edge-connected Petersen--K4 join; 75 Petersen edge-pair realizations yield three isomorphism classes under the deterministic port-colour choice.
 - **References/limitations:** established literature on colouring resistance and defect is extensive. Do not claim novel general lifting without comparison to resistance-2 critical snark and 3-array bicontraction literature; the Berge--Fulkerson/Fan--Raspaud existence conjectures remain unresolved.
 - **Sources:** `theory/resistance_kernel_realization_2026-10-08.md`, `applications/berge_fulkerson/plateau/resistance_paper/`, `applications/berge_fulkerson/plateau/resistance_kernel_lift.py`, `tests/test_resistance_kernel_lift.py`.
+
+
+## Theorem-first reconfiguration integration (8 October, later update)
+
+The [cycle double-cover application](../applications/cycle_double_cover/README.md) archives compression, direct-descent obstructions, six-step neutral escape and small-order counts. **The proof-status ledger for that application is [CLAIM_STATUS.md](../applications/cycle_double_cover/CLAIM_STATUS.md)**; do not upgrade historical finite claims lacking in-repository certificate JSON to CI-reproduced results.
+
+Two new mathematical notes address genuinely cross-application questions:
+
+- [Three-cut neutral-switch synchronization and the exact typed fiber-product reduction](../theory/three_cut_synchronized_reconfiguration_2026-10-08.md): mathematical proof note, finite tests on the triangular prism, classical ingredients and originality not vetted.
+- [K3,3 disconnected neutral fibers](../theory/k33_neutral_fiber_obstructions_2026-10-08.md): exact classification for three-sheet CDC and six-matching double-cover systems (fiber types 1+1 and 1+8+1), proofs plus exhaustive test. This **falsifies unqualified boundary-signature-only neutral reachability**.
+
+The research priorities and stop/pivot conditions are recorded in [theorem-first programme](theorem_first_reconfiguration_program_2026-10-08.md). Full 5-CDC, Berge–Fulkerson and Fan–Raspaud remain open here; no release is claimed to settle them.
