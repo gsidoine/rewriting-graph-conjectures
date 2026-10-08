@@ -15,6 +15,11 @@ The generic implementation is under `certificate_coordination/`. Application-spe
 
 - **New October 8 theorem-first branch:** [Three-edge-cut synchronization](three_cut_synchronized_reconfiguration_2026-10-08.md) proves a typed neutral-move gluing principle for both cycle double covers and six-matching multicovers. [K3,3 neutral-fiber obstructions](k33_neutral_fiber_obstructions_2026-10-08.md) exhibits disconnected fixed-signature fibers in both systems, requiring component-enriched boundary states. Proof status and novelty limitations are stated in each note.
 
+
+## Uniform-multiplicity amplification theorem (8 October)
+
+[Exact neutral components of m-fold matching multicovers on K3,3 chains](exponential_neutral_components_multicovers_2026-10-08.md) proves that the `3m`-matching reconfiguration graph of a connected 3-edge-connected bipartite cubic chain of `n` K3,3 tiles has exactly `(m+1)^n` components. The theorem gives exact component sizes, Franel-number total counts, and **(m+1)^n components even in each fixed three-edge boundary fiber**. Independent small-case enumeration includes all 94,080 multiplicity-3 local states and 9,000 two-block multiplicity-2 states. The case `m=1` is classical edge-Kempe theory; **novelty for m>=2 is not yet vetted**.
+
 ## Primary definitions
 
 For a tuple of `kd` perfect matchings in a `d`-regular bipartite graph, the target is multiplicity `k` on every edge, with defect `Q_k = sum_e (m(e)-k)^2`. **Direct-repair width** is the fewest labelled coordinates replaced at once to reach zero. **Strict reconfiguration distance** is the shortest sequence of one-coordinate changes strictly decreasing `Q_k` at every move; infinity is allowed. These parameters are not interchangeable.
