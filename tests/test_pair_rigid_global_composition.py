@@ -9,3 +9,9 @@ def test_petersen_k33():
 
 def test_petersen_petersen():
     check("PP")
+
+def test_k33_cube_nonrigid():
+    check("KC")
+
+def test_petersen_cube_nonrigid():
+    check("PC")
