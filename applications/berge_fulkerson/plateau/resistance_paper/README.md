@@ -2,7 +2,7 @@
 
 **Status:** complete mathematical proof draft and checked finite examples; unrefereed; novelty relative to all prior literature **not established**.
 
-The main theorem shows that every simple 3-edge-connected cubic graph `K` occurs as the suppressed residual kernel of a prescribed Fan–Raspaud triple on a simple 3-edge-connected cubic graph `G`, using exactly `r(K)` uncovered edges and adding exactly `2 r(K)` vertices, where `r(K)` is edge-colouring resistance. No realization with fewer uncovered edges exists. If `r(K)=2`, the host `G` can be chosen 3-edge-colourable.
+The main theorem shows that every simple connected bridgeless cubic graph `K` occurs as the suppressed residual kernel of a prescribed Fan–Raspaud triple on a simple connected bridgeless cubic graph `G` **with bridgeless residual**, using exactly `r(K)` uncovered edges and adding exactly `2 r(K)` vertices, where `r(K)` is edge-colouring resistance. No realization with fewer uncovered edges exists. If `K` is 3-edge-connected, so is the constructed `G`. If `r(K)=2`, the host `G` can be chosen 3-edge-colourable.
 
 This is a *fixed-triple extension* theorem, not a solution or disproof of Berge–Fulkerson or Fan–Raspaud.
 
@@ -10,6 +10,8 @@ This is a *fixed-triple extension* theorem, not a solution or disproof of Berge�
 * Constructive solver: [`../resistance_kernel_lift.py`](../resistance_kernel_lift.py).
 * Independently checkable Petersen and flower-snark certificates: [`../resistance_certificates/`](../resistance_certificates/).
 * Reproduction: from root `python -m pytest -q tests/test_resistance_kernel_lift.py` or full `python -m pytest -q`.
+
+An additional regression test realizes the resistance-two snark formed by a $2$-edge join of Petersen and $K_4$: it produces an $18$-vertex bridgeless host with edge-connectivity two and the exact prescribed kernel.
 
 Both certificates encode the deletion set, proper partial edge-colouring, port colours, resulting host and the three perfect matchings. Connectivity and the exact kernel are checked in tests using an independent graph library.
 

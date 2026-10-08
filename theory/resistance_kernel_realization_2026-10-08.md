@@ -4,12 +4,13 @@
 
 ## Main theorem
 
-For any finite simple **3-edge-connected cubic** graph `K`, let `r(K)` be the minimum cardinality of a set of edges whose deletion leaves a properly 3-edge-colourable graph. There exists a finite simple 3-edge-connected cubic graph `G` with an FR-triple `F=(M1,M2,M3)` with:
+For any finite simple **connected bridgeless cubic** graph `K`, let `r(K)` be the minimum cardinality of a set of edges whose deletion leaves a properly 3-edge-colourable graph. There exists a finite simple connected bridgeless cubic graph `G` with an FR-triple `F=(M1,M2,M3)` whose **residual is bridgeless**, with:
 
 - the cubic kernel of `2G-(M1+M2+M3)` (after suppressing the doubled residual edges) is `K`;
 - precisely `r(K)` edges of `G` are uncovered by the three matchings;
 - `|V(G)|=|V(K)|+2r(K)`;
-- neither the uncovered count nor host order can be improved for a prescribed kernel `K`.
+- neither the uncovered count nor host order can be improved for a prescribed kernel `K`;
+- **if** `K` is 3-edge-connected, `G` is also 3-edge-connected.
 
 If `r(K)=2`, the constructed host `G` is **3-edge-colourable**, although the specified FR-triple is nonextendable when `K` is a snark.
 
@@ -25,6 +26,8 @@ The converse says: for **any** prescribed FR-triple on a simple cubic host whose
 | Flower snark J5 | 20 | 2 | 24 | yes |
 
 There are 75 deleted-edge pairs of Petersen admitting a dangling proper colouring. Choosing one canonical dangling colouring per pair yields three nonisomorphic host graphs. All generated hosts have edge-connectivity three.
+
+The broader bridgeless case is additionally checked on the 2-edge join of Petersen and `K4`, producing a bridgeless host on 18 vertices with exact kernel recovery.
 
 Tests: `tests/test_resistance_kernel_lift.py`. These include an independent networkx edge-connectivity check, exact kernel equality and absence of a colourability solution after only one edge deletion in either snark.
 

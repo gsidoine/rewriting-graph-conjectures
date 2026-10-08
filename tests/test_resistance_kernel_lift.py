@@ -28,6 +28,11 @@ def check_cert(name):
         assert three_edge_colorable(N,G)
     counts={e:sum(e in M for M in Ms) for e in G}
     assert all(v in (0,1,2) for v in counts.values())
+    R=nx.MultiGraph()
+    R.add_nodes_from(range(N))
+    for e,v in counts.items():
+        for _ in range(2-v):R.add_edge(*e)
+    assert nx.edge_connectivity(R)>=2
     assert sum(v==0 for v in counts.values())==len(removed)
     k=residual_kernel(N,G,[2-counts[e] for e in G])
     assert k['vertices']==list(range(n))
@@ -81,3 +86,44 @@ def test_parity_and_partner_distinct():
             assert stubs[i,u]!=stubs[i,v]
         for color in range(3):
             assert sum(c==color for c in stubs.values())%2==0
+
+
+def test_zero_resistance_base_case():
+    K=nx.complete_graph(4)
+    E=sorted(tuple(sorted(e)) for e in K.edges())
+    c=dangling_colouring(4,E,[])
+    assert c is not None
+    n,G,Ms,_=realize(4,E,[],c)
+    assert n==4 and G==E
+    assert sorted(e for M in Ms for e in M)==E
+    assert sorted(map(tuple,residual_kernel(4,G,[1]*len(G))['edges']))==E
+
+
+def test_bridgeless_two_edge_connected_kernel():
+    """The construction applies to bridgeless kernels with a real 2-edge cut."""
+    n,E=petersen()
+    E=set(E)
+    E.remove((0,1))
+    E.update(tuple(sorted((a+10,b+10))) for a,b in nx.complete_graph(4).edges()
+             if (a,b)!=(0,1))
+    E.update({(0,10),(1,11)})
+    E=sorted(E)
+    K=nx.Graph();K.add_edges_from(E)
+    assert nx.edge_connectivity(K)==2
+    solution=next(((pair,dangling_colouring(14,E,pair))
+                   for pair in itertools.combinations(range(len(E)),2)
+                   if dangling_colouring(14,E,pair) is not None))
+    pair,col=solution
+    assert dangling_colouring(14,E,[]) is None
+    assert all(dangling_colouring(14,E,(i,)) is None for i in range(len(E)))
+    N,G,Ms,_=realize(14,E,pair,col)
+    H=nx.Graph();H.add_edges_from(G)
+    assert nx.edge_connectivity(H)==2
+    counts={e:sum(e in M for M in Ms) for e in G}
+    residual=nx.MultiGraph();residual.add_nodes_from(range(N))
+    for e in G:
+        for _ in range(2-counts[e]):residual.add_edge(*e)
+    assert nx.edge_connectivity(residual)==2
+    core=residual_kernel(N,G,[2-counts[e] for e in G])
+    assert sorted(core['edges'])==E
+    assert core['vertices']==list(range(14))

@@ -46,8 +46,8 @@ Sources: [`theory/parameterized_collision_repair_2026-10-08.md`](../theory/param
 
 ## 2026-10-08 resistance--kernel universality (research draft)
 
-- **Proved claim, pending independent novelty audit:** every simple 3-edge-connected cubic graph `K` has a simple 3-edge-connected FR-triple host with residual kernel `K`, exactly `res(K)` uncovered edges and precisely `2 res(K)` additional vertices; these costs are minimal.
+- **Proved claim, pending independent novelty audit:** every simple connected bridgeless cubic graph `K` has a simple connected bridgeless FR-triple host (3-edge-connected if `K` is) with residual kernel `K`, exactly `res(K)` uncovered edges and precisely `2 res(K)` additional vertices; these costs are minimal.
 - **Resistance-two refinement:** constructed hosts are themselves 3-edge-colourable, despite failure of extension of the *specified* frozen triple when `K` is a snark.
-- **Exact certificates:** Petersen (10 to 14 vertices), flower snark `J5` (20 to 24 vertices); 75 Petersen edge-pair realizations yield three isomorphism classes under the deterministic port-colour choice.
+- **Exact certificates:** Petersen (10 to 14 vertices), flower snark `J5` (20 to 24 vertices), plus an 18-vertex host for a 2-edge-connected Petersen--K4 join; 75 Petersen edge-pair realizations yield three isomorphism classes under the deterministic port-colour choice.
 - **References/limitations:** established literature on colouring resistance and defect is extensive. Do not claim novel general lifting without comparison to resistance-2 critical snark and 3-array bicontraction literature; the Berge--Fulkerson/Fan--Raspaud existence conjectures remain unresolved.
 - **Sources:** `theory/resistance_kernel_realization_2026-10-08.md`, `applications/berge_fulkerson/plateau/resistance_paper/`, `applications/berge_fulkerson/plateau/resistance_kernel_lift.py`, `tests/test_resistance_kernel_lift.py`.
