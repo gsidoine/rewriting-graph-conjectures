@@ -106,3 +106,12 @@ The research priorities and stop/pivot conditions are recorded in [theorem-first
 - **Sharp coordinate-arity observation (finite witness and short proof):** in a 14-vertex K3,3-Petersen chain, no two-coordinate exact trade changes the local K3,3 type, while three-coordinate trades connect types 0->1->2, even within a fixed complete boundary signature.
 - **Independent finite audits:** six-matching mixed chains KP, PK, PP have 7200, 7200, 5760 states and 3, 3, 1 neutral components; cube has nine perfect matchings, 4320 double covers and a neutral trade changing the unordered matching multiset.
 - **Novelty qualification:** component product formulas draw on classical 3-cut matching parity and Kempe arguments; the specialization `m=1` is known. No claim of a major open conjecture resolution or specialist-vetted novelty.
+
+
+## Neutral-transparent cubic substitution (8 October, evening)
+
+- **General theorem:** gluing any neutral-transparent cubic tile onto a cubic host through a three-edge cut preserves the host's neutral-component graph **on connected components**; if every local boundary fiber has size w and diameter <= d, each component's cardinality multiplies by w and its diameter increases by at most d. **Status:** full mathematical proof, classical path-lifting ingredients, novelty not audited. See [theorem](../theory/neutral_transparent_cube_substitution_2026-10-08.md).
+- **PM6 cube:** Q3 fixed-boundary fiber is connected with **48** labelled states and diameter **4**; all 4,320 labelled certificates and 90 signatures enumerated. **Status:** exhaustive finite lemma + CI test.
+- **Padded CDCq cube:** for every q>=3 the fixed-boundary fiber is connected of size `w_q=4+28(q-3)+6*C(q-3,2)+6*C(q-3,3)`; finite q=3,4,5,6 bases have exact fiber diameters 2,6,6,7, and general q>=7 has bound 19 by neutral relocation of extra labels. **Status:** general proof conditional on fully enumerated finite q<=6 lemmas; computer-assisted, not pure symbolic proof.
+- **Mixed two-block verifier:** cube plus K3,3 (12 vertices, 43,200 PM6 certificates, components 4,320/34,560/4,320); cube plus Petersen (16 vertices, 34,560 certificates, one component); 1,645,920 directed switches checked. **Status:** exact finite certificate computation, full code in repro_runs.
+- **Crucial scope:** coordinates of a padded CDC are allowed to be empty locally. This does **not** prove existence of nonempty 5-cycle double covers. No full graph conjecture resolved, and no journal-level originality claim made.
