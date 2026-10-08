@@ -50,3 +50,10 @@ A journal-worthy candidate should imply a nontrivial result for an unbounded gra
 **Research pivot update:** no uniform *constant* bound on neutral-component refinements from fixed boundary size and coordinate count is possible. Seek factorized/semigroup state representations with bounded local generating sets instead. Independent novelty checking remains required; m=1 is the known Belcastro--Haas edge-Kempe result.
 
 **Algorithmic upgrade:** the exponential number of classes does *not* imply hard equivalence testing for this family: extract one integer type per K3,3 block and compare vectors in O(nm). The proof constructs paths of <=3*sum_i min(t_i,m-t_i) switches within each fixed boundary fiber. See the same mathematical theorem for conditions and proof.
+
+
+## New compositional theorem draft: pair-rigid tile algebra
+
+[Pair-rigid tile theorem and mixed Petersen chains](../theory/pair_rigid_tile_multicover_algebra_2026-10-08.md) identify an exact, product-form neutral-component invariant for three-edge sums of cubic tiles whose pairs of perfect matchings differ on a single alternating cycle. Unlike the original K3,3-only example, this covers non-3-edge-colorable families incorporating Petersen tiles. A two-parameter formula gives (m+1)^a components for even m, none for odd m, when a K3,3 and at least one Petersen tile are combined. The cube Q3 falsifies the multiset invariance if pair-rigidity is dropped. An exact three-coordinate trade connects the binary-neutral classes of K3,3+Petersen, demonstrating the repair-arity hierarchy.
+
+**Next falsification target:** the first genuinely *non-pair-rigid* tile (cube Q3), where local matching multisets can change under neutral cycles. Determine the smallest exact component-enriched relation algebra that composes those transitions without enumerating the full global neutral-state graph. Do not confuse a tidy factorization under a strong rigidity assumption with a universal theorem about all cubic graphs.
