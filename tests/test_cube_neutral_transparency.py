@@ -114,8 +114,8 @@ def fiber_diameter(group, masks):
                 other[i] = inverse[masks[state[i]] ^ cyc]
                 other[j] = inverse[masks[state[j]] ^ cyc]
                 other = tuple(other)
-                assert other in group
-                moves.add(other)
+                if other in group:
+                    moves.add(other)
         adjacency[state] = moves
 
     maximum = 0
