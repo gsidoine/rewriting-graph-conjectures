@@ -129,3 +129,29 @@ if __name__=="__main__":
     print("PASS: 9 global components, sizes:", sorted(x[0] for x in expected.values()))
     print("PASS: fixed signature 100 states, 9 components, sizes:",
           sorted(x[0] for x in fixed_expected.values()))
+
+
+def diameter(pool):
+    pool=set(pool)
+    result=0
+    for seed in pool:
+        distance={seed:0}
+        q=[seed]
+        for st in q:
+            for nxt in neighbors(st):
+                if nxt in pool and nxt not in distance:
+                    distance[nxt]=distance[st]+1
+                    q.append(nxt)
+        assert len(distance)==len(pool)
+        result=max(result,max(distance.values()))
+    return result
+
+fixed_by_type=defaultdict(list)
+for st in fixed:
+    fixed_by_type[states[st]].append(st)
+for (a,b),part in fixed_by_type.items():
+    predicted=3*(min(a,2-a)+min(b,2-b))
+    assert diameter(part)==predicted
+
+if __name__=="__main__":
+    print("PASS: every fixed-signature component diameter matches 3*sum(min(t,2-t))")
