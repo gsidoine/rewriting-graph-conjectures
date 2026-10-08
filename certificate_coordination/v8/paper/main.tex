@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,microtype}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\M}{\mathcal M}
+\newcommand{\Hh}{\mathcal H}
+\newcommand{\kc}{\kappa_k}
+\newcommand{\ellstr}{\ell_\downarrow}
+\title{Obstruction-Hypergraph Universality and Strict Reconfiguration\\of Bipartite Matching Multicovers}
+\author{Guillaume Sidoine\\Independent researcher\\\texttt{ORCID: 0009-0005-4525-1182}}
+\date{Research draft --- 8 October 2026\\\small Independently checked finite certificates; novelty and proof require external refereeing}
+\begin{document}
+\maketitle
+\begin{abstract}
+We study coordinate-wise repair of a labelled tuple of $kd$ perfect matchings of a $d$-regular bipartite graph, with the goal that every edge be covered exactly $k$ times. The defect is the quadratic multiplicity error and one rewrite replaces a whole perfect matching. We prove a complete-bipartite universality theorem: for every $(k+1)$-uniform hypergraph $\Hh$, an explicit tuple on a complete bipartite graph has direct exact-repair width and shortest strictly decreasing one-coordinate distance both equal to the transversal number $\tau(\Hh)$. Moreover, an explicitly defined family of intermediate states has defect proportional to the number of hyperedges not yet hit. Consequently, for each fixed $k\ge1$, both optimization problems are NP-hard even on complete bipartite graphs, despite the existence of a strictly decreasing normalization path. We complement this by an exact obstruction-width dynamic program and by constant-defect $Q=4$ strict local minima on maximally edge-connected $K_{d,d}$ for all $d\ge8$ and all $k\ge1$, with uniform integer assignment-dual certificates. This strengthens an earlier one-fold construction. The results concern the generalized matching multicover model; they do not settle Berge--Fulkerson or the two-coordinate descent conjecture for cubic graphs.
+\end{abstract}
+
+\section{Coordinate repair and the obstruction hypergraph}
+Let $G=(L\sqcup R,E)$ be a simple $d$-regular bipartite graph. Fix $k\ge1$ and a labelled tuple $\M=(M_1,\ldots,M_t)$ of perfect matchings, with $t=kd$, repetitions permitted. Write $S_e=\{i\in[t]:e\in M_i\}$, $m(e)=|S_e|$, and
+\[Q_k(\M)=\sum_{e\in E}(m(e)-k)^2.\]
+Every vertex has total incident multiplicity $kd$, so $Q_k=0$ means an exact $k$-fold edge cover. This target always exists by K\H{o}nig's bipartite factorization theorem. The \emph{direct repair width} $\kc(\M)$ is the minimum number of labelled matching coordinates to replace simultaneously to obtain $Q_k=0$. The \emph{strict distance} $\ellstr(\M)$ is the minimum length of a sequence of single-coordinate replacements, strictly decreasing $Q_k$ at each step, ending at zero; infinity is permitted.
+
+\begin{proposition}[Exact repair criterion]\label{prop:repair}
+For any $\M$ as above,
+\begin{equation}\label{eq:cover}
+\kc(\M)=\min\bigl\{|I|:I\subseteq[t],\quad |I\cap S_e|\ge |S_e|-k\text{ for all }e\in E\bigr\}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+If the coordinates outside $I$ are frozen, at most $k$ frozen copies of every edge are permitted. This gives necessity. Conversely, put $f(e)=|S_e\setminus I|\le k$. The nonnegative residual multiplicities $k-f(e)$ form a spanning bipartite multigraph. At every vertex their sum is $kd-(t-|I|)=|I|$. The residual multigraph is therefore $|I|$-regular and admits a factorization into $|I|$ perfect matchings. Substituting these for the coordinates in $I$ gives an exact cover.
+\end{proof}
+The nontrivial constraints in~\eqref{eq:cover}, namely those with $|S_e|>k$, define a weighted obstruction hypergraph on the \emph{coordinate indices}, not on the graph vertices. This distinction is the key to the complexity and algorithmic phenomena below.
+
+\begin{proposition}[An optimal single-coordinate rewrite is polynomial-time computable]
+For a specified matching index $i$, a replacement of $M_i$ minimizing $Q_k$ can be found by one minimum-weight bipartite perfect-matching computation. The best replacement over all indices is consequently polynomial-time computable as well.
+\end{proposition}
+\begin{proof}
+Freeze the other coordinates and write $f_i(e)=m(e)-\mathbf1_{e\in M_i}$. Replacing $M_i$ by $N$ changes the defect by
+\[Q_k(\M[i\leftarrow N])-Q_k(\M)=\sum_{e\in N}\bigl(2(f_i(e)-k)+1\bigr)-\sum_{e\in M_i}\bigl(2(f_i(e)-k)+1\bigr).\]
+Thus the optimal $N$ is a minimum-weight perfect matching of the underlying bipartite graph.\end{proof}
+
+\section{A complete-bipartite hypergraph realization}
+A hypergraph $\Hh=(V,\mathcal E)$ is $(k+1)$-uniform if every $F\in\mathcal E$ has $k+1$ vertices. Its transversal number $\tau(\Hh)$ is the minimum size of a subset of $V$ meeting every $F$.
+
+\begin{theorem}[Complete-bipartite universality]\label{thm:univ}
+Let $k\ge1$, and let $\Hh$ be any nonempty finite $(k+1)$-uniform hypergraph on $h$ labelled vertices, with $q$ distinct hyperedges. Put $d=\max\{2,\lceil h/k\rceil\}$ and $D=qd$. In polynomial time one can explicitly construct $t=kD$ perfect matchings of $K_{D,D}$ such that:
+\begin{enumerate}
+\item The nontrivial obstruction hyperedges are precisely the hyperedges of $\Hh$ (each repeated $d$ times), and $Q_k(\M)=2dq$.
+\item The exact repair width is $\kc(\M)=\tau(\Hh)$.
+\item The shortest strictly decreasing one-coordinate normalization has $\ellstr(\M)=\tau(\Hh)$; indeed no one-coordinate normalization, even one permitting neutral or increasing moves, can be shorter.
+\item For each $A\subseteq V(\Hh)$ there is a nonempty family $\mathcal R_A$ of certificates on $K_{D,D}$ such that every $\M_A\in\mathcal R_A$ has
+\begin{equation}\label{eq:landscape}
+Q_k(\M_A)=2d\,|\{F\in\mathcal E:F\cap A=\varnothing\}|.
+\end{equation}
+Whenever adding $a\notin A$ hits a previously unhit hyperedge, every state in $\mathcal R_A$ has a strictly decreasing one-coordinate rewrite to some state in $\mathcal R_{A\cup\{a\}}$.
+\end{enumerate}
+The underlying graph has maximum possible edge-connectivity $\lambda(K_{D,D})=D$.
+\end{theorem}
+\begin{proof}
+Label the hyperedges $F_0,\ldots,F_{q-1}$, and partition each bipartition class of $K_{D,D}$ into $q$ consecutive blocks of size $d$. First construct $kd$ \emph{active} matching coordinates, each preserving the paired left and right blocks. In diagonal block $b$, let
+\[P_j=\{(i,i+j\pmod d):i\in\mathbb Z_d\}\quad(j=0,\ldots,d-1)\]
+be a standard one-factorization of its $K_{d,d}$. Assign all $k+1$ coordinate labels in $F_b$ to $P_0$, assign any $k-1$ available labels to $P_1$, and partition the remaining active labels into groups of $k$ assigned to $P_2,\ldots,P_{d-1}$. The assignment is possible because $kd\ge h$ and
+\[(k+1)+(k-1)+(d-2)k=kd.\]
+For a fixed active label, take the union of its assigned local factors across all $q$ diagonal blocks. This is one global perfect matching.
+
+The other $k(D-d)$ coordinates cover all \emph{off-diagonal} edges exactly $k$ times. For each nonzero block shift $a\in\mathbb Z_q$ and each local shift $s\in\mathbb Z_d$, take the perfect matching that maps left vertex $(b,i)$ to right vertex $(b+a,i+s)$, with block and local additions modulo $q$ and $d$. These $(q-1)d$ matchings partition all off-diagonal edges; include $k$ copies of each. Thus the total number of matching coordinates is $kd+k(q-1)d=kD$.
+
+Inside block $b$, the $d$ edges of $P_0$ each have signature $F_b$ and multiplicity $k+1$; the $d$ edges of $P_1$ have multiplicity $k-1$; every other edge, including every off-diagonal edge, has multiplicity $k$. This proves assertion 1. Proposition~\ref{prop:repair} now says that any exact repair set must hit each $F_b$; conversely every transversal satisfies all repair constraints. This proves assertion 2.
+
+For assertion 4, given $A\subseteq V(\Hh)$, correct block $b$ exactly when $A\cap F_b\neq\varnothing$. In each corrected block, select \emph{any} one index $a\in A\cap F_b$ and change that coordinate's local factor in block $b$ from $P_0$ to $P_1$. Define $\mathcal R_A$ to be the family of all these choices. This restores both multiplicities to $k$ without affecting any other block. For each coordinate, replacing its factors independently in a collection of diagonal blocks still yields one global perfect matching because block boundaries remain preserved. Every state in this family has defect~\eqref{eq:landscape}. If $a\notin A$ hits a new block, correct precisely those newly hit blocks by changing coordinate $a$, leaving already corrected blocks unchanged. This gives a state in $\mathcal R_{A\cup\{a\}}$ after one strictly improving rewrite. The family formulation is necessary: a globally fixed representative for every $A$ need not respect every inclusion transition.
+
+For assertion 3, an initially overcovered $P_0$ edge of block $b$ has $k+1$ owners $F_b$. If no index in $F_b$ is ever changed, all those copies persist and final multiplicity cannot be $k$. Hence the \emph{set} of changed labels along any normalization path meets every $F_b$, so every such path has at least $\tau(\Hh)$ steps. Choose a minimum transversal $I$ and process its elements once each. Since $I$ is inclusion-minimal, each $a\in I$ has a private hyperedge $F_b$ with $F_b\cap I=\{a\}$. Therefore, regardless of processing order, the step associated with $a$ hits a still-unrepaired block and strictly decreases the defect. The resulting path has exactly $|I|=\tau(\Hh)$ steps and ends at $Q_k=0$.
+\end{proof}
+
+\begin{corollary}[NP-completeness on complete bipartite graphs]\label{cor:hard}
+For each fixed $k\ge1$, deciding whether direct repair width is at most $b$, and deciding whether a strictly decreasing one-coordinate normalization of length at most $b$ exists, are NP-complete for explicitly supplied tuples of $kD$ perfect matchings of $K_{D,D}$. The second decision problem remains NP-hard even when a strict normalization path is guaranteed. Both optimization problems are APX-hard.
+\end{corollary}
+\begin{proof}
+Given a simple graph $H=(V,E)$, replace every edge $uv$ by the $(k+1)$-set $\{u,v\}\cup P_{uv}$, where $P_{uv}$ consists of $k-1$ fresh private elements, used for that edge only. Call the resulting uniform hypergraph $\Hh$. Any vertex cover of $H$ is a transversal of $\Hh$. Conversely, a transversal can be transformed into a vertex cover of no greater size by replacing each selected private element by one endpoint of its own edge. Hence $\tau(\Hh)=\tau(H)$, and the transformation also maps approximate solutions without increasing their size. Apply Theorem~\ref{thm:univ}. This is an optimum-preserving polynomial reduction from Vertex Cover, which is NP-complete and APX-hard on bounded-degree graphs. Membership in NP for direct repair follows from Proposition~\ref{prop:repair}. A strict path is a polynomial certificate: the integer defect is at most $D^2(kD-k)^2$, so its positive strictly decreasing sequence cannot have superpolynomial length in the explicit input size. The guaranteed-path promise follows from Theorem~\ref{thm:univ}.
+\end{proof}
+
+\section{Obstruction width, not connectivity, controls direct repair}
+For arbitrary $\M$, each surplus signature $S_e$ with $|S_e|>k$ produces the Boolean constraint
+\[\sum_{i\in S_e}x_i\ge |S_e|-k,\qquad x_i\in\{0,1\},\]
+where $x_i=1$ means coordinate $i$ is replaced. The objective is $\min\sum_i x_i$. Define the \emph{primal obstruction graph} $P(\M)$ on $[kd]$, joining any two labels that appear together in some surplus signature.
+
+\begin{proposition}[Obstruction-width algorithm]\label{prop:tw}
+Given an elimination order for $P(\M)$ of induced width $w$, $\kc(\M)$ and an optimal repair-coordinate set can be computed in time $2^{w+1}\operatorname{poly}(kd+|E(G)|)$. In particular, if a width-$w$ tree decomposition of $P(\M)$ is supplied, the same bound holds up to polynomial preprocessing. The output coordinate set can be completed to an exact cover by polynomial-time bipartite factorization.
+\end{proposition}
+\begin{proof}
+Give each variable its unary cost $x_i$. For every surplus signature add a zero/infinite cost function on its variables imposing the displayed constraint. Eliminate variables in the given order by taking the minimum over their two values while retaining the cost table on the current neighbours. The primal induced width bounds the size of every intermediate scope by $w+1$. Store an optimal binary decision for each table entry and reconstruct backwards. Proposition~\ref{prop:repair} proves both feasibility and optimality of the reconstructed coordinate set, and supplies the factorization completion.
+\end{proof}
+Theorem~\ref{thm:univ} makes clear why ordinary edge-connectivity is not a proxy for this obstruction width. Its graphs are all complete bipartite and maximally edge-connected, while the encoded obstruction can have small treewidth (a path or cycle) or large treewidth (a clique or a dense uniform hypergraph). These statements concern \emph{direct repair}; an arbitrary tuple's shortest strictly decreasing path need not be captured by the obstruction hypergraph alone.
+
+\section{Minimal positive-defect plateaux for every multiplicity}
+The previous theorem shows that finding the shortest good route can be hard even when a strict path exists. We now prove that a strict first step can also fail, despite maximal connectivity, and this remains true for every covering multiplicity $k$.
+
+\begin{lemma}[Universal minimal positive defect]\label{lem:qfour}
+For a tuple of $kd$ perfect matchings of a simple bipartite $d$-regular graph, either $Q_k=0$ or $Q_k\ge4$.
+\end{lemma}
+\begin{proof}
+At every vertex the sum of the deviations $m(e)-k$ of incident edges is zero. Any vertex incident to a defective edge is therefore incident to at least one positive and at least one negative deviation, and has degree at least two in the defective-edge subgraph. This subgraph contains a cycle, of length at least four by simplicity and bipartiteness. Every defective edge contributes at least one to $Q_k$.
+\end{proof}
+
+\begin{theorem}[Multiplicity-independent strict local traps]\label{thm:trap}
+For every $k\ge1$ and $d\ge8$, the complete bipartite graph $K_{d,d}$ admits a labelled tuple of $kd$ perfect matchings with $Q_k=4$, such that replacing any single perfect matching cannot strictly decrease $Q_k$. Nevertheless, there are two single-coordinate replacements producing the defect sequence $4\to4\to0$. The graph has edge-connectivity $d$. The same phenomenon also occurs for $d=4$.
+\end{theorem}
+\begin{proof}
+Consider the four perfect matchings of $K_{4,4}$ encoded by permutations
+\begin{equation}\label{eq:base}
+(0,1,2,3),\quad(0,2,3,1),\quad(1,3,0,2),\quad(2,3,1,0).
+\end{equation}
+Their edge-multiplicity matrix is
+\[B=\begin{pmatrix}2&1&1&0\\0&1&1&2\\1&1&1&1\\1&1&1&1\end{pmatrix}.\]
+Also consider the one-factorization $F$ consisting of
+\begin{equation}\label{eq:factor}
+(0,1,2,3),\quad(1,0,3,2),\quad(2,3,0,1),\quad(3,2,1,0).
+\end{equation}
+For $k\ge1$, take the four base matchings plus $k-1$ copies of all four factors of $F$. The total edge multiplicity is $B+(k-1)\mathbf1$, so $Q_k=4$.
+
+To certify local optimality without any search, for a coordinate matching $P$ define the cost of its possible replacement edge $(u,v)$ as
+\[w_P(u,v)=2\bigl(B_{uv}-1-\mathbf1_{(u,v)\in P}\bigr)+1.\]
+This equals the cost for the $k$-fold tuple because its coverage deviation $m-k=B-1$ is independent of $k$. The following integer potentials $(\alpha,\beta)$ satisfy $\alpha_u+\beta_v\le w_P(u,v)$ for all 16 edges, with equality on every chosen edge of $P$:
+\begin{center}\small
+\begin{tabular}{ccll}\toprule
+Family & Index & $\alpha$ & $\beta$\\\midrule
+Base & 0 & $(2,0,0,2)$ & $(-1,-1,-1,-3)$\\
+Base & 1 & $(2,0,2,0)$ & $(-1,-1,-1,-3)$\\
+Base & 2 & $(0,2,2,0)$ & $(-3,-1,-1,-1)$\\
+Base & 3 & $(0,2,0,2)$ & $(-3,-1,-1,-1)$\\\midrule
+Factor & 0 & $(2,0,0,2)$ & $(-1,-1,-1,-3)$\\
+Factor & 1 & $(-2,-4,0,-2)$ & $(1,1,1,-1)$\\
+Factor & 2 & $(0,2,2,0)$ & $(-3,-1,-1,-1)$\\
+Factor & 3 & $(-4,-2,-2,0)$ & $(-1,1,1,1)$\\\bottomrule
+\end{tabular}
+\end{center}
+These inequalities are elementary integer comparisons; by bipartite assignment duality each existing matching is minimum-cost for its coordinate. Thus no single-coordinate strict improvement exists on $K_{4,4}$. Replacing the fourth base permutation by $(2,0,1,3)$ is neutral, and then replacing the first by $(3,1,2,0)$ yields an exact cover.
+
+For $d\ge8$, write $s=d-4\ge4$. Extend the first four base matchings and the first four factors of $F$ separately by the \emph{same} four cyclic shifts $i\mapsto i+j\pmod s$ on the lower-right $s\times s$ block, for $j=0,1,2,3$. Exclude the upper-left $4\times4$ square and these four lower-right one-factors. The remaining bipartite graph is $s$-regular: each upper vertex has $s$ cross edges, and each lower vertex has four cross edges and $s-4$ lower-block edges. Decompose that remaining graph into $s$ perfect matchings, and use this same residual factorization in both the base family and $F$. The base family has $d$ matchings and multiplicities given by $B$ on the corner and one everywhere else; the $d$ factors of $F$ partition all of $K_{d,d}$.
+
+Form the $k$-fold tuple by taking the base $d$ matchings plus $k-1$ copies of $F$. The deviation matrix is still $B-\mathbf1$ on the corner and zero outside, so $Q_k=4$. For the first four coordinates in either family, extend each displayed dual by setting $\alpha=0$ on lower rows and $\beta=-1$ on lower columns. All selected lower-right edges have cost $-1$ and attain equality. All cross edges are unselected and have cost $+1$; feasibility follows because the displayed upper $\alpha$ values are at most $2$ and the upper $\beta$ values are at most $1$. Every residual-factor coordinate has the constant dual $\alpha=0,\beta=-1$, which is feasible and tight because all its chosen edges lie outside the corner and have multiplicity deviation zero. Thus all $kd$ coordinates are locally optimal. The two corner replacements above, leaving all lower entries and all copies of $F$ unchanged, again give $4\to4\to0$. Finally $\lambda(K_{d,d})=d$.
+\end{proof}
+
+\section{Significance and limitations}
+The complete-bipartite realization replaces the prescribed-connectivity gadget splices of the earlier one-fold manuscript by a simpler diagonal/off-diagonal factorization. It simultaneously strengthens that result to arbitrary fixed multiplicity $k$. The theorem also gives an exact model of monotone hypergraph coverage inside a reconfiguration landscape. The strict local-trap theorem shows a second, independent failure mechanism. Positive results about direct repair depend on obstruction-hypergraph width rather than the connectivity of the supplied graph.
+
+These constructions do not prove NP-hardness for the \emph{fixed cubic} six-matching setting: there $d=3$, $k=2$, and the number of coordinate indices is fixed at six, so direct repair width is readily computable by enumerating coordinate subsets. Nor do they imply that strict two-coordinate descent fails in cubic bipartite graphs. The central open mathematical problems in those fixed-degree settings remain open.
+
+\paragraph{Literature boundary.} Edge-precolouring extension, including on complete bipartite graphs through partial Latin-square completion, has classical NP-hardness results (Colbourn; Fiala; Marx). Likewise, perfect-matching reconfiguration and shortest alternating-cycle transformations are well-studied (Bonamy et al.; Ito et al.). Our inputs and moves are different: a fully specified tuple of entire perfect matchings, with global coordinate replacement and a quadratic strict-descent requirement. The exact hypergraph-universality statement, complete-bipartite strength, and explicit all-multiplicity plateau should be compared at theorem level before any novelty or journal-submission claim. No Lean formalization or independent external peer review is claimed.
+
+\paragraph{Reproducibility.} The companion \texttt{certificate\_coordination/v8/} directory contains independent deterministic constructors, exact multiplicity and matching checks, strict-path checkers, integer dual checks, and a binary-variable-elimination solver for repair width. The universal proofs do not depend on the correctness of these programs.
+
+\begin{thebibliography}{9}
+\bibitem{konig} D. K\H{o}nig, bipartite edge-colouring and one-factorization theorem (classical; see any standard graph theory text).
+\bibitem{karp} R. M. Karp, Reducibility among combinatorial problems, 1972.
+\bibitem{colbourn} C. J. Colbourn, The complexity of completing partial Latin squares, \emph{Discrete Applied Mathematics} 8 (1984), 25--30.
+\bibitem{fiala} J. Fiala, NP completeness of the edge precoloring extension problem on bipartite graphs, \emph{Journal of Graph Theory} 43 (2003), 156--160. DOI \href{https://doi.org/10.1002/jgt.10088}{10.1002/jgt.10088}.
+\bibitem{marx} D. Marx, NP-completeness of list coloring and precoloring extension on the edges of planar graphs, \emph{Journal of Graph Theory} 49 (2005), 313--324. DOI \href{https://doi.org/10.1002/jgt.20085}{10.1002/jgt.20085}.
+\bibitem{bonamy} M. Bonamy et al., The Perfect Matching Reconfiguration Problem, \emph{MFCS} (2019). DOI \href{https://doi.org/10.4230/LIPIcs.MFCS.2019.80}{10.4230/LIPIcs.MFCS.2019.80}.
+\bibitem{ito} T. Ito et al., Shortest Reconfiguration of Perfect Matchings via Alternating Cycles, \emph{SIAM Journal on Discrete Mathematics} (2022). DOI \href{https://doi.org/10.1137/20M1364370}{10.1137/20M1364370}.
+\end{thebibliography}
+\end{document}

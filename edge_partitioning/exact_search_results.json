@@ -1,0 +1,226 @@
+[
+  {
+    "name": "reg6_n7_0",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 7,
+      "m": 21,
+      "cut_constraints": 63,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n7_1",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 7,
+      "m": 21,
+      "cut_constraints": 63,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n7_2",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 7,
+      "m": 21,
+      "cut_constraints": 63,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n8_0",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 8,
+      "m": 24,
+      "cut_constraints": 127,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n8_1",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 8,
+      "m": 24,
+      "cut_constraints": 127,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n8_2",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 8,
+      "m": 24,
+      "cut_constraints": 127,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n9_0",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 9,
+      "m": 27,
+      "cut_constraints": 255,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n9_1",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 9,
+      "m": 27,
+      "cut_constraints": 255,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n9_2",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 9,
+      "m": 27,
+      "cut_constraints": 255,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n10_0",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 10,
+      "m": 30,
+      "cut_constraints": 511,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n10_1",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 10,
+      "m": 30,
+      "cut_constraints": 511,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n10_2",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 10,
+      "m": 30,
+      "cut_constraints": 511,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n12_0",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 12,
+      "m": 36,
+      "cut_constraints": 2047,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "reg6_n12_1",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 12,
+      "m": 36,
+      "cut_constraints": 2047,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "K6_6",
+    "edge_connectivity": 6,
+    "feasible": true,
+    "details": {
+      "n": 12,
+      "m": 36,
+      "cut_constraints": 2047,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  },
+  {
+    "name": "K8",
+    "edge_connectivity": 7,
+    "feasible": true,
+    "details": {
+      "n": 8,
+      "m": 28,
+      "cut_constraints": 127,
+      "status": 0
+    },
+    "local_search_trials": 12,
+    "single_edge_terminal_positive": 0,
+    "traps": []
+  }
+]

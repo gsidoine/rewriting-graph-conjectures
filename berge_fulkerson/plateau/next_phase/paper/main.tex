@@ -1,0 +1,159 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,longtable,array}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\kk}{\kappa}
+\newcommand{\calT}{\mathcal T}
+\title{Sharp Defect Thresholds for Direct Reconfiguration of Six Perfect Matchings\\\large Research draft --- mathematical verification complete; novelty not externally established}
+\author{Guillaume Sidoine\\Independent researcher\\\href{https://orcid.org/0009-0005-4525-1182}{ORCID: 0009-0005-4525-1182}}
+\date{8 October 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For six perfect matchings of a simple cubic bipartite graph, let $Q$ be the sum of squared deviations of edge multiplicities from two, and let $\kk$ be the minimum number of matchings whose simultaneous replacement produces an exact double cover. We prove that the smallest defects at which $\kk\ge2,3,4$ are respectively $6,12,34$. In particular, $Q\le10$ forces a direct two-coordinate exact repair, while $Q\le32$ forces a direct three-coordinate exact repair. The new upper threshold is attained by a certified $32$-vertex $3$-edge-connected cubic bipartite graph with $Q=34$ and $\kk=4$. The proofs combine bipartite factorization, an exact multiplicity energy identity, and a finite covering argument on the twenty triples of six matching labels. This concerns \emph{one-step exact repair}, not arbitrary strict two-coordinate descent or a solution of Berge--Fulkerson.
+\end{abstract}
+
+\section{Definitions and the completion criterion}
+Let $G=(U\sqcup W,E)$ be a finite simple cubic bipartite graph. Take a sextuple $\mathcal M=(M_0,\dots,M_5)$ of perfect matchings, with repetitions allowed. For each edge $e$, define $S_e=\{i:e\in M_i\}$, $m_e=|S_e|$, and
+\[
+Q(\mathcal M)=\sum_{e\in E}(m_e-2)^2.
+\]
+Let $\kk(\mathcal M)$ be the minimum cardinality of a set $I\subseteq\{0,\dots,5\}$ of matching positions that can be replaced, leaving the other positions frozen, in such a way that every edge finally has multiplicity exactly two. By convention, $\kk=0$ if $Q=0$.
+
+\begin{lemma}[Exact frozen-factor criterion]\label{lem:criterion}
+For $I\subseteq[6]=\{0,\dots,5\}$, a direct repair of the coordinates in $I$ exists if and only if
+\[
+|I\cap S_e|\ge \max(0,m_e-2)\quad\text{for every }e\in E.
+\tag{1}\label{eq:criterion}
+\]
+In particular, $\kk\le4$ for every sextuple.
+\end{lemma}
+\begin{proof}
+Necessity holds because no frozen edge can remain covered more than twice. For sufficiency, the residual edge demand after freezing the positions outside $I$ is $r(e)=2-m_e+|I\cap S_e|\ge0$. At each vertex the sum of these residual demands is $6-(6-|I|)=|I|$. Thus $r$ is an integral $|I|$-regular bipartite multigraph on the same vertex set. Repeated application of the bipartite perfect-matching theorem decomposes $r$ into $|I|$ perfect matchings. For $|I|=4$, at most two coordinates are frozen, so every frozen multiplicity is at most two.
+\end{proof}
+The identity $\sum_e(m_e-2)=0$ gives
+\begin{equation}\label{eq:energy}
+\frac{Q}{2}=\sum_{e\in E}\frac{(m_e-2)(m_e-1)}2
+=n_0+n_3+3n_4+6n_5+10n_6,
+\end{equation}
+where $n_j$ is the number of edges covered by exactly $j$ matchings.
+
+\begin{theorem}[Universal two-coordinate threshold]\label{thm:pair}
+If $0<Q\le10$, then $\kk\le2$. The bound is sharp: an explicit simple $3$-edge-connected cubic bipartite graph has $Q=12$ and $\kk=3$.
+\end{theorem}
+\begin{proof}
+Equation \eqref{eq:energy} excludes multiplicities five and six when $Q\le10$ and permits at most one edge of multiplicity four. If no edge has multiplicity four, the surplus membership sets $S_e$ are at most five triples of $[6]$. There exists a pair $I\subseteq[6]$ meeting every one of them. Indeed, otherwise the complementary triples $[6]\setminus S_e$ would cover all fifteen pairs of $[6]$. Five triangles covering all fifteen edges of $K_6$ would form a triangle decomposition of $K_6$, impossible because every vertex of $K_6$ has odd degree. If there are fewer than five triples, counting alone suffices.
+
+If one surplus edge has multiplicity four, \eqref{eq:energy} allows at most two surplus triples. Choose a pair $I$ contained in that four-element membership set $F$. Each additional triple $T$ forbids at most the three pairs contained in $F\setminus T$, which has size at most three. Two triangles cannot partition the six edges of $K_4$ (distinct triangles share an edge). Therefore a pair $I\subseteq F$ meets both triples. In either case \eqref{eq:criterion} holds and Lemma~\ref{lem:criterion} proves direct repair. The sharp $Q=12$ witness, with an independent checker, is recorded in the accompanying earlier research branch.
+\end{proof}
+
+\section{The first possible four-coordinate obstruction}
+For a three-element set $I\subseteq[6]$, call $I$ \emph{blocked} at a vertex $v\in U$ if some edge $e$ incident with $v$ violates \eqref{eq:criterion}. Every edge has exactly one endpoint in $U$. Hence $\kk\ge4$ if and only if the blocked sets of the vertices of $U$ cover all $20$ triples $I$.
+
+The three edge-label sets incident at any vertex partition $[6]$. Up to order, the seven possible local multiplicity triples, their costs $\sum(m-2)^2$, and the number of triples they block are:
+\begin{center}\begin{tabular}{ccc}\toprule
+Local multiplicities&Cost&Blocked triples\\\midrule
+$(2,2,2)$&$0$&$0$\\
+$(3,2,1)$&$2$&$1$\\
+$(3,3,0)$&$6$&$2$\\
+$(4,1,1)$&$6$&$4$\\
+$(4,2,0)$&$8$&$4$\\
+$(5,1,0)$&$14$&$10$\\
+$(6,0,0)$&$24$&$20$\\\bottomrule
+\end{tabular}\end{center}
+An $(4,1,1)$ or $(4,2,0)$ vertex blocks the four triples containing the two labels absent from its four-fold edge. A $(5,1,0)$ vertex blocks the ten triples containing the one label absent from its five-fold edge. These explicit forms are used below.
+
+\begin{lemma}[Twenty-triple covering inequality]\label{lem:cover}
+Suppose a multiset of partitions of $[6]$ into three parts contains no $(6,0,0)$ type, and its blocked triples cover all $20$ triples of $[6]$. Then the sum of its local costs is at least $34$.
+\end{lemma}
+\begin{proof}
+Suppose the cost were at most $32$. Let $a$ count vertices of type $(3,2,1)$; let $b$ count the types $(3,3,0)$, $(4,1,1)$, and $(4,2,0)$; and let $c$ count the type $(5,1,0)$. Neutral vertices do not matter. Then
+\begin{equation}\label{eq:budgets}
+2a+6b+14c\le32,\qquad 20\le a+4b+10c.
+\end{equation}
+The second inequality is a generous upper bound: some $b$-types block only two triples and some cost eight.
+
+If $c=0$, the inequalities force $b\ge4$. For $b=4$, they force $a\le4$; coverage of all twenty triples would require four pair-blocks of size four to be mutually disjoint. Their corresponding two-element label sets would have to be four mutually disjoint pairs on six labels, impossible. For $b=5$, at most one extra singleton block is available. The five pair-blocks omit at least two triples: equivalently, every five-edge graph on six vertices has at least two independent vertex triples. To verify this elementary claim, its complement has ten edges. Mantel's theorem gives a triangle; if this were its only triangle, deleting an edge of that triangle would give a nine-edge triangle-free $K_{3,3}$, whereas adding a single edge to $K_{3,3}$ creates three triangles. Thus at least two triangles exist in the complement. The case $b\ge6$ exceeds the budget.
+
+If $c=1$, the inequalities give $b\le3$ and $a\le9-3b$, so the crude covering capacity is at most $19+b$. Thus $b\ge1$. A four-block and a ten-block always intersect: a two-label pair and a single label are contained together in at least one triple. For $b=1$ there are only twenty possible block-slots, so this overlap prevents coverage. For $b=2$, there are at most twenty-one slots, but two distinct four-blocks each intersect the ten-block in a distinct triple (unless one intersects it in four triples); repeated four-blocks only waste more slots. Thus at least two slots are duplicated. For $b=3$, there are at most twenty-two slots and at least three duplicated slots from the three distinct four-blocks meeting the ten-block; repeated blocks also waste at least three. A $b$-type with only two blocks loses two slots and cannot improve any case. Hence no $b$ works.
+
+If $c=2$, then $b=0$ and $a\le2$. Two ten-blocks cover at most sixteen of the twenty triples (those containing at least one of the two omitted labels), leaving at least four uncovered. Finally $c\ge3$ exceeds the cost budget. This contradiction proves the lemma.
+\end{proof}
+
+\begin{lemma}[Sixfold-edge energy barrier]\label{lem:six}
+If $G$ is simple cubic and some edge has multiplicity six, then $Q\ge36$.
+\end{lemma}
+\begin{proof}
+That edge contributes $16$ to $Q$. The other four edges incident with its endpoints are distinct by simplicity and have multiplicity zero, contributing another $16$. The deviations on these five edges sum to $4-4(2)=-4$. Since total deviation is zero, the remaining edges have deviations summing to $4$ and squared deviations totaling at least $4$. Thus $Q\ge36$.
+\end{proof}
+
+\begin{theorem}[Sharp unrestricted triple-repair bound]\label{thm:triple}
+Every sextuple of perfect matchings in a simple cubic bipartite graph with $Q\le32$ admits an exact repair of at most three matching coordinates. This is sharp: there exists a simple $3$-edge-connected cubic bipartite graph with $32$ vertices, six perfect matchings, $Q=34$ and $\kk=4$.
+\end{theorem}
+\begin{proof}
+If $\kk\ge4$, the vertex blocking sets on $U$ cover all twenty triples. Since each edge is counted once at its endpoint in $U$, $Q$ is exactly the sum of the local costs over $U$. If no edge has multiplicity six, Lemma~\ref{lem:cover} gives $Q\ge34$; otherwise Lemma~\ref{lem:six} gives $Q\ge36$. Thus $Q\le32$ implies $\kk\le3$ by Lemma~\ref{lem:criterion}.
+
+For sharpness, use the explicit edge-label table in Appendix~\ref{sec:certificate}. It defines a cubic bipartite graph on $u_0,\ldots,u_{15}$ and $v_0,\ldots,v_{15}$: an entry $(j;S)$ denotes the edge $u_iv_j$ belonging to exactly the matching colours in $S$. At every vertex the three incident label sets partition $[6]$, so each colour forms a perfect matching. Direct counting gives $n_1=14$, $n_2=23$, $n_3=8$, $n_4=3$ and $Q=14+8+3(4)=34$.
+
+The three fourfold-edge label sets are $2345$, $0145$, $0123$. Their complements are the three disjoint pairs $01$, $23$, $45$. A choice $I$ of three matching positions containing any one of these pairs is blocked. The eight remaining triples $I$ each select exactly one label from each pair; they are the complements of the eight distinct threefold-edge sets $024,025,034,035,124,125,134,135$. Each remaining $I$ is consequently blocked too. Thus $\kk\ge4$; Lemma~\ref{lem:criterion} gives $\kk\le4$. Finally, the accompanying standalone verifier checks connectedness after deleting any set of at most two edges, proving $3$-edge-connectivity. The finite verification is small enough to reproduce independently without an optimization solver.
+\end{proof}
+
+\begin{lemma}[Smallest positive-defect repair]
+If $G$ is simple cubic bipartite and $0<Q<6$, then $Q=4$ and $\kk=1$.
+\end{lemma}
+\begin{proof}
+Any edge with multiplicity zero forces, at either endpoint, two incident edges of multiplicity three; by simplicity the four incident threefold edges are distinct. Thus \eqref{eq:energy} gives $Q/2\ge1+4>2$. An edge of multiplicity four or more also forces $Q/2\ge3$. Hence $Q<6$ allows only unit deviations, and the support of nonzero deviations is an alternating union of even cycles: at a defective vertex its incident multiplicities are $(1,2,3)$. A nonempty such support in a simple graph has at least four edges. Thus $Q=4$ and the support is one alternating four-cycle. Its two surplus edges have label triples $T_1,T_2$. A singleton deficit edge is incident with each of the two surplus edges, so its matching label belongs to neither $T_1$ nor $T_2$. Consequently $T_1\cup T_2$ has fewer than six elements, which forces $T_1\cap T_2\ne\varnothing$. The perfect matching of a label in this intersection uses both surplus edges and neither deficit edge; flipping its edges on the four-cycle repairs the complete defect. Hence $\kk=1$.
+\end{proof}
+
+\begin{corollary}[Full hierarchy]\label{cor:hierarchy}
+Within finite simple cubic bipartite graphs, even restricting to $3$-edge-connected graphs, the least possible positive defects for $\kk\ge2$, $\kk\ge3$, and $\kk\ge4$ are respectively
+\[\boxed{6,\quad12,\quad34}.\]
+\end{corollary}
+\begin{proof}
+For $\kk\ge2$, the established alternating-four-cycle repair lemma and the prior explicit $Q=6$ witness give the threshold six. Theorem~\ref{thm:pair} and the prior explicit $Q=12$ witness yield twelve. Theorem~\ref{thm:triple} gives thirty-four.
+\end{proof}
+
+\begin{remark}[Unit-defect qualification]
+For the subfamily where all edge multiplicities lie in $\{1,2,3\}$, the corresponding $\kk\ge4$ minimum remains $Q=40$, witnessed by a prior $40$-vertex graph. The new $Q=34$ example uses three edges of multiplicity four. Neither result implies the existence of a strict two-coordinate local minimum: exact one-step repair and descent are different questions. Indeed the displayed $Q=34$ certificate has a two-coordinate improvement from $34$ to $8$.
+\end{remark}
+
+\section{Research status and reproducibility}
+Existing matching-reconfiguration work examines transformations of individual perfect matchings, often by short alternating-cycle flips; see Bonamy et al.~\cite{Bonamy2019}. Recent work of Mori et al.~\cite{Mori2026} interprets transformations of collections of matchings with the same aggregate incidence vector through toric ideals and edge colourings. Our frozen-coordinate question instead allows the aggregate multiplicity vector to change, but asks how many entire matching coordinates must be replaced \emph{at once} to attain the distinguished aggregate $2\mathbf1$. This distinction does not prove novelty; a broader specialist audit of covering-design and edge-colouring literature is required.\par
+The result is a new candidate theorem within our research programme, supported by a complete human-readable proof and a solver-independent finite witness. It has not been assessed by an external graph theorist and its novelty relative to the complete matching reconfiguration and edge-colouring literature remains to be established. The classical ingredient in Lemma~\ref{lem:criterion} is K\H{o}nig's bipartite factorization theorem. The $32$-vertex JSON certificate and independent Python checker are under \texttt{berge\_fulkerson/plateau/next\_phase/} in the research branch. Separately, a standard-library C++17 finite cover enumerator (not needed by the proof) independently certifies that the minimum cost of twenty-triple coverage using partitions without a sixfold edge is $34$.
+
+\paragraph{Transparency statement.} AI-assisted mathematical exploration and computational search helped formulate conjectures, discover extremal instances, and prepare this draft. The mathematical statements, proofs and data have been separated from heuristic outputs; the graph certificates can be verified without access to the discovery tools. Formal Lean verification and independent specialist refereeing remain outstanding.
+
+\begin{thebibliography}{9}
+\bibitem{Bonamy2019} M.~Bonamy, N.~Bousquet, M.~Heinrich, T.~Ito, Y.~Kobayashi, A.~Mary, M.~M\"uhlenthaler, and K.~Wasa, \emph{The Perfect Matching Reconfiguration Problem}, MFCS 2019, LIPIcs 138, article 80, DOI: \href{https://doi.org/10.4230/LIPIcs.MFCS.2019.80}{10.4230/LIPIcs.MFCS.2019.80}.
+\bibitem{Mori2026} K.~Mori, R.~Motomura, H.~Ohsugi, and A.~Tsuchiya, \emph{Toric ideals of matching polytopes and edge colorings}, Mathematika 72 (2026), DOI: \href{https://doi.org/10.1112/mtk.70099}{10.1112/mtk.70099}.
+\end{thebibliography}
+
+\appendix
+\section{Explicit $32$-vertex certified witness}\label{sec:certificate}
+In the following table, the symbols in a label-set are matching indices $0,\ldots,5$. Every row gives the three neighbors of $u_i$, and each $v_j$ is in the other bipartition class. The same data are archived in machine-readable JSON with a complete independent verifier.
+\begin{center}\small
+\begin{tabular}{rlll}\toprule
+$i$ & $(j;S)$ & $(j;S)$ & $(j;S)$\\\midrule
+0 & $(0;\{2,3,4,5\})$ & $(4;\{1\})$ & $(10;\{0\})$\\
+1 & $(1;\{0,1,4,5\})$ & $(8;\{3\})$ & $(9;\{2\})$\\
+2 & $(2;\{0,1,2,3\})$ & $(5;\{5\})$ & $(6;\{4\})$\\
+3 & $(2;\{5\})$ & $(3;\{0,2,4\})$ & $(12;\{1,3\})$\\
+4 & $(0;\{1\})$ & $(4;\{0,2,5\})$ & $(14;\{3,4\})$\\
+5 & $(3;\{5\})$ & $(5;\{0,3,4\})$ & $(11;\{1,2\})$\\
+6 & $(2;\{4\})$ & $(6;\{0,3,5\})$ & $(15;\{1,2\})$\\
+7 & $(0;\{0\})$ & $(7;\{1,2,4\})$ & $(15;\{3,5\})$\\
+8 & $(1;\{3\})$ & $(8;\{1,2,5\})$ & $(15;\{0,4\})$\\
+9 & $(1;\{2\})$ & $(9;\{1,3,4\})$ & $(12;\{0,5\})$\\
+10 & $(7;\{0\})$ & $(10;\{1,3,5\})$ & $(12;\{2,4\})$\\
+11 & $(6;\{1,2\})$ & $(11;\{4,5\})$ & $(13;\{0,3\})$\\
+12 & $(3;\{1,3\})$ & $(9;\{0,5\})$ & $(10;\{2,4\})$\\
+13 & $(11;\{0,3\})$ & $(13;\{1,4\})$ & $(14;\{2,5\})$\\
+14 & $(4;\{3,4\})$ & $(13;\{2,5\})$ & $(14;\{0,1\})$\\
+15 & $(5;\{1,2\})$ & $(7;\{3,5\})$ & $(8;\{0,4\})$\\
+\bottomrule\end{tabular}
+\end{center}
+\noindent\textbf{Independent checks:} 32 vertices, 48 distinct edges, 3 edges at every vertex, exactly one incident edge of every matching colour, $Q=34$, $\kk=4$, and connectedness after all $1+48+\binom{48}{2}=1177$ deletions of zero, one, or two edges.
+\end{document}

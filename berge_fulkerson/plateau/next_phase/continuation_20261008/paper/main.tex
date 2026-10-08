@@ -1,0 +1,241 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.95in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs,longtable,hyperref,array}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\M}{\mathcal M}
+\title{Quadratic Drift, Defect Localization, and Extensive Plateaux\\ in Six-Matching Covers of Cubic Graphs\\\large Research draft --- independent novelty review pending}
+\author{Guillaume Sidoine\\Independent researcher\\\href{https://orcid.org/0009-0005-4525-1182}{ORCID: 0009-0005-4525-1182}}
+\date{8 October 2026}
+\begin{document}\maketitle
+\begin{abstract}
+For six perfect matchings of a cubic graph, write $Q=\sum_e(m(e)-2)^2$, where $m(e)$ is the number of matchings containing $e$. We establish an exact averaging identity for two-coordinate replacements on any $3$-edge-colourable cubic graph. In particular, any state with $Q>13|V|/9$ has a strict improving replacement of two perfect matchings; a related three-coordinate identity gives strict descent when $Q>3|V|/4$. For cubic bipartite graphs we prove a defect-component localization theorem, yielding strict two-coordinate normalization whenever all defective components are alternating cycles of length at most ten, \emph{without any global bound on $Q$}. In the opposite direction, a small finite matching certificate yields an infinite family of $3$-edge-connected cubic bipartite graphs with $16k+2$ vertices and an initial six-matching state with $Q=6k$ at which \emph{no} single-coordinate replacement strictly decreases $Q$. Nevertheless there is an explicit sequence of $2k$ single-coordinate changes whose defect history is $6k,6k,6k-6,6k-6,\ldots,6,6,0$. The family is built by tight three-edge splicing, with a quantitative boundary-stiffness property preventing a spurious improvement across the cut. We provide a standard-library finite certificate checker for the base gadget and independent checkers for the first four splicings. These results concern local reconfiguration, not a resolution of Berge--Fulkerson or Fan--Raspaud.
+\end{abstract}
+
+\section{Defect and replacement moves}
+Let $G=(V,E)$ be a finite loopless cubic graph, $n=|V|$, and $\M=(M_0,\ldots,M_5)$ be six perfect matchings, allowing repetitions. Define the multiplicity $m_e=|\{i:e\in M_i\}|$ and the quadratic defect
+\[
+Q(\M)=\sum_{e\in E}(m_e-2)^2.
+\]
+A \emph{$r$-coordinate replacement} changes at most $r$ of the six matchings, keeping the others fixed. A \emph{strict one-coordinate plateau state} means $Q>0$ but no one-coordinate replacement decreases $Q$; neutral changes are permitted. We call this a strict-descent trap, not a strict local minimum in the sense of forbidding ties.
+
+If $G$ is $3$-edge-colourable, fix a partition $E=F_1\sqcup F_2\sqcup F_3$ into perfect matchings. No bipartiteness is needed for the next result.
+
+\begin{theorem}[Exact coordinated drift]\label{thm:drift}
+For every six-matching state $\M$ on a $3$-edge-colourable cubic graph on $n$ vertices, let $\M_{ij}^{ab}$ be obtained by replacing $M_i,M_j$ by $F_a,F_b$ for $i<j$ and $a<b$. Then
+\begin{equation}\label{eq:pairdrift}
+\sum_{0\le i<j\le5}\ \sum_{1\le a<b\le3} Q(\M_{ij}^{ab})=18Q(\M)+39n.
+\end{equation}
+In particular, if $Q(\M)>13n/9$, at least one two-coordinate replacement strictly decreases $Q$. Likewise, replacing a uniformly chosen triple of original coordinates by $F_1,F_2,F_3$ in that order yields
+\begin{equation}\label{eq:tripledrift}
+\sum_{|I|=3}Q(\M_{I}^{123})=4Q(\M)+12n,
+\end{equation}
+so $Q(\M)>3n/4$ implies a strict three-coordinate improvement.
+\end{theorem}
+\begin{proof}
+Fix an edge covered $m$ times. For a uniformly chosen pair of six coordinate positions, let $X$ count the original selected occurrences of the edge. Then $\mathbb EX=m/3$ and $\mathbb EX^2=m/3+m(m-1)/15$. In a uniformly chosen pair of distinct factors from the fixed three-colouring, the replacement incidence $Y$ is $1$ with probability $2/3$ and $0$ otherwise. It is independent of $X$. Consequently
+\[
+\mathbb E(Y-X)=-(m-2)/3,\qquad
+\mathbb E(Y-X)^2=\frac{m(m-1)}{15}-\frac m9+\frac23.
+\]
+Expanding $((m-2)+(Y-X))^2$ and summing over all edges, use $\sum_e m_e=6\cdot n/2=3n=2|E|$ and $\sum_e m_e^2=Q+4|E|$. We obtain
+\[
+\mathbb E Q(\M_{ij}^{ab})=\frac25Q+\frac{13}{15}n.
+\]
+There are $\binom62\binom32=45$ equally weighted moves, proving \eqref{eq:pairdrift}. Strict decrease follows if the average is less than $Q$.
+For a uniformly chosen triple of positions, $\mathbb EX=m/2$ and $\mathbb EX^2=m/2+m(m-1)/5$. Replacing the triple by all three colour factors gives $Y=1$ identically. The same expansion yields $\mathbb E Q'=Q/5+3n/5$. There are $\binom63=20$ possible triples, proving \eqref{eq:tripledrift}.
+\end{proof}
+
+\begin{corollary}[Short normalization into a linear-defect region]
+When a three-edge-colouring is supplied, repeatedly choosing the best of the $45$ replacements in Theorem~\ref{thm:drift} reaches $Q\le13n/9+1$ after $O(\log(n+1))$ two-coordinate steps from an arbitrary starting state. At every step above $13n/9$, the defect strictly decreases.
+\end{corollary}
+\begin{proof}
+Set $B=13n/9$. The averaging identity yields $Q_{t+1}-B\le (2/5)(Q_t-B)$. Initially, $Q\le12n$: $m_e\in[0,6]$, $\sum_em_e=2|E|$, and $m_e^2\le6m_e$, giving $Q\le 12n$. Geometric contraction from $O(n)$ excess to at most $1$ requires $O(\log(n+1))$ steps. If the process ever falls below $B$, stop. Otherwise each step is strict until the desired region is reached.
+\end{proof}
+
+\section{Defect-component localization in bipartite graphs}
+The previous averaged bounds depend on the \emph{total} defect. A different
+mechanism can give normalization even when total defect grows without bound.
+For a sextuple on a cubic bipartite graph, let $D$ denote the subgraph whose
+edges have $m_e\ne2$. Its nonempty edge components $C$ are the
+\emph{defect components}. Each vertex meets either no edges of $D$ or at
+least two: since $\sum_{e\ni v}(m_e-2)=0$, a lone nonzero defect is impossible.
+For a coordinate set $I\subseteq\{0,\ldots,5\}$, write
+$s_I(e)=|\{i\in I:e\in M_i\}|$.
+
+\begin{theorem}[Independent component repair]\label{thm:component}
+Let $C$ be a defect component, and let $I$ be a set of $r\ge2$ original
+matching indices, with $r\le6$. There exist $r$ replacement perfect matchings
+whose insertion into the positions $I$ makes $m'_e=2$ for $e\in C$ and
+$m'_e=m_e$ for $e\notin C$ \emph{if and only if}
+\begin{equation}\label{eq:hit}
+s_I(e)\ge m_e-2\qquad(e\in C,\ m_e>2).
+\end{equation}
+The replacement can be found in polynomial time by bipartite matching.
+\end{theorem}
+\begin{proof}
+Necessity follows because at least $m_e-2$ original copies of a surplus edge
+must disappear. For sufficiency, freeze the other $6-r$ coordinates and define
+\[
+b_e=s_I(e)+(2-m_e)\mathbf1_{\{e\in C\}}.
+\]
+On surplus edges condition \eqref{eq:hit} ensures $b_e\ge0$; on deficit
+edges, $s_I(e)\le m_e\le1$, so $0\le b_e\le2\le r$. All other edges have
+$0\le b_e=s_I(e)\le r$. At every vertex, either all nonzero defects are in
+$C$ or none are, and $\sum_{e\ni v}(2-m_e)=0$. Hence
+$\sum_{e\ni v}b_e=r$ for every vertex. Thus the edge multiplicities $b_e$
+form an $r$-regular bipartite multigraph on the same vertex set.
+K\H{o}nig's edge-colouring theorem decomposes it into $r$ perfect matchings.
+Replacing the selected $r$ coordinates by these factors gives exactly the
+displayed multiplicities. A sequence of polynomial-time bipartite matchings
+constructs the decomposition.
+\end{proof}
+
+\begin{corollary}[Low-width normalization at arbitrarily large total defect]
+\label{cor:short-cycles}
+Suppose every edge of a six-matching state on a cubic bipartite graph has
+multiplicity in $\{1,2,3\}$. If every component of $D$ is an alternating
+cycle of length at most $10$, the state admits a strictly decreasing sequence
+of \emph{two-coordinate} replacements ending at $Q=0$, with one move for each
+initial defect cycle. If instead every component has length at most $38$,
+the same conclusion holds with \emph{three-coordinate} replacements.
+There is no upper bound on the number of defect cycles or the initial $Q$.
+\end{corollary}
+\begin{proof}
+At a defective vertex the three incident multiplicities are $(1,2,3)$;
+therefore $D$ is a disjoint union of even cycles with edges alternating
+between multiplicities $1$ and $3$. Each surplus edge has a three-element
+membership set in $[6]$. A cycle of length $2t$ has $t$ such sets.
+
+When $t\le5$, some pair $I\subseteq[6]$ intersects all of them. Otherwise,
+their complementary three-element sets would cover all $15$ pairs of $[6]$.
+Five triangles covering the edges of $K_6$ would constitute a triangle
+decomposition of $K_6$, impossible because each vertex has odd degree.
+When $t\le19$, some triple $I$ intersects all membership sets: a triple
+disjoint from a three-element set is its unique complement, and there are
+$20$ distinct triples of $[6]$.
+
+Apply Theorem~\ref{thm:component} to any defective cycle with the guaranteed
+choice of two or three coordinates. Its defect edges become exact, while
+the multiplicities of all other edges stay unchanged. Consequently the
+remaining defect components have the same lengths and still have
+multiplicities in $\{1,2,3\}$. Repeat until none remain. Every move strictly
+decreases $Q$ and the number of moves equals the number of initial cycles.
+\end{proof}
+
+\begin{remark}[Direct versus iterative width]
+The previously certified cubic bipartite $32$-vertex state with $Q=34$ requires
+four simultaneous coordinate changes to reach $Q=0$ in a single step.
+Nevertheless its defect subgraph has three components with respective
+defects $12,10,12$, each locally reparable by two coordinates. An explicit
+certificate gives component-by-component defect history
+$34\to24\to12\to0$, using two-coordinate changes at each step.
+The standalone verifier included in this research branch checks each step
+directly against the original graph and sextuple.
+\end{remark}
+
+\section{A boundary-stiff defect-six gadget}
+The converse question---whether strict descent is always available with one coordinate---has a very different answer. We use an explicit $18$-vertex $3$-edge-connected cubic bipartite graph $H$ with a sextuple $S=(S_0,\ldots,S_5)$ and two chosen nonadjacent vertices $s=0$ and $t=16$. The edges of $H$ and their initial six-coordinate memberships appear in Appendix~\ref{sec:base}. The two ports are at distance three, and all three incident edges at either port have initial multiplicity exactly two.
+
+\begin{lemma}[Finite base-gadget certificate]\label{lem:stiff}
+There are six-matching configurations $S,T,U$ on $H$ satisfying the following assertions.
+\begin{enumerate}
+\item $Q(S)=Q(T)=6$ and $Q(U)=0$; $S\to T\to U$ changes exactly one matching at each arrow.
+\item At both ports $s,t$, each coordinate selects the same incident edge in $S,T,U$.
+\item For either $A=S$ or $A=U$, every perfect matching $N$ and index $i$ satisfy
+\begin{equation}\label{eq:stiff}
+Q(A_{i\leftarrow N})-Q(A)\ \ge\ 2\,\mathbf1\{N\text{ uses a different edge at }s\text{ than }A_i\}.
+\end{equation}
+\end{enumerate}
+In particular $S$ is a positive-defect one-coordinate strict-descent trap.
+\end{lemma}
+\begin{proof}
+All statements have finite certificates. The labelled edge table in Appendix~\ref{sec:base} defines $H$ and $S$; Appendix~\ref{sec:replacement} specifies the two changed matchings. Standard recursive enumeration at the smallest unmatched vertex produces exactly $47$ perfect matchings. Direct evaluation of the six times $47$ possibilities gives inequality \eqref{eq:stiff} for $S$; a dependency-free checker performs this exhaustive verification and checks the displayed edge sets and port agreement. For $U$ the inequality follows immediately from $Q(U)=0$: if the one matching changes its incident port edge, the old multiplicity-two edge becomes one and the new one becomes three, contributing at least two to $Q$. Nonnegativity handles an unchanged port. A separate edge-deletion check (equivalently a small min-cut computation) confirms that $H$ is $3$-edge-connected.
+\end{proof}
+
+\section{Stiff splicing and extensive strict-descent traps}
+Given two cubic graphs with selected degree-three vertices $v,w$, a \emph{three-edge splice} deletes $v$ and $w$ and pairs the three exposed neighbours by three new edges. For two bipartite graphs, orient their bipartitions oppositely to preserve bipartiteness. We use the following elementary observations, related to classical tight-cut splicing in matching-covered graph theory \cite{LovaszPlummer,LuKothari2020}.
+
+\begin{lemma}[Tight cubic splicing]\label{lem:cut}
+If two simple $3$-edge-connected cubic bipartite graphs are spliced as above, their splice is again simple, cubic, bipartite, and $3$-edge-connected. Every perfect matching meets the three new edges in exactly one edge. It therefore restricts to perfect matchings of both original graphs by reinstating the two deleted vertices and their selected incident edges.
+\end{lemma}
+\begin{proof}
+Simplicity and cubicity are immediate, and reversing one bipartition makes the new edges bipartite. To verify $3$-edge-connectivity, use edge-Menger. For two vertices lying in opposite shores, take three edge-disjoint paths from each vertex to its deleted port in its original graph; the three incident port edges are all used and can be spliced into three edge-disjoint paths. For two vertices in the same shore, start with three edge-disjoint paths in that original graph. At most one traverses the deleted cubic port. Replace its passage through the port by a path joining the corresponding exposed neighbours in the opposite shore; that shore is connected after deletion of its port, because otherwise the original cubic graph would have an edge cut of size less than three. The paths remain edge-disjoint.
+
+All three splice-edge endpoints on a given shore lie in the same bipartition class. Counting degrees on that shore shows an excess of one vertex in that class over the other class. A perfect matching must therefore use exactly one splice edge. Reinstating the deleted port and its unique incident edge reconstructs a perfect matching of either original graph.
+\end{proof}
+
+\begin{theorem}[Linearly large one-coordinate strict-descent plateaux]\label{thm:linear}
+For every integer $k\ge1$, there is a \emph{simple, connected, $3$-edge-connected cubic bipartite} graph $G_k$ on
+\[
+|V(G_k)|=16k+2
+\]
+and a sextuple of perfect matchings $\M_k$ such that
+\[
+Q(\M_k)=6k,\qquad \min_{i,N}Q((\M_k)_{i\leftarrow N})=6k.
+\]
+Moreover, $\M_k$ admits a sequence of $2k$ one-coordinate replacements with defect history
+\[
+6k,6k,6k-6,6k-6,\ldots,6,6,0.
+\]
+Every even-indexed state in this sequence has no strict one-coordinate improvement. In particular, the defect at a one-coordinate strict-descent trap can grow linearly with graph order, with $Q/|V|\to3/8$.
+\end{theorem}
+\begin{proof}
+Take $k$ disjoint copies of $H$ from Lemma~\ref{lem:stiff}. In each copy select the two nonadjacent ports $s=0$ and $t=16$. Splice consecutive copies by joining port $t$ of the preceding copy to port $s$ of the next. Because each port has three incident edges of multiplicity two, their three two-element matching-index sets partition $[6]$. Permute the six coordinate labels of each new copy so that the boundary partitions agree, and pair the three exposed neighbours accordingly. The resulting six perfect matchings are valid because every matching has exactly one selected edge at each port. New splice edges have multiplicity two; all other multiplicities are inherited. Lemma~\ref{lem:cut} gives the claimed graph properties, and the order is $18k-2(k-1)=16k+2$. Thus $Q=6k$.
+
+It remains to justify that no global one-coordinate replacement can improve this defect. The tightness conclusion of Lemma~\ref{lem:cut} holds at each of the $k-1$ splice cuts. Hence every replacement perfect matching $N$ restricts to a perfect matching $N_j$ of each original copy (reinstating its one or two deleted ports), while the other five matchings restrict to the original local configurations $A_j\in\{S,U\}$.
+
+For the $j$th cut, put $d_j=1$ if $N$ changes the selected splice edge relative to the old matching coordinate, and $d_j=0$ otherwise. Since the splice had multiplicities $(2,2,2)$, a changed selection contributes exactly two to the new quadratic defect on its three edges. Write $\Delta_j=Q((A_j)_{i\leftarrow N_j})-Q(A_j)$. Each original copy counts its own boundary edge penalties, whereas the spliced graph has only one copy of each cut; consequently
+\begin{equation}\label{eq:glue}
+Q(\M_{i\leftarrow N})-Q(\M)=\sum_{j=1}^k\Delta_j-2\sum_{j=1}^{k-1}d_j.
+\end{equation}
+At every copy $j>1$, the \emph{left} port is the stiff port $s$, so Lemma~\ref{lem:stiff}, invariant under permuting the six labels, yields $\Delta_j\ge2d_{j-1}$. The first copy has $\Delta_1\ge0$. Thus \eqref{eq:glue} is nonnegative. This holds whenever each copy is either in its initial $S$-state or in the repaired $U$-state.
+
+The two moves $S\to T\to U$ leave every coordinate's boundary choice fixed at both ports by Lemma~\ref{lem:stiff}. They may therefore be performed on one copy at a time without changing any splice edges, keeping all other copies fixed. Each first move is neutral, and each second lowers the total defect by six, giving the displayed trace. After each pair of moves, every copy is in $S$ or $U$, so the preceding proof of no strict one-coordinate improvement applies again.
+\end{proof}
+
+\section{Consequences, verification, and limitations}
+Theorem~\ref{thm:drift} guarantees large-defect pairwise descent on all $3$-edge-colourable cubic graphs; Theorem~\ref{thm:linear} shows that single-coordinate non-descent persists at defect $\Theta(n)$ even within $3$-edge-connected cubic bipartite graphs. The claims therefore distinguish the power of \emph{coordinate width} from the availability of neutral moves. None of them resolves the still-unsettled unrestricted two-coordinate strict-descent question.
+
+The base enumerator verifies all $47$ perfect matchings and the $282$ stiffness inequalities. The generators and independently readable certificates for $k=1,2,3,4$ check cubicity, bipartiteness, perfect matching validity, the full defect trace, and connectivity after deletion of every set of at most two edges. An independent weighted bipartite-matching oracle also verifies local one-coordinate optimality on all four displayed examples. Exact programs and data are included in the accompanying research branch; no black-box optimizer is required for the base finite lemma. Independently, the three-edge-colouring drift identities were tested on all $462$ states of $K_{3,3}$ and additional states from every connected simple cubic bipartite graph through $12$ vertices.
+
+The tight-splicing concept is established in matching-covered graph theory, and the quadratic-matching potential is related to convex polytopal congestion models \cite{LuKothari2020,Harks2020,Murota2006}. This research note makes no claim that either general technique is new. \emph{Importantly, an earlier version of this same project already lifted the original $18$-vertex local-optimality certificate through connected graph coverings; those lifts likewise yield unbounded, linearly growing defect.} Thus unbounded trap size is \emph{not} a new qualitative consequence of the present splicing. The additional features are the explicit tight-cut composition/stiffness proof and the defect-density limit $3/8$ (instead of $1/3$ for simple cover lifts), as well as the independent drift and component-localization results. External specialist review and broader literature clearance are essential before submission. This document is not Lean-verified and does not claim to solve Berge--Fulkerson, Fan--Raspaud, or any major open conjecture.
+
+\begin{thebibliography}{9}
+\bibitem{LovaszPlummer} L. Lov\'asz and M. D. Plummer, \emph{Matching Theory}, North-Holland, 1986.
+\bibitem{LuKothari2020} F. Lu, N. Kothari, X. Feng and L. Zhang, \emph{Equivalence classes in matching covered graphs}, Discrete Mathematics \textbf{343} (2020), 111945. \url{https://doi.org/10.1016/j.disc.2020.111945}.
+\bibitem{Harks2020} P. Kleer and G. Sch\"afer, \emph{Computation and efficiency of potential function minimizers of combinatorial congestion games}, Mathematical Programming \textbf{190} (2021), 523--560. \url{https://doi.org/10.1007/s10107-020-01546-6}.
+\bibitem{Murota2006} K. Murota, \emph{M-convex functions on jump systems: A general framework for minsquare graph factor problem}, SIAM Journal on Discrete Mathematics \textbf{20} (2006), 213--226. \url{https://doi.org/10.1137/040618710}.
+\end{thebibliography}
+
+\appendix
+\section{The labelled $18$-vertex base gadget}\label{sec:base}
+The bipartition is $L=\{9,\ldots,17\}$ and $R=\{0,\ldots,8\}$. In the table an entry $(v;S)$ denotes an edge $\{u,v\}$ with membership set $S\subseteq\{0,\ldots,5\}$ in the six initial matchings. At every vertex the three incident label sets partition $[6]$. The stiff port is $s=0$ and the loose port is $t=16$, at graph distance three.
+\begin{center}\small
+\begin{tabular}{rlll}\toprule
+$u$ & $(v;S)$ & $(v;S)$ & $(v;S)$\\\midrule
+9 & $(0;15)$ & $(4;023)$ & $(8;4)$\\
+10 & $(5;3)$ & $(6;04)$ & $(8;125)$\\
+11 & $(0;03)$ & $(1;12)$ & $(3;45)$\\
+12 & $(4;1)$ & $(5;045)$ & $(7;23)$\\
+13 & $(1;04)$ & $(2;35)$ & $(5;12)$\\
+14 & $(0;24)$ & $(1;35)$ & $(7;01)$\\
+15 & $(2;02)$ & $(4;45)$ & $(6;13)$\\
+16 & $(3;12)$ & $(7;45)$ & $(8;03)$\\
+17 & $(2;14)$ & $(3;03)$ & $(6;25)$\\\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Two explicit perfect-matching replacements}\label{sec:replacement}
+The initial to neutral move replaces coordinate $2$ by the nine edges
+\[
+\{(0,14),(1,11),(2,13),(3,16),(4,15),(5,10),(6,17),(7,12),(8,9)\}.
+\]
+The neutral to target move replaces coordinate $5$ by
+\[
+\{(0,9),(1,14),(2,15),(3,11),(4,12),(5,13),(6,17),(7,16),(8,10)\}.
+\]
+All other coordinates remain unchanged. The standalone verifier checks these edges independently of the search software. The full initial, neutral, and terminal bitmasks are present in the reproducibility archive.
+\end{document}

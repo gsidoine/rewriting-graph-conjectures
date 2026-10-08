@@ -1,0 +1,299 @@
+[
+  {
+    "h": 3,
+    "perfect_matchings": 6,
+    "six_matching_multisets": 462,
+    "zero_defect": 3,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        16,
+        90
+      ],
+      [
+        10,
+        54
+      ],
+      [
+        24,
+        48
+      ],
+      [
+        28,
+        36
+      ],
+      [
+        22,
+        36
+      ]
+    ],
+    "class_index": 0,
+    "seconds": 0.01
+  },
+  {
+    "h": 4,
+    "perfect_matchings": 9,
+    "six_matching_multisets": 3003,
+    "zero_defect": 11,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        16,
+        336
+      ],
+      [
+        24,
+        281
+      ],
+      [
+        18,
+        192
+      ],
+      [
+        14,
+        192
+      ],
+      [
+        30,
+        168
+      ]
+    ],
+    "class_index": 0,
+    "seconds": 0.06
+  },
+  {
+    "h": 5,
+    "perfect_matchings": 13,
+    "six_matching_multisets": 18564,
+    "zero_defect": 27,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        20,
+        1340
+      ],
+      [
+        24,
+        1250
+      ],
+      [
+        18,
+        1190
+      ],
+      [
+        16,
+        1135
+      ],
+      [
+        32,
+        1065
+      ]
+    ],
+    "class_index": 0,
+    "seconds": 0.32
+  },
+  {
+    "h": 5,
+    "perfect_matchings": 12,
+    "six_matching_multisets": 12376,
+    "zero_defect": 16,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        20,
+        1128
+      ],
+      [
+        32,
+        1092
+      ],
+      [
+        24,
+        1080
+      ],
+      [
+        14,
+        780
+      ],
+      [
+        18,
+        660
+      ]
+    ],
+    "class_index": 1,
+    "seconds": 0.22
+  },
+  {
+    "h": 6,
+    "perfect_matchings": 17,
+    "six_matching_multisets": 74613,
+    "zero_defect": 56,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        22,
+        5496
+      ],
+      [
+        26,
+        5040
+      ],
+      [
+        18,
+        4524
+      ],
+      [
+        30,
+        4416
+      ],
+      [
+        34,
+        4032
+      ]
+    ],
+    "class_index": 0,
+    "seconds": 1.28
+  },
+  {
+    "h": 6,
+    "perfect_matchings": 20,
+    "six_matching_multisets": 177100,
+    "zero_defect": 124,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        20,
+        13986
+      ],
+      [
+        28,
+        12924
+      ],
+      [
+        32,
+        10770
+      ],
+      [
+        22,
+        9786
+      ],
+      [
+        24,
+        9338
+      ]
+    ],
+    "class_index": 1,
+    "seconds": 3.13
+  },
+  {
+    "h": 6,
+    "perfect_matchings": 18,
+    "six_matching_multisets": 100947,
+    "zero_defect": 70,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        20,
+        6828
+      ],
+      [
+        26,
+        6420
+      ],
+      [
+        22,
+        6372
+      ],
+      [
+        28,
+        6162
+      ],
+      [
+        32,
+        5424
+      ]
+    ],
+    "class_index": 2,
+    "seconds": 1.98
+  },
+  {
+    "h": 6,
+    "perfect_matchings": 18,
+    "six_matching_multisets": 100947,
+    "zero_defect": 64,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        26,
+        6816
+      ],
+      [
+        22,
+        6414
+      ],
+      [
+        18,
+        6076
+      ],
+      [
+        20,
+        5599
+      ],
+      [
+        34,
+        5318
+      ]
+    ],
+    "class_index": 3,
+    "seconds": 1.92
+  },
+  {
+    "h": 6,
+    "perfect_matchings": 20,
+    "six_matching_multisets": 177100,
+    "zero_defect": 84,
+    "positive_q_pair_traps": 0,
+    "minimum_positive_gain": 4,
+    "minimum_trap": null,
+    "top_q_hist": [
+      [
+        28,
+        14112
+      ],
+      [
+        32,
+        13020
+      ],
+      [
+        20,
+        12680
+      ],
+      [
+        26,
+        11680
+      ],
+      [
+        22,
+        11648
+      ]
+    ],
+    "class_index": 4,
+    "seconds": 3.27
+  }
+]

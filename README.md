@@ -8,65 +8,32 @@ This project asks a recurring question:
 
 The programme was inspired by Emre Yolcu, Scott Aaronson, and Marijn J. H. Heule's [rewriting-Collatz repository](https://github.com/emreyolcu/rewriting-collatz) and their paper *An Automated Approach to the Collatz Conjecture*. Their work translates arithmetic dynamics into formal string-rewriting termination problems and searches for automated proofs. Here the connection is methodological rather than literal: the graph systems have different state spaces and are not term-rewriting systems, but they follow the same cycle of encoding, defect design, automated search, termination analysis, and obstruction extraction.
 
-## The research loop
+## Two-track research program
+
+**[Track A — General coordination theory](theory/README.md)** develops repair width, obstruction hypergraphs, strict and neutral reconfiguration, separator composition, and complexity results. Code and certificates live in [`certificate_coordination/`](certificate_coordination/) and in the six-matching [`plateau`](berge_fulkerson/plateau/) work.
+
+**[Track B — Applications to graph problems](applications/README.md)** develops problem-specific certificate dynamics for Berge–Fulkerson, 3-Decomposition, Barnette, edge-connectivity partitions and related questions. Applications both test the theory and expose its limitations.
+
+### From experiment to theorem
 
 ```text
-existence conjecture
-        |
-        v
-certificate state + exact defect
-        |
-        v
-feasible local rewrites
-        |
-        +--> strict moves lower the defect
-        +--> neutral moves explore a plateau
-        |
-        v
-reverse reachability / terminal-SCC search
-        |
-        +--> normalization theorem or algorithm
-        +--> counterexample to the chosen rule system
-        +--> structural obstruction or complexity theorem
-        +--> redesigned state space and new rules
+open graph question or general certificate system
+   -> exact state/defect/obstruction certificate
+   -> strict + neutral rewrites; separator interfaces
+   -> independent finite counterexample or structural theorem
+   -> adversarial proof + literature audit + reproducible files
 ```
 
-The repository is therefore not a claim that the major conjectures are solved. It is a reusable laboratory for discovering what a successful normalization proof would need to do.
+## Start here
 
-## Three case studies
+- [General theory](theory/README.md) and [applications](applications/README.md)
+- [October claim register](docs/claim_register_oct2026.md) — provisional theorem drafts vs computation vs open gaps
+- [July mathematical status](docs/mathematical_status.md) — historical audited baseline
+- [Architecture and versioning](docs/repository_architecture.md)
+- [Reproducibility instructions](docs/reproducibility.md)
+- [Research directions](docs/research_directions.md)
 
-### 1. Berge-Fulkerson
-
-A state is a sextuple of perfect matchings. Its defect is the quadratic discrepancy
-
-```text
-Q = sum_e (multiplicity(e) - 2)^2.
-```
-
-The main proved result gives a polynomially computable strict coordinate descent whenever `Q > 2n`, confining any one-coordinate obstruction to a low-defect region. Exact state-space checks are included for the Petersen graph and the Flower snark `J5`.
-
-### 2. 3-Decomposition
-
-A state is a spanning tree. The defect `b(T)` counts long path components in the cotree. The target `b(T)=0` is exactly a 3-decomposition. The programme studies safe basis exchanges, neutral plateaux, and the **Monotone Exchange Conjecture**. It also records an explicit fixed-cycle obstruction and a constrained NP-completeness result showing why the cycle component must be allowed to change.
-
-### 3. Barnette
-
-A state is a binary colouring of the dual Eulerian triangulation. An exact topological potential measures distance from a two-tree partition. Connected face-patch flips define the rewrite dynamics. Small-radius failure produces explicit traps; allowing three-face patches resolves the verified examples and motivates a stronger normalization conjecture.
-
-## What is in this repository
-
-- reusable Python and C++ implementations of the state spaces, defects, and rewrite graphs;
-- exact instances, logs, and machine-checkable certificates;
-- independent reproduction scripts and tests;
-- a claim-by-claim status ledger separating proofs, finite computations, conjectures, failures, and open gaps;
-- research notes explaining how the three programmes fit the common method.
-
-Start with:
-
-- [`docs/research_program.md`](docs/research_program.md) for the conceptual programme;
-- [`docs/mathematical_status.md`](docs/mathematical_status.md) for the authoritative claim ledger;
-- [`docs/reproducibility.md`](docs/reproducibility.md) for exact commands;
-- [`docs/relation_to_rewriting_collatz.md`](docs/relation_to_rewriting_collatz.md) for the intellectual relationship to the original inspiration.
+> **Research status (8 October 2026).** These materials include unpublished theorem drafts, independently checkable finite data, and conjectural extrapolations. We do **not** claim to have solved Berge–Fulkerson, Fan–Raspaud, Barnette or edge-connectivity partitioning; no October claim is Lean-certified or externally peer-reviewed. External preprints concerning 3-Decomposition require separate assessment.
 
 ## Quick start
 

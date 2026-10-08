@@ -1,0 +1,42 @@
+[
+  {
+    "graph": "K8_minus_1factor",
+    "n": 8,
+    "edges": 24,
+    "samples": 699,
+    "third_tree_samples": 580,
+    "sat": 580,
+    "unsat": 0,
+    "seconds": 0.67
+  },
+  {
+    "graph": "random6regular_9",
+    "n": 9,
+    "edges": 27,
+    "samples": 279,
+    "third_tree_samples": 213,
+    "sat": 213,
+    "unsat": 0,
+    "seconds": 0.26
+  },
+  {
+    "graph": "random6regular_10",
+    "n": 10,
+    "edges": 30,
+    "samples": 280,
+    "third_tree_samples": 199,
+    "sat": 199,
+    "unsat": 0,
+    "seconds": 0.25
+  },
+  {
+    "graph": "random6regular_12",
+    "n": 12,
+    "edges": 36,
+    "samples": 280,
+    "third_tree_samples": 172,
+    "sat": 172,
+    "unsat": 0,
+    "seconds": 0.23
+  }
+]

@@ -1,0 +1,584 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,graphicx,array,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\E}{\mathrm E}
+\newcommand{\N}{\mathbb N}
+\title{Sharp Coordination Thresholds in Six-Matching Covers\\
+\large Exact direct-repair widths, realizable extremal hypergraphs, and plateau obstructions}
+\author{Guillaume Sidoine\\Independent researcher\\
+\href{https://orcid.org/0009-0005-4525-1182}{ORCID 0009-0005-4525-1182}}
+\date{Expanded research draft, 8 October 2026 --- not submitted or externally refereed}
+\begin{document}
+\maketitle
+\begin{abstract}
+Consider six perfect matchings of a cubic graph and let $Q$ be the sum
+of squared deviations of edge multiplicities from two. We distinguish
+strict defect descent from exact one-step correction and characterize
+the latter on every cubic bipartite graph: the minimum number of
+matching coordinates requiring replacement is a multicover transversal
+number. When all multiplicities belong to $\{1,2,3\}$, the transversal
+hypergraph is $3$-uniform on six labels. In this regime, the minimum
+positive defects at which exact correction can require at least two,
+three, and four coordinates are sharply $6$, $12$, and $40$.
+The $12$ and $40$ thresholds are realized by explicit $18$- and
+$40$-vertex $3$-edge-connected cubic bipartite graphs with independently
+verifiable certificates. The $Q=40$ example can nevertheless strictly
+improve with only two coordinates, underscoring the distinction between
+coordination width and descent. We also recover a sharp one-coordinate
+local plateau at $Q=6$ and prove low-defect coordinated-descent bounds,
+as well as lifting the former obstruction to unbounded order and girth.
+None of the nonbipartite covering conjectures is resolved; novelty
+claims remain subject to specialist literature review.
+\end{abstract}
+
+\section{Set-up and elementary barriers}
+Let $G$ be a finite simple cubic graph with $n$ vertices, and let
+$\mathcal M=(M_1,\ldots,M_6)$ be an ordered six-tuple of perfect matchings.
+Put $m(e)=|\{i:e\in M_i\}|$ and
+\[
+ Q_G(\mathcal M)=\sum_{e\in E(G)}(m(e)-2)^2.
+\]
+Since each perfect matching covers $n/2$ edges and $G$ has $3n/2$
+edges, $\sum_e(m(e)-2)=0$. At each vertex, the three incident
+multiplicities sum to six. $Q=0$ means that every edge occurs exactly
+twice. A \emph{one-coordinate local minimum} means that replacing any
+one $M_i$ by any perfect matching cannot strictly reduce $Q$.
+A \emph{$k$-coordinate correction} changes at most $k$ entries of the
+ordered tuple, with no restriction on the distance between the old
+and new perfect matchings.
+
+\begin{lemma}\label{lem:lower}
+For every simple cubic graph, if $0<Q\le4$, some one-coordinate
+replacement strictly decreases $Q$. Hence every positive one-coordinate
+local minimum has $Q\ge6$.
+\end{lemma}
+\begin{proof}
+Write $d(e)=m(e)-2$. At each vertex the incident values of $d$ sum
+to zero. Modulo two, $Q\equiv\sum_e d(e)=0$, so $Q$ is even.
+If a nonzero edge has $|d(e)|\ge2$, its two endpoints each force
+at least two additional units of squared defect among their other
+incident edges. Simplicity ensures these are four different edges;
+thus $Q\ge 4+4=8$. Consequently for $0<Q\le4$ every nonzero
+defect is $\pm1$, and at each affected vertex one $+1$ and one
+$-1$ edge meet. The defect edges therefore form disjoint cycles
+with alternating signs. Each cycle has length at least four;
+thus $Q=4$ and its support is an alternating 4-cycle.
+The two $+1$ edges each occur in three matchings. Let their
+sets of matching indices be $A$ and $B$, both of size three.
+A $-1$ edge joining endpoints of these two positive edges
+occurs in a matching whose index lies outside $A\cup B$;
+therefore $A\cap B\ne\varnothing$. Choose $i\in A\cap B$.
+On the 4-cycle, $M_i$ contains both positive edges and neither
+negative edge. Flipping this alternating cycle in $M_i$ produces
+a perfect matching and reduces $Q$ to zero.
+\end{proof}
+
+\section{An exact two-coordinate frontier}
+\begin{proposition}[Frozen-factor completion]\label{prop:frozen}
+Let $G$ be $d$-regular and bipartite, and let $t,d\ge1$ be integers.
+Take $dt$ perfect matchings and fix a subcollection $F$ of them.
+The fixed matchings can be completed to a $dt$-tuple in which every
+edge occurs exactly $t$ times if and only if no edge occurs more
+than $t$ times in $F$.
+\end{proposition}
+\begin{proof}
+Necessity is immediate. For sufficiency put
+$r(e)=t-\sum_{M\in F}\mathbf1_M(e)\ge0$.
+At each vertex, $\sum_{e\ni v}r(e)=dt-|F|$, so the multigraph
+formed by $r(e)$ parallel copies of edge $e$ is regular and bipartite.
+K\H onig's edge-colouring theorem decomposes it into $dt-|F|$
+perfect matchings, as required.
+\end{proof}
+
+\begin{lemma}[Small transversals for six matching labels]\label{lem:hit}
+Let $S_1,\ldots,S_r$ be subsets of a six-element set, each of
+size at least three. If $r\le5$, a two-element set meets every
+$S_j$. If $r\le19$, a three-element set meets every $S_j$.
+\end{lemma}
+\begin{proof}
+Every $S_j$ excludes at most three two-element subsets, since
+its complement has size at most three. There are $15$ pairs in
+total. If $r\le4$, at least one pair is not excluded. If $r=5$
+and all pairs were excluded, equality in the counting bound
+would force the complements of the five $S_j$ to be five
+three-element sets partitioning the edge set of $K_6$ into
+triangles. This is impossible because each vertex of $K_6$
+has odd degree five, whereas any edge-disjoint union of
+triangles has even degree at each vertex. Thus a pair exists
+also when $r=5$. Likewise, each $S_j$ excludes at most
+one three-element subset. Since there are $20$ triples, if
+$r\le19$ at least one triple meets them all.
+\end{proof}
+
+\begin{theorem}[Bounded low-defect coordinated descent]\label{thm:range}
+Let $G$ be a cubic bipartite graph and $\mathcal M$ a
+six-matching state with $Q>0$. If $Q\le10$, a simultaneous
+replacement of at most two matchings strictly decreases $Q$.
+If $Q\le38$, at most three matchings suffice. In either case
+such a replacement can be found by polynomial-time bipartite
+matching computations (with at most six matching labels).
+\end{theorem}
+\begin{proof}
+Put $d(e)=m(e)-2$. Because $\sum_e d(e)=0$,
+\[
+ Q=\sum_ed(e)^2\ge\sum_e|d(e)|
+   =2\sum_{e:d(e)>0}d(e)
+   \ge2|\{e:d(e)>0\}|.
+\]
+Orient surplus edges $d(e)>0$ from the left to the right
+bipartition and deficit edges $d(e)<0$ from right to left.
+At every vertex incident with a defective edge, the equation
+$\sum_{e\ni v}d(e)=0$ guarantees at least one incoming
+and one outgoing directed edge. Thus the defect digraph
+contains a directed cycle $C$ with alternating surplus and
+deficit edges. There are at most $Q/2$ surplus edges in the
+entire graph. Each is present in at least three of the six
+matching coordinates. When $Q\le10$ (respectively $Q\le38$),
+Lemma~\ref{lem:hit} provides two (respectively three) matching
+indices whose union contains every surplus edge on $C$.
+Let $k$ be the number selected and let $x(e)$ be their current
+aggregate multiplicity. Change $x(e)$ to $x(e)-1$ on surplus
+edges of $C$ and to $x(e)+1$ on deficit edges of $C$, leaving
+all other edges unchanged. This is nonnegative by the hitting
+condition and preserves degree $k$ at every vertex, since
+$C$ alternates. The modified integer multiplicity vector is
+therefore a $k$-regular bipartite multigraph and decomposes
+into $k$ perfect matchings by K\H onig. Replacing only the
+selected matchings realizes this modification. For every
+surplus or deficit edge on $C$, the absolute value of the
+original defect drops by one; thus $Q$ strictly decreases.
+Computationally, the hitting set can be found by testing the
+fifteen pairs or twenty triples of six labels, and the factor
+decomposition uses $k$ bipartite matching computations.
+\end{proof}
+
+\begin{theorem}[Sharp $Q=6$ coordination threshold]\label{thm:two}
+For every simple cubic bipartite graph $G$, every six-matching
+state with $Q=6$ admits a $2$-coordinate correction reaching $Q=0$.
+There exists a 3-edge-connected cubic bipartite graph and a $Q=6$
+state for which no $1$-coordinate correction reduces $Q$.
+\end{theorem}
+\begin{proof}
+The argument in Lemma~\ref{lem:lower} shows that $Q=6$ cannot
+contain an edge with $|d(e)|\ge2$. Hence the support of $d$ consists
+of one alternating 6-cycle. Its three positive edges each occur
+in exactly three of the six matchings. By Lemma~\ref{lem:hit}, choose
+two matching indices that together meet all three positive edges.
+Freeze the other four matchings. Every edge outside the cycle has
+total multiplicity two, every negative edge has total multiplicity
+one, and on each positive edge at least one copy lies in the two
+unfrozen matchings. Thus no edge is used more than twice among
+the frozen four matchings. Proposition~\ref{prop:frozen} with
+$(d,t)=(3,2)$ completes the frozen four to an exact twice-cover
+by changing only the selected pair. The second assertion is proved
+by the explicitly certified example below.
+\end{proof}
+
+\begin{proposition}[Nonbipartite $Q=6$ pair criterion]
+For a six-matching state on any simple cubic graph with $Q=6$,
+a direct two-coordinate correction to $Q=0$ exists if and only
+if there are two matching indices that together meet all three
+surplus edges, and after freezing the other four matchings the
+residual multiplicity vector decomposes into even cycles
+(counting doubled edges as cycles of length two).
+\end{proposition}
+\begin{proof}
+For a chosen pair $I$, let $f(e)$ count its uses among the
+other four (frozen) matchings, and put $r(e)=2-f(e)$.
+The vector $r$ is nonnegative exactly when $I$ meets every
+surplus edge; this uses the alternating-six-cycle structure
+at $Q=6$. Independently, $\sum_{e\ni v}r(e)=2$ at every vertex.
+Thus the residual is a spanning degree-two multigraph.
+It is the union of two perfect matchings if and only if all
+its cycle components have even length. This equivalence does
+not require bipartiteness of the ambient cubic graph.
+\end{proof}
+
+\begin{proposition}[Exact two-coordinate block optimization]
+For any fixed pair of indices in a sextuple of perfect matchings
+of a bipartite cubic graph, the best simultaneous replacement
+of those two matchings minimizing $Q$ can be found in
+polynomial time by an integer minimum-cost flow.
+\end{proposition}
+\begin{proof}
+Freeze four matchings and denote their edge multiplicities by
+$f(e)$. Choose a new residual multiplicity $x(e)\in\{0,1,2\}$
+such that $\sum_{e\ni v}x(e)=2$ at every vertex, minimizing
+$\sum_e(f(e)+x(e)-2)^2$. For each edge, the incremental costs
+of the first and second residual copies are
+$2(f(e)-2)+1$ and $2(f(e)-2)+3$, respectively. Encode these
+as two unit-capacity parallel marginal arcs in a bipartite
+transportation network requiring throughput two at each
+vertex. Its integer minimum-cost flow is optimal; the increasing
+marginal costs ensure the second copy is never chosen without
+the first in an optimal flow. The resulting degree-two bipartite
+multigraph splits into two perfect matchings by K\H onig's
+theorem, giving an optimal pair of replacement coordinates.
+\end{proof}
+
+\section{The 18-vertex certificate}\label{sec:certificate}
+The bipartition is $L=\{0,\ldots,8\}$ and
+$R=\{9,\ldots,17\}$. Number the following edges in the order
+shown, starting from index $0$:
+\begin{center}\small
+\begin{tabular}{lll}
+$(0,11),(0,14),(0,9)$ & $(1,14),(1,13),(1,11)$ & $(2,15),(2,17),(2,13)$\\
+$(3,16),(3,11),(3,17)$ & $(4,9),(4,15),(4,12)$ & $(5,13),(5,12),(5,10)$\\
+$(6,17),(6,10),(6,15)$ & $(7,12),(7,16),(7,14)$ & $(8,10),(8,9),(8,16)$
+\end{tabular}
+\end{center}
+Represent matchings as $27$-bit nonnegative integers using
+these edge indices. The initial ordered six-tuple is
+\[
+(76093521,26264228,19173986,70392073,38347922,21308684).
+\]
+Its six defective edges are, with multiplicities,
+\[
+\begin{array}{c|rrrrrr}
+e&(4,9)&(4,12)&(5,12)&(5,10)&(8,10)&(8,9)\\ \hline
+m(e)&3&1&3&1&3&1
+\end{array}
+\]
+so $Q=6$. The path obtained by replacing the third matching
+by $36053794$, followed by replacing the sixth matching
+by $21283916$, has potentials $6\to6\to0$.
+
+For an independent universal certificate of local optimality,
+fix $i$ and put
+\[
+ w_i(e)=2(m(e)-2)+1-2\mathbf1_{M_i}(e).
+\]
+For any other perfect matching $N$ one checks exactly that
+\[
+ Q(M_1,\ldots,N,\ldots,M_6)-Q(\mathcal M)
+ = \sum_{e\in N}w_i(e)-\sum_{e\in M_i}w_i(e).\tag{$\ast$}
+\]
+The supplementary JSON file supplies, for each $i$, integers
+$a_i(v)$ at all eighteen vertices such that
+\[
+ a_i(u)+a_i(v)\le w_i(uv)\quad (uv\in E),\qquad
+ a_i(u)+a_i(v)=w_i(uv)\quad(uv\in M_i).
+\]
+Summing the inequalities over any perfect matching $N$ and
+using the equalities for $M_i$ proves that $(\ast)\ge0$.
+These six dual witnesses are each 18 integers; the
+\texttt{standalone\_checker.py} file checks all inequalities using
+only Python's standard library. It also verifies that the graph
+stays connected upon deleting any zero, one or two edges,
+certifying 3-edge-connectivity. A second implementation
+exhaustively enumerates all $47$ perfect matchings and finds
+minimum replacement change zero in every coordinate.
+
+
+\section{Exact direct repair and a sharp hierarchy}\label{sec:hierarchy}
+For a state $\mathcal M$ of a cubic bipartite graph, write
+$S_e=\{i\in[6]:e\in M_i\}$ and define $\kappa(\mathcal M)$ to be
+its \emph{exact direct-repair width}: the smallest number of whole
+matching coordinates that can be simultaneously replaced to attain
+$Q=0$. This is emphatically different from the number needed for a
+strict improvement, which may be smaller.
+
+\begin{theorem}[Exact coordination criterion]\label{thm:coordinate}
+For every sextuple of perfect matchings in a cubic bipartite graph,
+\[
+\kappa(\mathcal M)=\min\Bigl\{|I|:I\subseteq[6],\quad
+ |I\cap S_e|\ge\max(0,m(e)-2)\text{ for every }e\Bigr\}.
+\]
+In particular $\kappa(\mathcal M)\le4$, and an optimal direct repair
+can be computed in polynomial time.
+\end{theorem}
+\begin{proof}
+Fix a proposed set $I$ of coordinate indices and freeze the others.
+If $|I\cap S_e|<m(e)-2$ for some edge, the frozen coordinates
+already use this edge more than twice, so completion is impossible.
+Conversely, under these inequalities every frozen edge multiplicity
+is at most two. Proposition~\ref{prop:frozen} with $(d,t)=(3,2)$
+constructs the required replacement matchings by decomposing a
+regular bipartite residual multigraph. Test the $2^6$ choices for
+$I$ and factor the residual at the first feasible choice of minimum
+cardinality. Four coordinates always suffice because any two frozen
+matchings use an edge at most twice.
+\end{proof}
+
+\begin{corollary}[Unit-defect hypergraph]\label{cor:unit}
+Suppose $m(e)\in\{1,2,3\}$ for every edge and $Q>0$. Let
+$\mathcal F=\{S_e:m(e)=3\}$ be the multiset of surplus-membership
+triples on $[6]$. Then $\kappa(\mathcal M)=\tau(\mathcal F)$,
+the minimum size of a transversal of this hypergraph, and
+$Q=2|\mathcal F|$. In particular:
+\[
+ Q\le10\implies\kappa\le2,\qquad
+ Q\le38\implies\kappa\le3.
+\]
+These conclusions guarantee a \emph{direct correction to $Q=0$},
+not merely one strictly improving step.
+\end{corollary}
+\begin{proof}
+In this regime, every edge requiring removal has multiplicity
+three, hence needs one selected coordinate from its triple $S_e$.
+At each vertex the sum of multiplicity deviations is zero;
+thus surplus and deficit edges occur in equal number. Each has
+squared deviation one, giving $Q=2|\mathcal F|$. The direct
+bounds follow from Lemma~\ref{lem:hit}.
+\end{proof}
+
+\begin{theorem}[Sharp unit-defect direct-repair thresholds]
+\label{thm:sharp-hierarchy}
+Restrict to finite simple cubic bipartite graphs and positive
+unit-defect states. For $k=2,3,4$, the smallest possible value of
+$Q$ for which $\kappa\ge k$ is respectively
+\[
+\boxed{\quad Q_2=6,\qquad Q_3=12,\qquad Q_4=40.\quad}
+\]
+The three thresholds admit witnesses in \emph{$3$-edge-connected}
+cubic bipartite graphs, on respectively $18$, $18$, and $40$
+vertices.
+\end{theorem}
+\begin{proof}
+The first lower bound follows from Lemma~\ref{lem:lower}:
+when $Q<6$, the only possible nonzero unit-defect state has one
+alternating four-cycle, and one matching flip reaches $Q=0$.
+The previously certified $18$-vertex $Q=6$ state in
+Section~\ref{sec:certificate} has no improving single-coordinate
+move, so its exact direct width is at least two and, by
+Theorem~\ref{thm:two}, is exactly two.
+
+For $k=3$, Corollary~\ref{cor:unit} rules out $Q\le10$.
+The new $18$-vertex graph encoded in
+\nolinkurl{q12_cycle_blocker_18.json} has precisely six
+surplus-membership triples
+\[
+ 012,\quad013,\quad234,\quad045,\quad145,\quad235,
+\]
+where, for instance, $012=\{0,1,2\}$ and indices are
+zero-based. Direct inspection of the fifteen pairs of labels
+shows that no pair intersects all six triples. Therefore
+$\kappa\ge3$. Any three labels except the complement of
+an occurring triple can be chosen suitably; in particular
+Lemma~\ref{lem:hit} for three labels yields $\kappa=3$.
+All $27$ edges and six perfect matchings are encoded in the
+supplement; an independent dependency-free checker verifies cubicity,
+bipartiteness, every deletion of at most two edges, and the masks.
+The same checker exhausts all $54$ perfect matchings and finds that
+the optimum after \emph{any} simultaneous pair replacement is $Q=4$.
+An explicit path has potentials $12\to4\to0$, using a pair
+replacement followed by a single-coordinate replacement.
+
+For $k=4$, Corollary~\ref{cor:unit} rules out $Q\le38$.
+The $40$-vertex certificate
+\nolinkurl{q40_cycle_blocker_40.json} contains precisely the
+$20$ different triples $\binom{[6]}3$ as surplus memberships,
+one per surplus edge of one alternating $40$-cycle. For any
+three indices $I\subseteq[6]$, the complementary triple
+$[6]\setminus I$ is disjoint from $I$ and occurs among the
+surplus edges. Thus $I$ cannot effect a direct exact correction:
+$\kappa\ge4$. Theorem~\ref{thm:coordinate} gives $\kappa=4$.
+A dependency-free verifier checks all six perfect matchings, the
+$40$-cycle, the $3$-edge-connectivity, and explicit corrections
+with potentials $40\to0$ by four indices and $40\to10$ by two.
+Hence this is not a counterexample to strict two-coordinate descent.
+\end{proof}
+
+\paragraph{A compact description of the $Q=40$ certificate.}
+Write $u_i=i$ and $v_i=20+i$, $0\le i<20$, for the two
+bipartition classes. Add the cycle edges $u_iv_i$ carrying
+a triple $T_i$ and $v_iu_{i+1\bmod20}$ carrying a singleton
+$\{d_i\}$. Add the perfect matching of neutral chords
+$u_iv_{\pi(i)}$, carrying the two-element membership set
+$[6]\setminus(T_i\cup\{d_{i-1\bmod20}\})$.
+The table below specifies $T_i,d_i,\pi(i)$ completely; the
+independent verifier checks that the edge memberships partition
+$[6]$ at each vertex and that deleting any two edges preserves
+connectedness.
+\begin{center}\small
+\begin{tabular}{rccc|rccc}\toprule
+$i$&$T_i$&$d_i$&$\pi(i)$&$i$&$T_i$&$d_i$&$\pi(i)$\\\midrule
+0&234&5&1&10&035&2&3\\
+1&023&4&4&11&134&5&16\\
+2&015&4&14&12&012&4&13\\
+3&135&0&11&13&025&1&15\\
+4&235&0&10&14&045&1&2\\
+5&124&5&9&15&245&0&7\\
+6&034&2&19&16&123&4&18\\
+7&145&2&17&17&125&4&5\\
+8&014&3&12&18&013&2&8\\
+9&024&1&6&19&345&0&0\\
+\bottomrule\end{tabular}
+\end{center}
+
+\paragraph{Assurance and limitations.}
+The finite certificates in this section are checked without
+trusting the mixed-integer optimization programs used in their
+discovery. The general criterion is a straightforward application
+of K\H onig's theorem: only the sharp \emph{realizable extremal
+hierarchy} is proposed as potentially novel. A specialist novelty
+audit is still required. The bound $\kappa=4$ concerns exact
+\emph{one-step} repair; the unresolved global conjecture concerns
+strict improvement with at most two matching coordinates.
+
+\section{Lifting a sharp plateau to an infinite family}
+\begin{lemma}[Balanced vertex expansion]\label{lem:expand}
+Let $G$ be a simple cubic graph with a six-matching state
+$\mathcal M$ and let $v$ have incident multiplicities $(2,2,2)$.
+Replace $v$ with the 3-pole $K_{3,2}$, attaching the three
+former neighbours to its three degree-two vertices.
+The resulting cubic graph $G'$ has a state $\mathcal M'$ with
+$Q_{G'}(\mathcal M')=Q_G(\mathcal M)$. If $\mathcal M$ is a
+one-coordinate local minimum, so is $\mathcal M'$.
+This operation preserves simplicity, bipartiteness when present,
+and 3-edge-connectivity when present.
+\end{lemma}
+\begin{proof}
+Each of the three incident edges at $v$ occurs in exactly two
+of the six matchings. Every matching chooses one incident edge.
+In $K_{3,2}$, the two ports not chosen externally must be
+matched to the two internal degree-three vertices. For the two
+matching labels choosing the same external port, select opposite
+internal assignments. Each of the six internal edges then occurs
+exactly twice; every other edge retains its old multiplicity.
+
+Every perfect matching of $G'$ restricts to a perfect matching
+of $G$ by contracting the 3-pole: both internal hubs must be
+matched to ports, leaving exactly one external port matched.
+Replacing one lifted matching changes the original-edge
+contribution to $Q$ by an amount at least zero whenever the
+original tuple is a local minimum. The initial internal
+contribution is zero, and every new internal contribution is
+nonnegative. This proves the claim.
+
+The gadget adds four vertices and is bipartite with its three
+ports in the old vertex's part. To check 3-edge-connectivity,
+consider any cut of size at most two. If all three ports are
+on the same side but an internal hub is on the other side,
+at least three internal edges cross. If the ports are split,
+at least two internal edges cross; equality two forces both
+hubs with the majority ports. A cut of size at most two then
+has no external crossing edges, so contracting the gadget
+would yield a cut of size one in $G$ (the minority port's
+external neighbour lies on the minority side), a contradiction.
+If the whole gadget lies on one side, the cut corresponds
+unchanged to a cut in $G$. Hence no such cut exists.
+\end{proof}
+
+\begin{corollary}[Arbitrarily large, 3-edge-connected sharp traps]
+For every $k\ge0$ there is a connected 3-edge-connected cubic
+bipartite graph on $18+4k$ vertices with six perfect matchings
+forming a positive one-coordinate local minimum of defect
+exactly $Q=6$. The tuple admits a $2$-coordinate correction
+to $Q=0$; indeed the base $Q=6\to6\to0$ sequence lifts
+unchanged along the family.
+\end{corollary}
+\begin{proof}
+The vertex $0$ in the base graph has incident multiplicities
+$(2,2,2)$, and the two replacements in Section~\ref{sec:certificate}
+do not change its matching choices. Apply
+Lemma~\ref{lem:expand}; the internal hubs are again balanced
+and their incident matching choices stay fixed during both
+replacements, so the construction can be repeated indefinitely.
+The local minimum and defect persist, as does the indicated path.
+\end{proof}
+
+\section{Lifting under finite covers}
+\begin{proposition}[Covering stability of bipartite dual certificates]
+Let $G$ be cubic and bipartite, and let $\mathcal M$ be a
+one-coordinate local minimum for $Q$. Every finite
+$k$-sheeted graph covering $p:H\to G$ inherits a one-coordinate
+local minimum $p^{-1}(\mathcal M)$ with potential $kQ_G(\mathcal M)$.
+\end{proposition}
+\begin{proof}
+The preimage of a perfect matching is a perfect matching, and
+edge multiplicities pull back along $p$, so the potential scales
+by $k$. For each coordinate $i$, the minimum-weight perfect
+matching problem with weights $w_i$ has an integral bipartite
+assignment dual attaining the original matching's weight.
+Pull its vertex potentials back along $p$. The edge inequalities
+and the equalities on the lifted matching remain valid because
+every edge of $H$ projects to an edge of $G$. Thus no lifted
+coordinate can strictly improve the potential.
+\end{proof}
+
+\begin{corollary}[High-girth obstructions]
+There are connected bridgeless cubic bipartite graphs of
+arbitrarily large girth that possess positive one-coordinate
+local minima of the six-matching quadratic defect satisfying
+$Q=|V(G)|/3$.
+\end{corollary}
+\begin{proof}
+A finite connected graph has finite connected covers of
+arbitrarily large girth: the fundamental group is finitely
+generated free, hence residually finite; taking a finite-index
+normal subgroup excluding the finitely many nontrivial closed
+reduced walks of length at most a chosen bound produces such
+a cover. Apply the preceding proposition to the base certificate.
+Every edge of a finite cover of a bridgeless graph lies on a
+cycle (a lift of some positive multiple of a cycle downstairs),
+so the covers remain bridgeless. The base graph has 18 vertices
+and defect six; both quantities scale with the covering degree.
+\end{proof}
+
+An explicit connected $2$-fold cover obtained by twisting
+edge indices $0$ and $6$ has $36$ vertices, girth $6$, edge
+connectivity $3$, and a locally optimal tuple with $Q=12$.
+The provided six lifted dual certificates check this example.
+
+\section{Scope, relation to prior work, and outlook}
+The frozen-factor completion criterion is an elementary
+application of K\H onig's theorem and is not presented as a
+new existence theorem for cubic bipartite graphs. Similarly,
+our coordinate changes may replace entire perfect matchings:
+they are not 4-cycle flips in the sense of standard perfect
+matching reconfiguration \cite{Bonamy2019}. A recent treatment
+of toric ideals and $3$-colour transformations for \emph{fixed}
+edge multiplicities \cite{Mori2026} is related to neutral-fibre
+navigation, whereas the present obstruction concerns descent of
+an explicit quadratic multiplicity defect. Recent approaches to
+the Berge--Fulkerson conjecture through partial coverings are
+also distinct \cite{Luo2026}.
+
+The main new candidate contribution is the sharp realized
+unit-defect coordination hierarchy $Q_2=6$, $Q_3=12$, $Q_4=40$,
+alongside the certified one-coordinate plateau and lifting results.
+Whether this qualifies for a research note requires a targeted
+literature audit and independent external specialist review.
+Nothing here proves Berge--Fulkerson for nonbipartite cubic graphs.
+Promising follow-ups include determining the minimum coordinate
+width for strict descent in nonbipartite graph classes, and
+using small dual certificates as Lean-checkable obstruction witnesses.
+
+\paragraph{Reproducibility.} All graph edges, ordered matching masks,
+six integer dual potentials, the original and new stand-alone
+verifiers, the
+$K_{3,2}$ lift implementation, the covering construction, and
+regression tests accompany this draft. The current environment
+contains no Lean 4 installation; formalization has therefore
+not been completed or claimed.
+
+\paragraph{Research-process disclosure.} Computer-assisted search,
+certificate generation, proof exploration and drafting used
+ChatGPT (GPT-6); an independently checkable proof record is
+provided, and the draft remains subject to external review.
+
+\begin{thebibliography}{9}
+\bibitem{Konig} D. K\H onig, \emph{Gr\'afok \text{\'es} alkalmaz\'asuk a determin\'ansok \text{\'es} a halmazok elm\'elet\'ere},
+Matematikai \text{\'es} Term\'eszettudom\'anyi \text{\'E}rtes\'it\H o \textbf{34} (1916), 104--119.
+\bibitem{Bonamy2019} M. Bonamy, N. Bousquet, M. Heinrich,
+T. Ito, Y. Kobayashi, A. Mary, M. M\"uhlenthaler and K. Wasa,
+\emph{The perfect matching reconfiguration problem},
+MFCS 2019, LIPIcs \textbf{138}, Art. 80.
+\href{https://doi.org/10.4230/LIPIcs.MFCS.2019.80}{doi:10.4230/LIPIcs.MFCS.2019.80}.
+\bibitem{Mori2026} K. Mori, R. Motomura, H. Ohsugi and A. Tsuchiya,
+\emph{Toric ideals of matching polytopes and edge colorings},
+Mathematika (2026).
+\href{https://doi.org/10.1112/mtk.70099}{doi:10.1112/mtk.70099}.
+\bibitem{Luo2026} Y. Luo, R.-X. Hao, R. Luo, C.-Q. Zhang and W. Zhou,
+\emph{Berge--Fulkerson conjecture, perfect matching partial coverings and odd dividers},
+Journal of Graph Theory (2026).
+\href{https://doi.org/10.1002/jgt.70097}{doi:10.1002/jgt.70097}.
+\end{thebibliography}
+\end{document}

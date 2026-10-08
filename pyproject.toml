@@ -20,5 +20,5 @@ packages = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests", "berge_fulkerson/tests", "three_decomposition/tests", "barnette/tests"]
+testpaths = ["tests", "berge_fulkerson/tests", "three_decomposition/tests", "barnette/tests", "berge_fulkerson/plateau/next_phase", "certificate_coordination/tests"]
 addopts = "-ra"

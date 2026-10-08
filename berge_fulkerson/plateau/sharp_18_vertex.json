@@ -1,0 +1,10 @@
+{
+  "description": "Six-matching quadratic defect Q=6 strict one-coordinate local minimum on a 3-edge-connected cubic bipartite graph. Independent search output, verified by complete enumeration.",
+  "vertices": 18,
+  "edges": [[0,11],[0,14],[0,9],[1,14],[1,13],[1,11],[2,15],[2,17],[2,13],[3,16],[3,11],[3,17],[4,9],[4,15],[4,12],[5,13],[5,12],[5,10],[6,17],[6,10],[6,15],[7,12],[7,16],[7,14],[8,10],[8,9],[8,16]],
+  "matching_masks_initial": [76093521,26264228,19173986,70392073,38347922,21308684],
+  "matching_masks_neutral": [76093521,26264228,36053794,70392073,38347922,21308684],
+  "matching_masks_target": [76093521,26264228,36053794,70392073,38347922,21283916],
+  "expansion_vertex": 0,
+  "expected": {"perfect_matchings":47,"quadratic_defect":6,"replacement_minimum_delta_each_coordinate":[0,0,0,0,0,0],"defect_path":[6,6,0],"edge_connectivity":3}
+}

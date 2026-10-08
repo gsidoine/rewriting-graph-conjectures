@@ -1,0 +1,166 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\M}{\mathcal M}
+\newcommand{\EE}{\mathcal E}
+\newcommand{\GG}{\mathcal G}
+\newcommand{\rr}{\mathbb R}
+\title{Coordinate Repair, Conflict Graphs, and Strict Descent\\in Regular Bipartite Matching Systems}
+\author{Guillaume Sidoine\\Independent researcher\\\texttt{ORCID: 0009-0005-4525-1182}}
+\date{Research draft --- 8 October 2026\\\small Proofs and computational certificates supplied; novelty not yet independently refereed}
+\begin{document}
+\maketitle
+\begin{abstract}
+A tuple of perfect matchings of a regular bipartite graph is an exact one-fold cover when each edge is covered once. We distinguish its \emph{direct repair width} (how many coordinates must be replaced simultaneously) from its \emph{strict descent distance} under one-coordinate rewrites of a quadratic multiplicity defect. We show that, for every prescribed edge-connectivity $c$, every finite simple graph $H$ can be encoded in a simple, $c$-edge-connected regular bipartite graph with explicit perfect matchings so that both repair width and strict descent distance equal the vertex-cover number $\tau(H)$. Consequently, deciding either optimal parameter is NP-complete even for instances possessing a guaranteed strictly improving normalization. A signature-preserving edge splice explains the compositional construction. Separately, for every $d\ge8$, the maximally $d$-edge-connected graph $K_{d,d}$ has a $d$-matching state of quadratic defect four that is locally optimal under all strict one-coordinate replacements. The last assertion has explicit integral bipartite matching dual certificates. These results delineate two independent obstacles to normalization by local rewrites: computationally hard optimal distances, and genuine strict local traps despite arbitrary edge-connectivity.
+\end{abstract}
+
+\section{Matching certificates and two measures of repair}
+Let $G=(L\sqcup R,E)$ be a finite simple $d$-regular bipartite graph, and let $\M=(M_1,\ldots,M_d)$ be a labelled tuple of perfect matchings of $G$, with repetitions allowed. Write $m(e)=|\{i:e\in M_i\}|$. Define
+\begin{equation}\label{eq:q}
+ Q(\M)=\sum_{e\in E}(m(e)-1)^2.
+\end{equation}
+As $|M_i|=|L|$ and $|E|=d|L|$, the target $Q=0$ means that the matchings partition $E$ into $d$ one-factors. Such a target always exists by bipartite edge-colouring, but it need not be readily accessible by restricted changes of a supplied tuple.
+
+The \emph{direct repair width} $\kappa(\M)$ is the smallest number of indices $i$ for which replacing exactly those $M_i$ by arbitrary perfect matchings yields $Q=0$. A \emph{strict coordinate descent} is a sequence of tuples, each obtained by replacing one perfect matching, with $Q$ strictly decreasing at every step. Write $\ell_\downarrow(\M)$ for the minimum number of steps in a strict descent ending at $Q=0$, or $\infty$ if none exists. These two quantities are generally different.
+
+\begin{proposition}[The next strict move is easy to optimize]
+For any given coordinate $i$, a perfect-matching replacement minimizing $Q$ can be computed in polynomial time by minimum-weight bipartite matching. This remains true when one chooses the best index $i$ as well.
+\end{proposition}
+\begin{proof}
+Freeze all other coordinates and write $q_i(e)=m(e)-\mathbf 1_{\{e\in M_i\}}$. If $N$ replaces $M_i$, expansion of the squares gives
+\[Q(M_1,\ldots,N,\ldots,M_d)-Q(\M)=\sum_{e\in N}(2q_i(e)-1)-\sum_{e\in M_i}(2q_i(e)-1).\]
+Hence minimizing $Q$ over $N$ is a standard minimum-weight perfect-matching problem.\end{proof}
+
+For $k=1$, define the \emph{conflict graph} $C(\M)$ on the coordinate set $[d]$, with $ij$ an edge iff $M_i\cap M_j\ne\varnothing$.
+\begin{proposition}[Exact conflict-graph reduction]\label{prop:cover}
+For any such regular bipartite matching certificate,
+\[\kappa(\M)=\tau(C(\M)),\]
+where $\tau$ denotes minimum vertex-cover number.
+\end{proposition}
+\begin{proof}
+If coordinates $I$ are changed, the unchanged matchings must be pairwise edge-disjoint in the final exact cover. Thus $I$ meets every edge of $C(\M)$, giving $|I|\ge\tau(C(\M))$. Conversely, let $I$ be a vertex cover. The unchanged $d-|I|$ matchings are edge-disjoint. Their complement in $G$ is a spanning $|I|$-regular bipartite graph. Repeated use of Hall's theorem partitions that complement into $|I|$ perfect matchings, which replace the coordinates in $I$. Hence $\kappa\le|I|$.
+\end{proof}
+
+For a more general $d$-regular bipartite system of $t=kd$ perfect matchings targeting multiplicity $k$, write $S_e=\{i:e\in M_i\}$. The same argument gives the exact multi-cover condition
+\begin{equation}\label{eq:multi}
+\kappa_k(\M)=\min\left\{|I|:|I\cap S_e|\ge |S_e|-k\text{ for every }e\in E\right\}.
+\end{equation}
+Indeed, freezing $I^c$ is feasible exactly when no edge is frozen more than $k$ times; the residual edge multiplicities form an $|I|$-regular bipartite multigraph and hence factor into $|I|$ one-factors. Equation~\eqref{eq:multi} motivates the term \emph{obstruction hypergraph}.
+
+\section{A signature-preserving splice}
+The \emph{signature} of an edge is the set $S_e$ of coordinates that contain it.
+\begin{lemma}[Signature splice]\label{lem:splice}
+Let $G_1,G_2$ be disjoint $d$-regular bipartite graphs with $t$ labelled perfect matchings each. Choose edges $x_1y_1\in E(G_1)$ and $x_2y_2\in E(G_2)$ with $x_i$ on the left and with the same signature $S$. Delete the two edges and add $x_1y_2,x_2y_1$, assigning both new edges the signature $S$. The resulting graph is simple, $d$-regular, bipartite, and the union of the corresponding matchings remains a family of $t$ perfect matchings. Moreover, its multiset of edge signatures is the union of the two original signature multisets.
+\end{lemma}
+\begin{proof}
+Every vertex loses exactly one edge and gains one; cross edges were absent because the original graphs were disjoint. For each index in $S$, the two chosen matching edges are replaced by the two cross edges, maintaining degree one at their four endpoints. No other matching is changed. Both old edges had signature $S$ and both new edges have signature $S$; every other edge retains its signature.
+\end{proof}
+The lemma says that constraint systems such as~\eqref{eq:multi} compose by union while the underlying graph may become connected. Repeating compatible splices across distinct singleton-signature edges permits exact control of the number of cross edges.
+
+\section{Arbitrary conflict graphs at prescribed connectivity}
+\begin{theorem}[High-connectivity conflict realization and exact strict distance]\label{thm:main}
+Fix any integer $c\ge1$. There is a polynomial-time transformation taking any finite simple graph $H$ with $h\ge2$ vertices and at least one edge to a simple $d$-regular bipartite graph $G$ and an explicit tuple $\M$ of $d$ perfect matchings satisfying
+\begin{enumerate}
+\item $G$ is $c$-edge-connected;
+\item $C(\M)$ is isomorphic to $H$ together with isolated vertices;
+\item $Q(\M)=2d|E(H)|$;
+\item $\displaystyle \kappa(\M)=\ell_\downarrow(\M)=\tau(H)$.
+\end{enumerate}
+In particular, a strictly improving one-coordinate normalization is guaranteed to exist for every constructed instance.
+\end{theorem}
+\begin{proof}
+Let $r=\lceil c/2\rceil$ and choose
+\[d=\max\{h+r,4r+c\}.\]
+The $h$ vertices of $H$ index distinguished matching coordinates, and choose $r$ additional \emph{anchor} coordinates. The remaining labels, if any, are padding. For every edge $ab\in E(H)$ introduce a block $K_{d,d}$ with its standard one-factorization $F_0,F_1,\ldots,F_{d-1}$, for example $F_j=\{(i,i+j\bmod d):i\in\mathbb Z_d\}$. Give both labelled matchings $a,b$ the factor $F_0$ in this block. Give each of the other $d-2$ matching labels a different factor from $F_1,\ldots,F_{d-2}$. Leave $F_{d-1}$ unused.
+
+Initially, each block contributes precisely the conflict $ab$ and no other conflict. Exactly $d$ edges have multiplicity two (those of $F_0$), exactly $d$ have multiplicity zero (those of $F_{d-1}$), and all others have multiplicity one. Thus its contribution to~\eqref{eq:q} is $2d$.
+
+Order the blocks arbitrarily in a chain. Across each consecutive pair of blocks, and for each of the $r$ anchor labels, choose an edge of that anchor's singleton factor in each block and perform the signature splice of Lemma~\ref{lem:splice}. Make all chosen edges within any one block have distinct left and distinct right endpoints. This selection is possible greedily: a block participates in at most two links, and at step $j\le2r$ at most $2(j-1)$ choices of a left endpoint are forbidden by earlier left/right selections. Since $d\ge4r+c>4r-2$, an eligible edge remains in each anchor one-factor.
+
+The splice does not alter any conflict or edge-signature multiplicity, giving assertions (2) and (3). It leaves a simple regular bipartite graph. To establish connectivity, consider any nontrivial vertex cut $X$. If some block is split by $X$, that block originally contributed at least $d$ edges to its cut, as $K_{d,d}$ has edge-connectivity $d$. At most $2r$ internal edges of that block were removed in the splices, so at least $d-2r\ge c$ cut edges remain. Otherwise $X$ is a union of whole blocks, and some link of the chain crosses $X$; its $r$ two-edge splices provide exactly $2r\ge c$ crossing edges. This proves (1).
+
+By Proposition~\ref{prop:cover}, $\kappa=\tau(H)$. For any strict normalization sequence, let $I$ be the set of indices ever changed. An initial conflict edge $ab$ retains its duplicated factor unless $a\in I$ or $b\in I$. Therefore $I$ covers $H$ and the number of steps is at least $\tau(H)$, whether or not those steps are strict.
+
+For the converse, choose a minimum vertex cover $I$ of $H$ and process its vertices in any order. When a coordinate $a\in I$ is processed, in each block corresponding to an as-yet-uncorrected incident edge $ab$, replace its local factor $F_0$ by the unused factor $F_{d-1}$. Do not modify its local factor in any already-corrected block. All such coordinates belong to $V(H)$, never to the anchor labels; their matchings lie entirely within individual blocks. Hence this simultaneous blockwise modification is one globally valid perfect-matching replacement. It corrects the entire factor collision in each newly repaired block, lowering $Q$ by $2d$ per block, and leaves all other blocks unchanged. Every vertex of a minimum vertex cover has a neighbour outside that cover, or it could be deleted from the cover. Therefore, on processing any coordinate $a\in I$, at least the block corresponding to such a neighbour is still uncorrected. Each step strictly decreases $Q$. All blocks are eventually corrected, yielding a strict path of exactly $|I|=\tau(H)$ steps. This proves (4).
+\end{proof}
+
+\begin{corollary}[Hardness despite guaranteed descent]\label{cor:hard}
+For every fixed $c\ge1$, the following decision problems are NP-complete even when restricted to explicitly supplied systems on simple $c$-edge-connected regular bipartite graphs: deciding whether $\kappa(\M)\le b$, and deciding whether $\ell_\downarrow(\M)\le b$. The latter remains NP-complete under the promise that a strict one-coordinate normalization exists. Both optimal values are APX-hard to approximate under the standard vertex-cover APX-hardness assumption.
+\end{corollary}
+\begin{proof}
+The reduction of Theorem~\ref{thm:main} maps the vertex-cover threshold $b$ to exactly the same numerical threshold, and has size polynomial in $h+|E(H)|$ for fixed $c$. Verification of a proposed direct coordinate set is polynomial by Proposition~\ref{prop:cover}. A strict path certificate can be checked in polynomial time: each state and replacement matching have polynomial encoding size, and every strict step reduces a nonnegative integer $Q\le |E(G)|(d-1)^2$, so the number of steps in any such path is polynomial in the input length. APX-hardness follows from the exact equality of optimum values and classical APX-hardness of vertex cover on bounded-degree graphs.
+\end{proof}
+
+\begin{corollary}[Large repair width and increasing connectivity]\label{cor:large}
+There are simple regular bipartite graphs of unbounded degree $d$ and unbounded edge-connectivity, with supplied $d$-matching certificates satisfying $\kappa(\M)/d\to1$.
+\end{corollary}
+\begin{proof}
+Take $H=K_h$ and $c=\lfloor\sqrt h\rfloor$. In Theorem~\ref{thm:main}, $r=\lceil c/2\rceil$ and $d=h+O(\sqrt h)$, while $\kappa=\tau(K_h)=h-1$. The connectivity lower bound is $c\to\infty$, and $(h-1)/d\to1$.
+\end{proof}
+
+\section{Strict local traps at maximal connectivity}
+The previous section shows hard optimal distance on instances with strict normalization. The next construction has the opposite phenomenon: a positive-defect state with no strict one-coordinate step at all, although its graph has maximum possible edge-connectivity.
+
+\begin{proposition}[Minimal positive defect]
+In any simple regular bipartite graph with $d$ matching coordinates targeting multiplicity one, either $Q=0$ or $Q\ge4$.
+\end{proposition}
+\begin{proof}
+At each vertex the signed deviations $m(e)-1$ on incident edges sum to zero. Consequently, every vertex incident with a nonzero deviation is incident with at least two such edges. The nonzero-deviation support therefore contains a cycle. As the underlying graph is simple bipartite, this cycle uses at least four edges, each contributing at least one to $Q$.\end{proof}
+
+\begin{theorem}[A fixed-defect plateau in every $K_{d,d}$]\label{thm:kdd}
+For every $d\ge8$, there is an explicit tuple of $d$ perfect matchings of $K_{d,d}$ with the smallest possible positive defect $Q=4$ such that replacing any single matching cannot strictly reduce $Q$. The graph has edge-connectivity $d$. In addition, an explicit neutral one-coordinate move followed by a strict one-coordinate move reaches $Q=0$. The same strict local-trap phenomenon already occurs for a tuple of four perfect matchings of $K_{4,4}$.
+\end{theorem}
+\begin{proof}
+Start on four left and four right vertices with the four permutations
+\begin{equation}\label{eq:corner}
+ (0,1,2,3),\quad (0,2,3,1),\quad (1,3,0,2),\quad (2,3,1,0).
+\end{equation}
+Their coverage multiplicity matrix is
+\[B=\begin{pmatrix}2&1&1&0\\0&1&1&2\\1&1&1&1\\1&1&1&1\end{pmatrix},\]
+so the four-by-four block contributes $Q=4$. For each original coordinate $i=0,1,2,3$, define the cost of choosing edge $uv$ under one-coordinate replacement as
+\[w_i(u,v)=2\bigl(B_{uv}-\mathbf 1_{\{(u,v)\in M_i\}}\bigr)-1.\]
+The following integer row/column potentials $\alpha^{(i)},\beta^{(i)}$ obey $\alpha^{(i)}_u+\beta^{(i)}_v\le w_i(u,v)$ for every edge, with equality on each edge of $M_i$:
+\begin{center}\small
+\begin{tabular}{ccll}\toprule
+$i$ & $M_i$ (as a permutation) & $\alpha^{(i)}$ & $\beta^{(i)}$\\\midrule
+0&(0,1,2,3)&(2,0,0,2)&(-1,-1,-1,-3)\\
+1&(0,2,3,1)&(2,0,2,0)&(-1,-1,-1,-3)\\
+2&(1,3,0,2)&(0,2,2,0)&(-3,-1,-1,-1)\\
+3&(2,3,1,0)&(0,2,0,2)&(-3,-1,-1,-1)\\\bottomrule
+\end{tabular}
+\end{center}
+Thus each of the four displayed perfect matchings minimizes its relevant cost by weak duality for bipartite assignment, proving the $d=4$ assertion.
+
+For $d\ge8$, set $s=d-4$. Extend the four permutations~\eqref{eq:corner} to $[d]$ by appending, on rows $4,\ldots,d-1$, the four mutually edge-disjoint cyclic shifts $i\mapsto4+(i-4+j\bmod s)$, $j=0,1,2,3$. Exclude the top-left $4\times4$ square and these four lower-right factors from $K_{d,d}$. The remaining spanning bipartite graph is $s$-regular: its upper four vertices have all $s$ cross edges remaining, and each lower vertex has four cross edges and $s-4$ other edges. Decompose this regular residual graph into $s$ perfect matchings by the bipartite factorization theorem. These are the remaining $d-4$ coordinates.
+
+Now every edge outside the upper-left square is covered exactly once, while the corner retains matrix $B$. Hence $Q=4$. For one of the first four coordinates, extend its displayed dual by setting $\alpha=0$ on the lower rows and $\beta=-1$ on the lower columns. On a cross edge the cost is $+1$; the dual is feasible there because all displayed upper-row potentials are at most $2$ and all displayed upper-column potentials are at most $1$. On a lower-right edge the dual sum is $-1$, matching the cost of the currently selected edges, while never exceeding the other costs. The displayed equalities hold in the corner. Thus each original coordinate remains minimum-cost globally.
+
+For each of the other $d-4$ coordinates, put $\alpha=0$ on all left vertices and $\beta=-1$ on all right vertices. Every edge has cost at least $-1$, while its selected edges, all lying outside the corner, have cost exactly $-1$. These are again feasible dual witnesses attaining the original matching cost. Thus no coordinate admits a strict improvement. A neutral move replaces the top-left four entries of the fourth permutation by $(2,0,1,3)$ while leaving its lower entries unchanged. After this move the defect remains four. Replacing the top-left four entries of the first permutation by $(3,1,2,0)$ then reduces the defect to zero; again the lower entries are unchanged. All other factors remain unchanged. Finally $K_{d,d}$ has edge-connectivity exactly $d$.
+\end{proof}
+
+\begin{remark}[Implications for rewriting]
+The local minimum in Theorem~\ref{thm:kdd} is not a failure of existence: an exact factorization always exists by König's theorem. The obstruction is strictly dynamical. It is also independent of low connectivity, since $\lambda(K_{d,d})=d\to\infty$. Together with Corollary~\ref{cor:hard}, it shows that one-coordinate strict descent can be either \emph{computationally expensive to optimize} or \emph{unavailable}, for mathematically distinct reasons.
+\end{remark}
+
+\section{Proof and novelty boundaries}
+The proofs invoke two classical ingredients: bipartite one-factorization (König/Hall) and minimum-cost perfect-matching duality. The new mathematical claims of this draft are their particular application to exact repair width and quadratic strict coordinate distance, the signature-preserving high-connectivity universality construction, and the maximally connected constant-defect strict traps. The basic equivalence $\kappa=\tau(C(\M))$ is immediate once the conflict graph is defined and is not positioned as a standalone novelty claim.
+
+Related reconfiguration work includes Ito--Kakimura--Kamiyama--Kobayashi--Okamoto's NP-hardness result for \emph{shortest alternating-cycle reconfiguration of a single perfect matching}; that move system differs from coordinate replacement in a tuple and does not establish the present theorems \cite{ito}. Broader matching-reconfiguration results are also relevant \cite{bonamy}. A complete specialist novelty audit, formal proof certification in Lean, and outside mathematical review have not yet been performed. The accompanying code independently validates finite instances but does not substitute for the universal proofs.
+
+\section*{Reproducibility}
+The repository's \texttt{certificate\_coordination/} directory contains a dependency-free high-connectivity construction and verifier (including all integer dual inequalities), a general conflict-graph realization program, a strict-path checker, an exhaustive test of all 189 nonempty four-vertex host instances at edge-connectivity bounds $1,2,4$, and the 120-vertex $c=4$ cycle certificate. The graph connectivity of sample instances has also been independently computed with NetworkX. The main theorem does not depend on any numerical solver or experimental enumeration.
+
+\begin{thebibliography}{9}
+\bibitem{ito} T. Ito, N. Kakimura, N. Kamiyama, Y. Kobayashi, and Y. Okamoto, ``Shortest reconfiguration of perfect matchings via alternating cycles'', \emph{SIAM Journal on Discrete Mathematics}, 2022. DOI: \href{https://doi.org/10.1137/20M1364370}{10.1137/20M1364370}.
+\bibitem{bonamy} M. Bonamy et al., ``The Perfect Matching Reconfiguration Problem'', \emph{MFCS}, 2019. DOI: \href{https://doi.org/10.4230/LIPIcs.MFCS.2019.80}{10.4230/LIPIcs.MFCS.2019.80}.
+\bibitem{konig} Classical bipartite edge-colouring / regular bipartite factorization theorem, usually attributed to D. K\H{o}nig; any standard graph theory text.
+\bibitem{karp} Classical NP-completeness of Vertex Cover (see R. M. Karp, ``Reducibility among combinatorial problems'', 1972).
+\end{thebibliography}
+\end{document}

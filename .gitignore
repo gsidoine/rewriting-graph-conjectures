@@ -1,0 +1,19 @@
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+*.egg-info/
+# Local build and editor products
+.DS_Store
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.log
+*.out
+*.synctex.gz
+# Keep specifically archived research logs already tracked; avoid adding new incidental output.
