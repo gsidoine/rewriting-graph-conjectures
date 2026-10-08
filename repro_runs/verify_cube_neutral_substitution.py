@@ -9,14 +9,29 @@ component search and fixed-signature checks are implemented here.
 """
 from collections import defaultdict
 from itertools import combinations, product
-from pathlib import Path
-import runpy
-
 import networkx as nx
 
-base = runpy.run_path(str(Path(__file__).resolve().parents[1]
-                          / "tests" / "test_cube_neutral_transparency.py"))
-enum_cover = base["covers"]
+
+def local_covers(masks, nedges):
+    support = [tuple(i for i in range(nedges) if bit >> i & 1)
+               for bit in masks]
+    multiplicities = [0] * nedges
+    def go(chosen):
+        if len(chosen) == 6:
+            if all(c == 2 for c in multiplicities):
+                yield tuple(chosen)
+            return
+        remaining = 5 - len(chosen)
+        for j, included in enumerate(support):
+            if any(multiplicities[e] == 2 for e in included):
+                continue
+            for e in included:
+                multiplicities[e] += 1
+            if all(x + remaining >= 2 for x in multiplicities):
+                yield from go(chosen + [j])
+            for e in included:
+                multiplicities[e] -= 1
+    yield from go([])
 
 
 def perfect_matchings(graph):
@@ -86,7 +101,7 @@ def audit(host):
                                                           (block, v))))]
             interior.append(bit)
         groups = defaultdict(list)
-        for state in enum_cover(matchings, 6, 2):
+        for state in local_covers(matchings, len(local_edges)):
             signature = tuple(tuple(k for k, j in enumerate(state)
                                     if ports[j] == p) for p in range(3))
             groups[signature].append(state)
