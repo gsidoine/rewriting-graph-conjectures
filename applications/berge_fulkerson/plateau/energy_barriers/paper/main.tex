@@ -1,0 +1,146 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\geometry{margin=0.93in}
+\usepackage{amsmath,amssymb,amsthm,booktabs,enumitem,array,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=black,citecolor=blue}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\un}{\operatorname{unc}}
+\newcommand{\FR}{\mathcal{F}}
+\newcommand{\sub}{\operatorname{Sub}}
+\title{Unbounded Uphill Barriers in Fan--Raspaud Perfect-Matching Reconfiguration}
+\author{Guillaume Sidoine\\\small Independent researcher \quad ORCID 0009-0005-4525-1182}
+\date{Research draft --- 8 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We consider ordered triples of perfect matchings of a simple cubic graph with empty total intersection (Fan--Raspaud triples). A move replaces exactly one matching while preserving this condition. The potential is the number of edges uncovered by the triple. We exhibit a class-one, $3$-edge-connected cubic graph of order ten, with a triple leaving three edges uncovered, for which every nontrivial one-coordinate move increases the uncovered count to four, although the triple can be normalized to a $3$-edge-colouring by the path $3,4,3,0$. We then describe an all-vertex substitution by the $K_{3,2}$ three-pole which projects perfect matchings, preserves $3$-edge-connectivity and class one, and forces uncovered count at least three times the projected count. This yields an infinite family of class-one $3$-edge-connected cubic graphs with unbounded, quantitatively certified uphill barriers to normalization. The finite seed is independently enumerated by a dependency-free checker. The existence of a barrier is proved; we do not claim a solution of the Berge--Fulkerson or Fan--Raspaud conjectures, or external novelty of this particular construction.
+\end{abstract}
+
+\section{Matching states and barriers}
+Let $G$ be a finite simple cubic graph. A \emph{Fan--Raspaud triple} (FR-triple) $\mathbf M=(M_0,M_1,M_2)$ is a triple of perfect matchings with $M_0\cap M_1\cap M_2=\varnothing$. The \emph{uncovered potential} is
+\[
+  u_G(\mathbf M)=\#\{e\in E(G):e\notin M_0\cup M_1\cup M_2\}.
+\]
+A single-coordinate move replaces one $M_i$ by any other perfect matching, provided the resulting triple remains FR. We permit moves with equal potential, but not intermediate violations of the FR condition. Repeated coordinates are allowed in the state space. The order of coordinates is irrelevant for reachability and defect, so finite enumeration uses unordered triples of matching indices.
+
+For an FR-triple every edge has multiplicity $0,1$, or $2$. Since the total matching incidence count is $3|V(G)|/2=|E(G)|$, the numbers of uncovered and doubly covered edges coincide, and
+\[
+  \sum_{e\in E(G)}(m_{\mathbf M}(e)-1)^2=2u_G(\mathbf M). \tag{1}
+\]
+Thus uncovered count is exactly half the natural quadratic coverage defect. An FR-triple with $u=0$ is a $3$-edge-colouring of $G$.
+
+For a starting FR-triple $\mathbf M$ on a class-one graph, define its \emph{absolute uphill barrier} by
+\[
+ B_G(\mathbf M)=\min_{\gamma:\,\mathbf M\leadsto\{u=0\}}\ \max_{\mathbf N\in\gamma}u_G(\mathbf N)-u_G(\mathbf M), \tag{2}
+\]
+where the paths use permitted one-coordinate moves. We only evaluate (2) for states admitting such a path.
+
+\section{A sharp small seed}
+\begin{proposition}[Ten-vertex barrier]\label{prop:seed}
+There is a simple $3$-edge-connected, $3$-edge-colourable cubic graph $H$ on ten vertices with a specified FR-triple $\mathbf A$ such that $u_H(\mathbf A)=3$, every nontrivial one-coordinate neighbour of $\mathbf A$ has uncovered count $4$, and $B_H(\mathbf A)=1$. In particular an explicit normalization path has uncovered counts $3,4,3,0$.
+\end{proposition}
+\begin{proof}
+The vertex set is $\{0,\ldots,9\}$. The edges, numbered $0$ through $14$, are given below along with the complete list of perfect matchings (expressed as edge-index sets):
+\[
+\begin{array}{r|rrrrrrrr}
+ i&0&1&2&3&4&5&6&7\\\hline
+ e_i&01&06&09&18&19&26&27&28\\[2pt]
+\end{array}\qquad
+\begin{array}{r|rrrrrrr}
+ i&8&9&10&11&12&13&14\\\hline
+ e_i&34&35&37&45&49&56&78
+\end{array}
+\]
+\begin{center}
+\begin{tabular}{c@{\quad}l}
+\toprule
+Matching & Edge indices\\\midrule
+$P_0$ & $0,5,9,12,14$\\
+$P_1$ & $0,7,10,12,13$\\
+$P_2$ & $1,3,6,9,12$\\
+$P_3$ & $1,4,7,10,11$\\
+$P_4$ & $2,3,5,10,11$\\
+$P_5$ & $2,3,6,8,13$\\\bottomrule
+\end{tabular}
+\end{center}
+These are exactly the six perfect matchings, as verified by the exhaustive first-unmatched-vertex recursion in the accompanying checker. Every deletion of at most two edges leaves $H$ connected. Take $\mathbf A=(P_1,P_2,P_4)$. Its six distinct legal one-coordinate neighbours (ignoring coordinate permutations) are
+\[
+ \{P_0,P_2,P_4\},\ \{P_2,P_3,P_4\},\ \{P_0,P_1,P_4\},\ \{P_1,P_4,P_5\},\ \{P_1,P_2,P_3\},\ \{P_1,P_2,P_5\}.
+\]
+Direct edge-by-edge counting gives uncovered potential four for every one of them, whereas $u_H(\mathbf A)=3$. Finally
+\[
+ (P_1,P_2,P_4)\longrightarrow(P_0,P_1,P_4)
+ \longrightarrow(P_0,P_1,P_5)\longrightarrow(P_0,P_3,P_5)
+\]
+remains FR and has potentials $3,4,3,0$. The final triple is a proper colouring. Hence the minimum unavoidable uphill barrier equals one.
+\end{proof}
+
+The exhaustive independent checker also finds 23 unordered FR-triples on this graph; exactly eight lie in the sublevel set $u\le3$, and $\mathbf A$ is an isolated vertex of the corresponding reconfiguration graph. An independent $24$-vertex example, obtained from a flower-snark residual lift, has $64$ perfect matchings, $13{,}508$ FR-triples, and a separate sublevel-$3$ component of size $36$; it is supplied as corroborating data, not needed for the infinite-family proof.
+
+\section{The balanced three-pole expansion}
+Replace every vertex $v$ of a cubic graph $G$ by a copy of the three-pole $K_{3,2}$: three terminal vertices $v^e$, one for each old incident edge $e$, joined to both of two new internal vertices. Each old edge $e=vw$ becomes an external edge $v^ew^e$. Denote the new graph by $T(G)$. It has
+\[
+ |V(T(G))|=5|V(G)|,
+ \qquad |E(T(G))|=\tfrac{15}{2}|V(G)|.
+\]
+\begin{lemma}[Projection and local defect amplification]\label{lem:project}
+Every perfect matching $N$ of $T(G)$ selects exactly one external edge at each replaced vertex, and the selected external edges project to a perfect matching $\pi(N)$ on $G$. Projection takes FR-triples to FR-triples, and for every FR-triple $\mathbf N$ on $T(G)$,
+\[
+ u_{T(G)}(\mathbf N)\ge3\,u_G(\pi(\mathbf N)). \tag{3}
+\]
+Conversely, every FR-triple $\mathbf M$ of $G$ has an FR lift $\widetilde{\mathbf M}$ on $T(G)$ attaining equality in (3).
+\end{lemma}
+\begin{proof}
+The two internal vertices of each $K_{3,2}$ gadget must be matched to two distinct terminals; its third terminal is therefore matched externally. Hence projection is defined, and each old vertex is incident with exactly one projected matching edge. Common membership in all three projected matchings would imply common membership on the corresponding external edge, proving the FR property.
+
+At any old vertex the local multiplicities of an FR-triple sum to three and are at most two. Thus their pattern is either $(1,1,1)$ or $(2,1,0)$. Every uncovered old edge has two endpoints of the second type, and conversely each such vertex is incident with exactly one uncovered old edge. If the local pattern is $(2,1,0)$, the terminal corresponding to the doubly covered external edge is internally matched in only one of the three matchings. One of its two incident internal edges is therefore uncovered. Thus at least $2u_G$ internal edges are uncovered, in addition to the $u_G$ uncovered external edges, proving (3).
+
+For the converse, complete each projected matching locally by matching the two non-external terminals bijectively to the two internal vertices. There are two choices per coordinate. If the three external terminals are all distinct, a choice of the three completions covers each of the six internal edges exactly once. If they have pattern $(2,1,0)$, choose completions covering precisely five distinct internal edges, with no internal edge in all three matchings. These assertions follow directly by checking the two possible bijections per matching: up to relabelling the ports and matchings the patterns are $(0,1,2)$ and $(0,0,1)$. The choices are independent across gadgets and yield the asserted global FR-triple with exactly $2u_G$ uncovered internal edges.
+\end{proof}
+
+\begin{lemma}[Connectivity, colouring and path lifting]\label{lem:lift}
+If $G$ is simple, cubic and $3$-edge-connected, so is $T(G)$. If $G$ is $3$-edge-colourable, then $T(G)$ is $3$-edge-colourable. Moreover, every permitted one-coordinate move on FR-triples of $G$ can be lifted from \emph{any} FR-triple in its preimage to a permitted one-coordinate move on $T(G)$. Any FR-triple on $T(G)$ projecting to a $3$-edge-colouring of $G$ can be normalized by at most three further coordinate replacements.
+\end{lemma}
+\begin{proof}
+The $K_{3,2}$ three-pole is $K_{3,3}$ with one vertex deleted. Replacing a vertex by it is a cubic $3$-edge splice with $K_{3,3}$. A $3$-edge splice of two $3$-edge-connected cubic graphs remains $3$-edge-connected: a cut of size at most two would induce such a cut in one summand after the three joining edges are contracted back to their removed vertices. Iterate over the vertices. Simplicity and cubicity are immediate. To lift a proper $3$-edge-colouring, the three projected matching coordinates use distinct external ports in every gadget; choose their completions to partition its six internal edges, as in Lemma~\ref{lem:project}.
+
+For move lifting, hold the two unchanged matching coordinates fixed in each gadget, and prescribe the new external port according to the projected replacement. There are two possible internal completions for the replaced coordinate. At most one of these choices can create a triple intersection: if the fixed coordinates choose different external ports, their internal intersection has at most one edge; if they choose the same port, either their internal intersection is empty or it consists of two edges incident with the two other terminals, and the new external port must differ from theirs. In the latter case one completion avoids the shared edge at the one terminal used internally by the new coordinate. Thus the new matching can be completed independently in every gadget while maintaining the FR condition.
+
+If the projected matchings form a proper colouring of $G$, their three external ports are distinct at every gadget. We can replace each of the three coordinates in turn by its preferred locally completed version. The intermediate triples remain FR since any internal edge is eligible for at most two coordinates when all three external ports are distinct. After at most three changes all six internal edges of every gadget are simply covered, so $u=0$.
+\end{proof}
+
+\section{Unbounded barriers on class-one cubic graphs}
+\begin{theorem}[Unbounded uphill barrier]\label{thm:main}
+For every integer $t\ge0$ there exists a simple, $3$-edge-connected, $3$-edge-colourable cubic graph $G_t$, together with an FR-triple $\mathbf M_t$, satisfying
+\[
+ |V(G_t)|=10\cdot5^t,\quad u_{G_t}(\mathbf M_t)=3^{t+1},\quad B_{G_t}(\mathbf M_t)\ge3^t. \tag{4}
+\]
+In particular, the minimum necessary \emph{increase} in uncovered potential along a normalization path can be arbitrarily large despite global $3$-edge-colourability and $3$-edge-connectivity. There is a normalization path for every $\mathbf M_t$.
+\end{theorem}
+\begin{proof}
+Let $G_0=H$ and $\mathbf M_0=\mathbf A$ from Proposition~\ref{prop:seed}. Define $G_{t+1}=T(G_t)$ and let $\mathbf M_{t+1}$ be an equality-attaining lift of $\mathbf M_t$ from Lemma~\ref{lem:project}. The vertex count and initial potential in (4) follow by induction; all graphs remain simple, class one, and $3$-edge-connected by Lemma~\ref{lem:lift}.
+
+Consider any FR-preserving single-coordinate normalization path starting at $\mathbf M_t$. Project every state $t$ times down to $H$. Every projected step either leaves the triple unchanged or changes one matching, and the projection of the final zero-potential state is a proper $3$-edge-colouring of $H$ by (3). But $\mathbf A$ has \emph{no} nontrivial FR-neighbour in $H$ with uncovered potential at most three. Therefore some projected state on the path has uncovered potential at least four. Iterating (3) $t$ times shows the corresponding state upstairs has uncovered potential at least $4\cdot3^t$, whereas the initial potential is $3\cdot3^t$. This proves the barrier lower bound.
+
+Finally, the explicit escape path on $H$ can be lifted one coordinate at a time through each expansion, by Lemma~\ref{lem:lift}. At the endpoint, adjust the three remaining coordinates within the final gadgets to normalize. Repeating at each level yields a finite normalization path for $\mathbf M_t$. Hence the barrier (2) is finite and (4) holds.
+\end{proof}
+
+\begin{corollary}
+For the quadratic coverage defect $Q(\mathbf M)=\sum_e(m_{\mathbf M}(e)-1)^2$, there are class-one $3$-edge-connected cubic graphs with arbitrarily large unavoidable quadratic uphill barriers. Precisely, the construction has $Q(\mathbf M_t)=2\cdot3^{t+1}$, and every normalization path reaches $Q\ge8\cdot3^t$.
+\end{corollary}
+
+\section{Reproducibility, limitations and comparison with previous work}
+The supplied source \texttt{standalone\_audit.py} re-enumerates every perfect matching from the edge list, independently constructs all unordered FR-triples, verifies all legal moves, computes the connected components of the sublevel-$3$ state graph, checks the displayed path, and checks $3$-edge-connectivity by deleting every set of at most two edges. For $H$ it reports six perfect matchings, 23 FR-triples, and an isolated sublevel-$3$ state. The companion $24$-vertex check reports 64 perfect matchings, $13{,}508$ FR-triples and a separate sublevel-$3$ component of 36 states. The \texttt{balanced\_lift.py} implementation explicitly constructs 50- and 250-vertex instances, with initial potentials 9 and 27; independent connectivity tests return three in both cases. Exhaustive verification of the two choices of internal gadget matching confirms both local lemmas.
+
+Our moves replace an \emph{entire perfect matching coordinate}; they are not the alternating-square flips studied in classical perfect-matching reconfiguration. Our energy barrier is a property of an \emph{initial triple} under the FR-preserving adjacency, not of the minimum colouring defect of the graph. In particular all host graphs here are $3$-edge-colourable. Colouring defect and three-matching cores are well studied~\cite{Karabas2024,Allie2026}; alternating matching moves and reconfiguration complexity have a substantial literature~\cite{Bonamy2019}. Although the exact reconfiguration-barrier formulation appears different, external novelty of the theorem and the $K_{3,2}$ amplification construction has not been established. The paper is therefore a research draft, not a claim of a solved major conjecture.
+
+\begin{thebibliography}{9}\small
+\bibitem{Karabas2024} J. Karab\'a\v{s}, E. M\'a\v{c}ajov\'a, R. Nedela, M. \v{S}koviera, \emph{Cubic graphs with colouring defect 3}, Electronic J. Combin. 31(2) (2024), P2.6. doi:10.37236/12333.
+\bibitem{Allie2026} I. Allie, \emph{Resistance, oddness and colouring defect of snarks}, Discrete Math. 349 (2026), 114804. doi:10.1016/j.disc.2025.114804.
+\bibitem{Bonamy2019} M. Bonamy et al., \emph{The Perfect Matching Reconfiguration Problem}, arXiv:1904.06184 (2019).
+\end{thebibliography}
+\end{document}

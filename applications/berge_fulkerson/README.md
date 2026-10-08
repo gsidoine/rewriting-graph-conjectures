@@ -26,3 +26,7 @@ The [order-14 nonextension theorem candidate](plateau/FR_EXTENSION_OBSTRUCTIONS_
 ## October 8: resistance--kernel realization
 
 The new [resistance universality theorem and reproducible manuscript](plateau/resistance_paper/README.md) shows that colouring resistance of any simple 3-edge-connected cubic graph is exactly the minimum number of uncovered edges needed to realize it as a frozen Fan--Raspaud residual kernel. Independent Petersen and flower snark certificates are included. External novelty is unverified.
+
+## Uphill Fan–Raspaud reconfiguration barriers
+
+The [unbounded energy-barrier project](plateau/energy_barriers/README.md) supplies a 10-vertex class-one cubic seed, dependency-free exact enumeration and a `K_{3,2}` amplification theorem. It demonstrates that neutral moves alone are not universally sufficient for normalization. [Paper source](plateau/energy_barriers/paper/main.tex). This does not settle Berge–Fulkerson or Fan–Raspaud.

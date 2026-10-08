@@ -40,3 +40,7 @@ See [current claim register](../docs/claim_register_oct2026.md) for a cross-proj
 ## Resistance as an exact obstruction-realization cost
 
 [Resistance--kernel theorem and complete proof status](resistance_kernel_realization_2026-10-08.md): a general bridge from proper partial edge colourings to frozen perfect-matching covers and their residual kernels (with sharp vertex/defect cost).
+
+## Non-monotone reconfiguration: an unbounded barrier theorem (October 8)
+
+[Exact uphill FR-triple barriers](fr_uphill_barriers_2026-10-08.md) show that even class-one, 3-edge-connected cubic graphs do not admit universally non-increasing normalization of arbitrary FR-triples. A 10-vertex seed, a `K_{3,2}` lifting theorem and dependency-free exact verifier yield an infinite family with barrier at least `3**t` on `10*5**t` vertices. This is a proof draft with finite certificates; specialist novelty review remains outstanding.

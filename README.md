@@ -76,3 +76,7 @@ Citation metadata are in [`CITATION.cff`](CITATION.cff). Code is released under 
 ### New (October 8, 2026): resistance--kernel universality
 
 See [the mathematical status and proof](theory/resistance_kernel_realization_2026-10-08.md) and [the paper](applications/berge_fulkerson/plateau/resistance_paper/README.md). This is an unrefereed, novelty-unverified general theorem candidate linking edge-colouring resistance to the minimum defect/order of an FR-triple residual-kernel realization.
+
+### New (October 8, 2026): unbounded uphill FR-triple barriers
+
+A [five-page proof draft](applications/berge_fulkerson/plateau/energy_barriers/paper/main.tex) and [independent exact certificates](applications/berge_fulkerson/plateau/energy_barriers/README.md) establish a family of simple 3-edge-connected, 3-edge-colourable cubic graphs in which every FR-preserving one-matching normalization path must temporarily *increase* the uncovered-edge defect by an unbounded amount. The 10-vertex seed has the exact path `3 -> 4 -> 3 -> 0`; balanced `K_{3,2}` replacement amplifies its barrier. See the [theorem status](theory/fr_uphill_barriers_2026-10-08.md). Novelty remains to be independently audited.
