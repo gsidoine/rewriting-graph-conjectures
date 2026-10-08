@@ -118,6 +118,20 @@ These agree with **independently enumerated global neutral graphs** for the firs
 
 See [exact typed quotient verifier](../repro_runs/verify_typed_cut_quotient.py), which recomputes local PM6 states, all internal fiber components, all typed crossing transitions and the weighted synchronized product from scratch.
 
+### Second certificate system: three-sheet cycle double covers
+
+Complementing each of the three sheets converts a three-sheet CDC of a cubic graph into a proper three-edge-coloring (equivalently, three disjoint perfect matchings covering each edge once). It preserves every two-coordinate neutral switch, because symmetric differences of complementary sheets equal those of their missing color classes.
+
+Independently enumerating the typed quotient in this second certificate system gives:
+
+| Three-edge sum | Product response nodes | Weighted neutral components |
+|---|---:|---|
+| \(K_{3,3}\oplus_3 Q_3\) | 12 | \(24,24\) |
+| \(Q_3\oplus_3 Q_3\) | 6 | \(96\) |
+| \(K_{3,3}\oplus_3 K_{3,3}\) | 24 | \(6,6,6,6\) |
+
+These calculations corroborate that exactly the same *component-enriched, typed boundary algebra* works in both certificate systems. For three-sheet CDCs the equivalence to edge-Kempe coloring and many gluing results are classical (Belcastro–Haas, 2014); the example is a cross-model consistency check, **not a novelty claim**.
+
 ## 6. Importance and limitations
 
 **What is proved:** an exact, functorial-looking but elementary decomposition of neutral-reachability and component counts across a 3-edge cut for two distinct graph-certificate models, including arbitrary non-pair-rigid shores. The theorem shows exactly how much extra boundary information is necessary beyond signatures.
