@@ -47,6 +47,7 @@ open graph question or general certificate system
 **Extended theorem-first milestone (8 October 2026):** [pair-rigid tile algebra](theory/pair_rigid_tile_multicover_algebra_2026-10-08.md) now gives an exact neutral-component factorization for chains of rigid cubic tiles and non-3-edge-colorable K3,3/Petersen mixtures. The cube Q3 shows the rigidity assumption is necessary for this matching-multiset invariant. **Human proof draft; independently checked finite cases; literature novelty unverified.**
 
 
+**Cross-certificate theorem-first milestone:** [port-coherent gluing for CDC and matching multicovers](theory/port_coherent_neutral_reconfiguration_2026-10-08.md) extends exact three-edge-cut neutral-component factorization beyond pair-rigid tiles. The non-rigid cube is exhaustively verified as port-coherent in the three-sheet CDC and six-matching double-cover systems. This is a **research theorem draft with finite tests and explicit hypotheses**, not a new proof of CDC or Berge–Fulkerson.
 **New theorem-first continuation:** [Pair-rigid tile neutral algebra](theory/pair_rigid_tile_multicover_algebra_2026-10-08.md) extends exact component-count and reachability formulas from K3,3 to chains with Petersen blocks, including non-3-edge-colorable graphs, and identifies an arity-three escape from binary-neutral components. The result is a research proof draft with independent computational checks and an explicit novelty warning.
 
 

@@ -59,6 +59,11 @@ A journal-worthy candidate should imply a nontrivial result for an unbounded gra
 **Next falsification target:** the first genuinely *non-pair-rigid* tile (cube Q3), where local matching multisets can change under neutral cycles. Determine the smallest exact component-enriched relation algebra that composes those transitions without enumerating the full global neutral-state graph. Do not confuse a tidy factorization under a strong rigidity assumption with a universal theorem about all cubic graphs.
 
 
+## General theorem-first milestone: two systems, non-rigid tiles
+
+The [port-coherent gluing theorem](../theory/port_coherent_neutral_reconfiguration_2026-10-08.md) gives the exact product of neutral orbit classes and component weights across 3-edge-sum chains **both for cycle double covers and for matching multicovers**. Pair-rigidity is replaced by the strictly weaker *port-coherence* property: each local orbit must remain connected after fixing its entire 3-edge boundary signature. The cube is not pair-rigid but is port-coherent in both the 3-sheet CDC and six-matching systems, as shown by exhaustive enumeration. Mixed K3,3/cube/Petersen families now have exact neutral-component counts; the 3-sheet CDC portion is classical Kempe class theory, not a new result.
+
+**Next core target:** characterize or efficiently certify port coherence for non-rigid tiles, and construct a compositional relation algebra for tiles whose fixed-signature orbit fibers are *disconnected*. This is the genuine open proof obstacle, rather than another small graph-size threshold or isolated counterexample.
 ## 8 October follow-up: pair-rigid tiles and the failure of naive extension
 
 The theorem [pair-rigid tile matching-multicover component algebra](../theory/pair_rigid_tile_multicover_algebra_2026-10-08.md) takes a step beyond K3,3 chains. It gives an exact **multiplicative** count, explicit component sizes and short constructive neutral paths for chains built from any pair-rigid cubic tiles. Petersen tiles produce non-3-edge-colorable graph families; a three-coordinate exact trade bridges the binary-neutral components in a 14-vertex mixed graph.

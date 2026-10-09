@@ -99,6 +99,13 @@ The research priorities and stop/pivot conditions are recorded in [theorem-first
 - **Status:** human proof draft plus independent finite verification; claims of new literature priority are **not justified** without a specialized audit. The underlying Petersen matching configuration and 3-edge-cut parity are classical; the earlier all-K3,3 m=1 case is covered by Belcastro–Haas (2014). No conjecture about Fulkerson covers is solved.
 
 
+## Port-coherent orbit gluing across CDC and matching systems (8 October, newest)
+
+- [Shared gluing theorem](../theory/port_coherent_neutral_reconfiguration_2026-10-08.md): **human proof draft** for *two distinct* certificate systems, `CDC(q)` even-subgraph sheets (empty sheets allowed), and `PM(m)` m-fold matching multicovers. If every tile's neutral orbit has a connected induced fixed-boundary-signature fiber, global neutral components are indexed by products of local orbit indices; both component sizes and fixed-boundary diameter bounds factor/add.
+- [Cube local neutral-fiber test](../tests/test_cube_port_coherence.py): **exact finite computational lemma**: cube has 24 3-sheet CDC states (one orbit, six signature fibers of four connected states each) and 4320 6-matching double-cover states (one orbit, 90 fibers of 48 connected states each), despite failing pair-rigidity.
+- [Mixed global 3-sheet CDC verification](../tests/test_cdc_k33_cube_gluing.py): K3,3+cube has 48 states, two components of size24 and fixed-signature components of size4 each. **This specialization falls under classical edge-Kempe composition and is not novel.**
+- [Mixed matching global verification](../repro_runs/verify_mixed_pair_rigid.py): K3,3+cube 43200 states (components 4320/34560/4320) and Petersen+cube 34560 states (one component); independently built neutral graphs.
+- **Publication limits:** no unconditional claim for arbitrary tiles, no proof of any major conjecture; cube hypothesis currently computationally exhausted rather than human-classified; general novelty not established.
 ## Pair-rigid tile factorization (2026-10-08, evening)
 
 - **Exact factorization theorem (proof draft):** a chain of simple, cubic, 3-edge-connected, pair-rigid tiles has neutral-connected components indexed precisely by a product of local integer perfect-matching multiplicity solution sets. Exact fixed-signature and global component sizes are multinomial products, with a constructive `3L(m-1)` fixed-fiber switch bound. [Full proof](../theory/pair_rigid_tile_multicover_algebra_2026-10-08.md).
