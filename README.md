@@ -48,6 +48,15 @@ open graph question or general certificate system
 
 
 **Cross-certificate theorem-first milestone:** [port-coherent gluing for CDC and matching multicovers](theory/port_coherent_neutral_reconfiguration_2026-10-08.md) extends exact three-edge-cut neutral-component factorization beyond pair-rigid tiles. The non-rigid cube is exhaustively verified as port-coherent in the three-sheet CDC and six-matching double-cover systems. This is a **research theorem draft with finite tests and explicit hypotheses**, not a new proof of CDC or Berge–Fulkerson.
+**New theorem-first continuation:** [Pair-rigid tile neutral algebra](theory/pair_rigid_tile_multicover_algebra_2026-10-08.md) extends exact component-count and reachability formulas from K3,3 to chains with Petersen blocks, including non-3-edge-colorable graphs, and identifies an arity-three escape from binary-neutral components. The result is a research proof draft with independent computational checks and an explicit novelty warning.
+
+
+**New generalization beyond pair rigidity (8 October):** [neutral-transparent cube substitution](theory/neutral_transparent_cube_substitution_2026-10-08.md) preserves neutral-reconfiguration component sets when inserting a cube, both for six-perfect-matching double covers and for padded q-sheet cycle double covers with arbitrary q>=3. The exact cycle-cover state multiplier includes q=5 and q=8. The local transparency claims use exhaustive finite cube checks; no major open conjecture is resolved and novelty remains under review.
+
+
+
+**Theorem-first structural milestone:** [complete component-enriched typed three-cut relation algebra](theory/component_enriched_three_cut_relation_2026-10-08.md) now computes neutral reconfiguration exactly across arbitrary three-edge sums for both six-matching double covers and padded cycle double covers, including disconnected internal boundary fibers. This subsumes the pair-rigid product and cube-transparent insertion as special cases. It is an exact structural **research proof**, not a polynomial-time result or independently vetted novelty claim.
+
 
 ## Quick start
 

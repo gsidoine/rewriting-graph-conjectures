@@ -29,6 +29,21 @@ The generic implementation is under `certificate_coordination/`. Application-spe
 ## Cross-certificate port-coherence theorem (8 October)
 
 [Port-coherent neutral-reconfiguration gluing](port_coherent_neutral_reconfiguration_2026-10-08.md) extends the pair-rigid theorem to **both labelled cycle double covers and perfect-matching multicovers**, requiring only that each local neutral orbit be connected **inside every fixed full boundary signature**. It gives a bijection between global components and products of local orbits, exact component-size products, and additive fixed-boundary neutral-path diameter bounds. The non-pair-rigid cube Q3 satisfies the hypothesis for 3-sheet CDC and 6-matching double-cover certificates by independent exhaustive enumeration. Combining cubes, K3,3 and Petersen tiles yields exact non-3-edge-colorable examples in the matching system. Classic 3-edge-coloring/Kempe consequences are **not novel**; the general abstract theorem remains a research proof draft pending literature audit.
+## Pair-rigid tile product theorem — 8 October continuation
+
+[Exact component algebras for pair-rigid cubic tiles](pair_rigid_tile_multicover_algebra_2026-10-08.md) extends the K3,3 multicover theorem to a family of 3-edge-sum chains built from arbitrary pair-rigid cubic tiles, including Petersen and triangular-prism tiles. The local types are feasible integer solutions to the tile perfect-matching incidence equations, and both the global and fixed-signature neutral components factor exactly. Mixed Petersen/K3,3 chains are non-3-edge-colorable and retain `(m+1)^a` components when `m` is even (no covers when `m` is odd). The note includes a sharp **binary-vs-three-coordinate** trade threshold on the mixed 14-vertex graph. The cube invalidates the local multiset invariant without pair rigidity. **Status: unrefereed proof draft, independent finite tests; novelty not established.**
+
+
+## General neutral-transparent cube substitution (8 October, later)
+
+[Exact three-cut component-preserving insertion theorem](neutral_transparent_cube_substitution_2026-10-08.md) **removes the pair-rigidity requirement**. A tile with connected fixed-boundary neutral fibers induces a bijection of neutral-reconfiguration components upon attachment to any cubic host; uniform fiber sizes multiply the certificate counts, with additive diameter overhead. The cube `Q3` is neutral-transparent for six-perfect-matching double covers (**48 extensions per boundary signature, diameter 4**) and for **padded q-sheet cycle double covers for all q>=3**, with exact extension factor `4+28(q-3)+6*C(q-3,2)+6*C(q-3,3)` and fixed-fiber diameter at most 19 for all q. Finite base lemmas for q=3,4,5,6 and PM6 are checked exhaustively by CI tests; a separate verifier reproduces two mixed insertion examples with 77,760 states and 1,645,920 directed neutral switches. This is a theorem with **computer-assisted finite ingredients**, not a vetted novelty or 5-CDC proof.
+
+
+
+## Exact component-enriched typed three-cut algebra (8 October 2026)
+
+[Complete typed boundary-response quotient](component_enriched_three_cut_relation_2026-10-08.md) eliminates both the pair-rigidity and connected-fiber assumptions from neutral reconfiguration **across any three-edge cut**. The response state is a full boundary signature *plus an internal neutral-component index*; transitions are typed by the coordinate pair and the two cut ports used. The global neutral connected components are **exactly** those of the synchronized typed product; each component size is the sum of products of local component weights. This provides a unifying theorem for six-perfect-matching double covers and padded q-sheet cycle double covers. Reproducible quotient tests include K3,3, cube and Petersen in PM6, and K3,3/cube in the three-sheet CDC model. The theorem is mathematically exact but does **not** imply bounded-state or polynomial-time computation for arbitrary graphs; novelty relative to transfer/reconfiguration literature remains unvetted.
+
 
 ## Primary definitions
 
