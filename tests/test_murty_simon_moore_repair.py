@@ -96,3 +96,16 @@ def test_endpoint_local_girth_only_unequal_degrees():
             J = H0.copy()
             J.add_edges_from(F)
             assert not nx.is_connected(J) or nx.diameter(J) > 2
+
+def test_unbounded_grid_clique_family_examples():
+    from applications.murty_simon.moore_repair import (
+        grid_clique_example, edge_hypotheses)
+    for p, q in [(1, 1), (2, 2), (2, 3), (3, 3), (4, 4), (6, 6)]:
+        G, u, v = grid_clique_example(p, q)
+        assert len(G) == (p + 1) * (q + 1) + 1
+        assert edge_hypotheses(G, u, v)
+        assert nx.diameter(G) == 2
+        expected = p + 1 if p == q else max(p, q)
+        assert minimum_repair_count(G, u, v) == expected
+        F, H = optimal_repair(G, u, v)
+        assert len(F) == expected and nx.diameter(H) == 2
