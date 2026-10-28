@@ -3,8 +3,18 @@
 Elements of the finite group are permutation tuples; action is provided
 by caller and may have nontrivial stabilizers.
 """
-from .edge_coloring_voltage import mul, inv
 from .edge_coloring_rigidity import components
+
+
+def mul(a, b):
+    """Composition of arbitrary-length permutation tuples."""
+    assert len(a) == len(b)
+    return tuple(a[b[i]] for i in range(len(a)))
+
+
+def inv(a):
+    """Inverse of an arbitrary-length permutation."""
+    return tuple(a.index(i) for i in range(len(a)))
 
 
 def group_closure(generators, identity):
