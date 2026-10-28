@@ -53,6 +53,20 @@ As right multiplication is free, a vertex in component C_i is unchanged **iff** 
 
 The quotient traversal and weighted-mode choices give an algorithm using one component search, one gain-propagation search, and weighted counting; for fixed finite H it is linear in the input size (up to dictionary operations).
 
+## Corollary A.1 — sharp universal repair bound
+
+For unit vertex weights, if the augmented finite-group constraint system is feasible, the exact formula always satisfies
+
+    R <= floor((1 - 1/q) n),    q = |H|.
+
+Indeed, in every quotient connected block B the total weight of the q possible offset classes is |B|; the largest class weighs at least |B|/q. Summing the corresponding saved weights gives at least n/q unchanged vertices, and integrality gives the floor. More generally, for arbitrary nonnegative integral weights of total W,
+
+    R <= floor((1 - 1/q) W).
+
+**Sharpness:** Theorem C constructs infinitely many path instances with n=qm and R=(q-1)m, attaining the constant exactly. No assumption of commutativity or bounded number of added constraints is required. In the binary case q=2, every feasible update admits a repair touching at most floor(n/2) vertices, and one new constraint between two equal-sized paths forces exactly n/2 changes.
+
+This is the sharp universal *coset-mode* repair inequality, not a bound for arbitrary graph certificates such as matching covers or diameter-two criticality.
+
 ## Theorem B — exact strict-feasibility reconfiguration components
 
 Consider a single *consistent* edge system E and a move that changes at most r vertex labels while retaining every edge equation. Let the connected components of the underlying graph have sizes s₁,...,s_k. Then the graph of feasible certificates with edges for any nonzero Hamming change of size ≤r has exactly
