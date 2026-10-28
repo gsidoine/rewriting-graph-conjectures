@@ -61,3 +61,27 @@ def test_three_constant_colorings_nonfree():
     A=[set(range(3))-{i} for i in range(3)]
     reps,H,quot=coset_holonomy(states,A,S3,act)
     assert quot==[(1,6,1,3,(2,))]
+
+
+def test_random_equivariant_nonfree_graphs():
+    """150 independent quotient-vs-full-BFS checks with nontrivial stabilizers."""
+    from itertools import product
+    import random
+    rng = random.Random(38129)
+    for n, repetitions in [(3,90), (4,60)]:
+        group = tuple(permutations(range(n)))
+        states = list(product((0,1),repeat=n))
+        index = {s:i for i,s in enumerate(states)}
+        for _ in range(repetitions):
+            adj = [set() for _ in states]
+            for _ in range(rng.randrange(n*n+1)):
+                i,j = rng.sample(range(len(states)),2)
+                for g in group:
+                    a=index[position_action(g,states[i])]
+                    b=index[position_action(g,states[j])]
+                    adj[a].add(b)
+                    adj[b].add(a)
+            reps,H,quot = coset_holonomy(states,adj,group,position_action)
+            predicted = sorted(size for _,_,count,size,_ in quot
+                               for _ in range(count))
+            assert predicted == sorted(map(len,components(adj)))
