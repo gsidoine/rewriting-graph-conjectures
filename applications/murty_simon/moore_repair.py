@@ -90,3 +90,27 @@ def optimal_repair(G, u, v):
     H.add_edges_from(additions)
     assert not H.has_edge(u, v) and nx.is_connected(H) and nx.diameter(H) <= 2
     return additions, H
+
+
+def grid_clique_example(p, q):
+    """Explicit n=(p+1)(q+1)+1 diameter-two family with exact repair width."""
+    import networkx as nx
+    assert p >= 1 and q >= 1
+    G = nx.Graph()
+    u, v = ("u",), ("v",)
+    X = [("x", i) for i in range(p)]
+    Y = [("y", j) for j in range(q)]
+    Z = [("z", i, j) for i in range(p) for j in range(q)]
+    G.add_edge(u, v)
+    G.add_edges_from((v, x) for x in X)
+    G.add_edges_from((u, y) for y in Y)
+    for i, x in enumerate(X):
+        for j, y in enumerate(Y):
+            z = ("z", i, j)
+            G.add_edge(x, z)
+            G.add_edge(y, z)
+    G.add_edges_from(combinations(Z, 2))
+    assert len(G) == (p + 1) * (q + 1) + 1
+    assert edge_hypotheses(G, u, v)
+    assert minimum_repair_count(G, u, v) == (p + 1 if p == q else max(p, q))
+    return G, u, v
