@@ -32,9 +32,11 @@ These charges are injective. To see this, note that each charge is incident to u
 
 Analogously, construct an injection f_Y:Y→F, using routes from v to y. Hence |F|≥max(p,q).
 
-If p=q=r, suppose |F|=r. Both injections must then be bijections. But restoring the pair {u,v} requires that F contain an edge ux with x∈X, or vy with y∈Y (the reinserted edge uv itself is forbidden). An edge ux has endpoints disjoint from {v}∪Y, so cannot be charged by f_Y; symmetrically vy cannot be charged by f_X. Contradiction: |F|≥r+1.
+If p=q=r, suppose |F|=r. Both injections must then be bijections onto F. Every charge from f_X is an edge incident to u or to some x∈X; every charge from f_Y is incident to v or to some y∈Y. Since u,v,X,Y are pairwise disjoint except for their stipulated roles, a **common** charge belongs to one of four edge types: uv, uY, vX or XY. The first three are forbidden as new edges (uv may not be reinserted, and uY and vX already belong to G). Thus **every member of F joins X to Y**.
 
-This lower bound does **not** assume paths with two new edges are forbidden; the charge explicitly handles them.
+But then no added edge is incident to u or v. In G-uv+F, the respective neighborhoods of u and v are still Y and X, which are disjoint by triangle-freeness. Hence u,v have neither an edge nor a common neighbor and are at distance greater than two. Contradiction. Therefore |F|≥r+1.
+
+This proof explicitly allows the alternative possibility of restoring u–v using **two** new edges through an intermediate vertex. Such edges cannot occur in an r-edge repair because the two charge injections would be surjective and force F⊆X×Y. The earlier draft's stronger statement that u–v restoration always requires a single ux or vy edge was incorrect; this revised argument does not use it.
 
 ## Step 3: matching construction / upper bound
 
