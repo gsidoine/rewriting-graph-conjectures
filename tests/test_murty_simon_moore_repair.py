@@ -59,3 +59,40 @@ def test_all_atlas_graphs_satisfying_hypotheses():
             additions, repaired = optimal_repair(G, u, v)
             assert len(additions) == minimum_repair_count(G, u, v)
             assert nx.diameter(repaired) <= 2
+
+
+def test_endpoint_local_girth_only_unequal_degrees():
+    import itertools
+    from applications.murty_simon.moore_repair import (
+        edge_hypotheses, girth_at_least_five)
+    G = nx.Graph()
+    u, v = "u", "v"
+    X = [f"x{i}" for i in range(2)]
+    Y = [f"y{j}" for j in range(3)]
+    Z = [f"z{i}{j}" for i in range(2) for j in range(3)]
+    G.add_edge(u, v)
+    for x in X:
+        G.add_edge(v, x)
+    for y in Y:
+        G.add_edge(u, y)
+    for i in range(2):
+        for j in range(3):
+            z = f"z{i}{j}"
+            G.add_edge(X[i], z)
+            G.add_edge(Y[j], z)
+    G.add_edges_from(itertools.combinations(Z, 2))
+    assert (len(G), G.number_of_edges(), nx.diameter(G)) == (13, 33, 2)
+    assert (G.degree(u), G.degree(v)) == (4, 3)
+    assert edge_hypotheses(G, u, v)
+    assert not girth_at_least_five(G)  # contains triangles elsewhere
+    assert minimum_repair_count(G, u, v) == 3
+    additions, H = optimal_repair(G, u, v)
+    assert len(additions) == 3 and nx.diameter(H) == 2
+    H0 = G.copy()
+    H0.remove_edge(u, v)
+    available = list(nx.non_edges(G))
+    for k in (0, 1, 2):
+        for F in combinations(available, k):
+            J = H0.copy()
+            J.add_edges_from(F)
+            assert not nx.is_connected(J) or nx.diameter(J) > 2
