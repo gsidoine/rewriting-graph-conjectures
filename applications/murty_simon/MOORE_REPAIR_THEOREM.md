@@ -55,3 +55,18 @@ The new test file independently checks the hypotheses, all edge deletions and al
 ## Relationship to existing work
 
 The Moore-graph degree/girth/diameter theory is classical; graph-diameter repair and augmentation have an established literature. The present exact local deletion/augmentation formula, in this particular form, is an unrefereed research observation and **its novelty is not established**. It strengthens the reconfiguration/escape-arity evidence in this repository but yields no new edge-density bound for diameter-two-critical graphs, and so is not a proof of the Murty–Simon conjecture.
+
+
+## Stronger endpoint-local formulation (no global girth assumption)
+
+In fact the identical formula and charging proof require *only*:
+
+- G has diameter at most two;
+- u and v are adjacent and both have degree at least two;
+- neither u nor v belongs to any triangle or four-cycle.
+
+Other parts of G may have triangles, quadrilaterals and arbitrarily many further cycles. The proof above uses absence of short cycles **only through u or v**. This is the theorem implemented in \`edge_hypotheses\` and \`optimal_repair\`; global girth>=5 is merely an easily checked sufficient condition.
+
+**Unequal-degree witness.** Let X={x0,x1} and Y={y0,y1,y2}, with edge uv, u joined to every Y, v to every X. Introduce six vertices z_ij, each joined to x_i and y_j, and make the six z_ij vertices a clique. All other edges are absent. This graph has 13 vertices, 33 edges and diameter 2, with d(u)=4 and d(v)=3. There are triangles among the z_ij but **neither u nor v belongs to any triangle or 4-cycle**. The formula gives r_G(uv)=max(2,3)=3. An exhaustive independent optimization audit confirms no repair using at most two additions. This shows that the p≠q branch is nonvacuous once the hypotheses are localized.
+
+**Claim boundary:** we have not shown the global Murty–Simon edge-count bound, and the result is not asserted as novel relative to existing graph-diameter augmentation/criticality literature.
