@@ -70,3 +70,32 @@ Other parts of G may have triangles, quadrilaterals and arbitrarily many further
 **Unequal-degree witness.** Let X={x0,x1} and Y={y0,y1,y2}, with edge uv, u joined to every Y, v to every X. Introduce six vertices z_ij, each joined to x_i and y_j, and make the six z_ij vertices a clique. All other edges are absent. This graph has 13 vertices, 33 edges and diameter 2, with d(u)=4 and d(v)=3. There are triangles among the z_ij but **neither u nor v belongs to any triangle or 4-cycle**. The formula gives r_G(uv)=max(2,3)=3. An exhaustive independent optimization audit confirms no repair using at most two additions. This shows that the p≠q branch is nonvacuous once the hypotheses are localized.
 
 **Claim boundary:** we have not shown the global Murty–Simon edge-count bound, and the result is not asserted as novel relative to existing graph-diameter augmentation/criticality literature.
+
+
+## Infinite family: unbounded coordinated repair width
+
+For any integers p,q>=1, define a graph G_(p,q) with vertices
+
+    {u,v} ∪ {x_i:1<=i<=p} ∪ {y_j:1<=j<=q}
+          ∪ {z_ij:1<=i<=p,1<=j<=q}.
+
+Join uv, every v-x_i, every u-y_j, both x_i-z_ij and y_j-z_ij,
+and make the pq vertices z_ij into a clique. Add no other edges.
+
+**Exact properties:**
+
+* n=(p+1)(q+1)+1;
+* diam(G)=2: u to x_i through v, v to y_j through u, u/v to z_ij through y_j/x_i, X-Y through z_ij, X-X through v, Y-Y through u, X-to-nonincident-Z through the Z clique, and similarly for Y, while Z-Z is adjacent;
+* neither u nor v lies on a triangle or four-cycle: each x_i is adjacent to v but no other neighbor of v; any two x_i have only v as a common neighbor, and symmetrically for the y_j;
+* d(u)=q+1 and d(v)=p+1.
+
+The local exact theorem proves
+
+    r_(G_(p,q))(uv) = max(p,q)       if p≠q,
+                       p+1          if p=q.
+
+In particular, for p=q=r the order is (r+1)^2+1 and the exact repair cost is r+1. This provides **unbounded repair width**, growing as Θ(sqrt(n)), even for diameter-two graphs on dense, connected hosts.
+
+This does NOT imply unbounded width among *edge-critical* diameter-two graphs: for p*q>1 the Z clique introduces redundant edges. It is a theorem about preserving the diameter-two certificate under an edge deletion plus coordinated addition, not an extremal construction for Murty–Simon.
+
+The executable family is `grid_clique_example(p,q)`. Six parameter pairs are verified in the regression tests; the theorem for all positive p,q follows from the proof rather than the tests.
