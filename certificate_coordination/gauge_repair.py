@@ -133,7 +133,8 @@ def reconfiguration_components(n, edges, grp, max_move):
 def sharp_mode_family(grp, block_size):
     """All distinct quotient offsets: minimum (|group|-1)*block_size."""
     assert block_size >= 1
-    q = len(grp.elements)
+    members = [grp.identity] + [a for a in grp.elements if a != grp.identity]
+    q = len(members)
     n = q * block_size
     e = grp.identity
     old = []
@@ -142,7 +143,7 @@ def sharp_mode_family(grp, block_size):
                    for j in range(block_size-1))
     new = []
     for i in range(q-1):
-        h = grp.mul(grp.elements[i+1],grp.inv(grp.elements[i]))
+        h = grp.mul(members[i+1],grp.inv(members[i]))
         new.append(((i+1)*block_size-1, (i+1)*block_size, h))
     x0 = [e]*n
     assert exact_repair(n,old,new,x0,grp).min_cost == (q-1)*block_size
