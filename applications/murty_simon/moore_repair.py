@@ -20,6 +20,27 @@ def girth_at_least_five(G):
     return True
 
 
+
+def endpoint_locally_short_cycle_free(G, u, v):
+    """Neither endpoint is on a triangle or a four-cycle."""
+    if not G.has_edge(u, v) or G.degree(u) < 2 or G.degree(v) < 2:
+        return False
+    for w in (u, v):
+        for a, b in combinations(G.neighbors(w), 2):
+            if G.has_edge(a, b):
+                return False
+            if (set(G.neighbors(a)) & set(G.neighbors(b))) - {w}:
+                return False
+    return True
+
+
+def edge_hypotheses(G, u, v):
+    """Local hypotheses: global diameter <=2, no short cycles AT u/v."""
+    import networkx as nx
+    return (nx.is_connected(G) and nx.diameter(G) <= 2
+            and endpoint_locally_short_cycle_free(G, u, v))
+
+
 def hypotheses(G):
     import networkx as nx
     return (len(G) >= 5 and min(dict(G.degree()).values()) >= 2
@@ -29,7 +50,7 @@ def hypotheses(G):
 
 def broken_witness_triple(G, u, v):
     """Three pairs that must break after uv deletion, with endpoints x,y."""
-    assert hypotheses(G) and G.has_edge(u, v)
+    assert edge_hypotheses(G, u, v)
     x = next(w for w in G.neighbors(v) if w != u)
     y = next(w for w in G.neighbors(u) if w != v)
     return x, y, {frozenset((u, v)),
