@@ -51,7 +51,9 @@ def test_cdc_k33_cube_exact_gluing():
                 opts.add(z)
         adj[s] = opts
     assert sizes(states, adj) == [24,24]
-    root = (0, 1)
+    # The first K3,3 tile's right terminal (0,1) is removed by graph_for('KC').
+    # Its exposed left terminal remains cubic and supplies the fixed star.
+    root = (0, tiles[0][1][0])
     star = [e for e, edge in enumerate(edges) if root in edge]
     assert len(star) == 3
     grouped = defaultdict(list)
