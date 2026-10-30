@@ -48,6 +48,9 @@ The generic implementation is under `certificate_coordination/`. Application-spe
 ## Exact finite-group certificate repair (28 October 2026)
 
 [Group-potential quotient-holonomy and weighted coset-mode repair](group_potential_repair_2026-10-28.md) gives an exact feasibility and minimum-edit formula for finite-group edge-potential certificates, including noncommutative groups, a sharp universal repair bound `floor((1-1/|H|)n)`, and an exact count of strict-feasibility reconfiguration components for bounded-coordinate moves. The included [independent brute-force tests](../tests/test_gauge_repair.py) cover Z2, Z3 and S3. **These are elementary combinations of classical gain-graph/switching ideas; no originality, Lean verification, or general graph-conjecture solution is claimed.**
+## Support-Cayley and voltage-holonomy certificate reconfiguration (28 October 2026)
+
+[Exact isometric-group-orbit and nonabelian voltage-quotient theorems](support_cayley_rigidity_2026-10-28.md), with [reproducible 3-edge-coloring examples](../applications/edge_coloring_rigidity.py) and [voltage verifier](../applications/edge_coloring_voltage.py). Covers an infinite family of uniquely 3-edge-colorable planar cubic graphs with exact linear color-repair threshold, plus K3,3/cube examples separating Hamming-budget connectivity from Kempe connectivity. **Classical group-action and voltage-graph mechanisms; no unverified originality claim, Lean formalization or Erdos-problem resolution.**
 
 ## Primary definitions
 
